@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_orco_domain_Cliente" modelAttribute="cliente" path="/clientes" render="${empty dependencies}" z="HYfBb2L9jfl6j5jqd0i+lbSxCI4=">
+        
+        <jsp:include page="newEditForm.jspx"/>
+    	
+    	<!-- Estos figuran todos con render="false" ya que se utiliza el mismo formulario para la edicion y la creacion de nuevas facturas -->
+     	<field:textarea field="nombre" id="c_orco_domain_Cliente_nombre" render="false" required="true" z="user-managed"/>
+        <field:textarea field="direccion" id="c_orco_domain_Cliente_direccion" render="false" z="user-managed"/>
+        <field:textarea field="ciudad" id="c_orco_domain_Cliente_ciudad" render="false" z="user-managed"/>
+        <field:textarea field="provincia" id="c_orco_domain_Cliente_provincia" render="false" z="user-managed"/>
+        <field:input field="cuit" id="c_orco_domain_Cliente_cuit" max="25" render="false" z="user-managed"/>
+        <field:textarea field="telefono" id="c_orco_domain_Cliente_telefono" render="false" z="user-managed"/>
+        <field:input field="userNamePortal" id="c_orco_domain_Cliente_userNamePortal" max="30" render="false" z="user-managed"/>
+        <field:input field="passwordPortal" id="c_orco_domain_Cliente_passwordPortal" max="30" render="false" z="user-managed"/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_orco_domain_Cliente" render="${not empty dependencies}" z="9khJaFzFbS8MNlYyTzFwkpar4T8="/>
+</div>

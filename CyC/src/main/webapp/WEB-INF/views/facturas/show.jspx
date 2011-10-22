@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_orco_domain_Factura" object="${factura}" path="/facturas" print="false" z="user-managed">
+        
+         
+       <div style="display: block; overflow: hidden;">	 
+    	 <div style="float:left; width: 50%;">
+	 		<field:display field="facturaFormulario" id="s_orco_domain_Factura_facturaFormulario" object="${factura}" z="ydl6EISrvSkPvnLUR0KddJ3lpOE="/>
+     		<field:display field="cliente" id="s_orco_domain_Factura_cliente" object="${factura}" z="m6cOrzqgQYRv8CwfIImrYfpqK8I="/>
+         	<field:display field="presupuestoOrigen" id="s_orco_domain_Factura_presupuestoOrigen" object="${factura}" render="${(factura.presupuestoOrigen != null)}" z="user-managed"/>
+        	<field:display field="ordenTrabajoOrigen" id="s_orco_domain_Factura_ordenTrabajoOrigen" object="${factura}" render="${(factura.ordenTrabajoOrigen != null)}" z="user-managed"/>
+      	 </div>
+       	 <div style="float:right; width: 50%;">
+      		<field:display date="true" dateTimePattern="${factura_fecha_date_format}" field="fecha" id="s_orco_domain_Factura_fecha" object="${factura}" z="CznQdGS+GlAi60w5miT55klh2Ws="/>
+        	<field:display field="condicionesVenta" id="s_orco_domain_Factura_condicionesVenta" object="${factura}" z="CZLqkpBZzvDDtUIXt5HDfCT9p8w="/>
+         </div>			
+       </div>
+    
+       <!-- Campos que no se ven de una -->
+        <field:display field="impuesto" id="s_orco_domain_Factura_impuesto" object="${factura}" render="false" z="user-managed"/>
+        <field:display field="bonificacion" id="s_orco_domain_Factura_bonificacion" object="${factura}" render="false" z="user-managed"/>
+        <field:display field="tipsBusqueda" id="s_orco_domain_Factura_tipsBusqueda" object="${factura}" render="false" z="user-managed"/>
+        <field:display field="lineas" id="s_orco_domain_Factura_lineas" object="${factura}" render="false" z="user-managed"/>
+    	
+      <div style="width:100%; margin-bottom:5px;">  
+        <table name="lineasGrid">
+       	<thead>
+        	<tr>
+        	<th>Cantidad</th>
+        	<th colspan="2">Descripci&amp;oacute;n</th>
+        	<th>Precio Unitario</th>
+        	<th>Precio Total</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<c:forEach items="${factura.lineasPresentacion}" var="linea">
+				<tr>
+					<td style="width:50px; text-align:right;">
+						<c:out value="${linea.cantidad}"/>
+					</td>
+					<td colspan="2" style="width:285px;">
+						<c:out value="${linea.descripcion}"/>
+					</td>
+					<td style="width:120px; text-align:right;">
+						<c:out value="${linea.precioUnitario}"/>
+					</td>
+					<td style="width:120px; text-align:right;">
+						<c:out value="${linea.precioTotal}"/>
+					</td>
+				</tr>
+	    	</c:forEach>
+        </tbody>
+        <tfoot>
+        	<tr>
+        		<th/>
+        		<th style="text-align:right;">Bonificaci&amp;oacute;n</th>
+        		<th style="width:45px; text-align:left;">
+        			<c:out value="${factura.bonificacion}"/>%
+				</th>
+        		<th>Subtotal:</th>
+        		<th style="width:120px; text-align:right;">
+        			<c:out value="${factura.subtotal}"/>
+				</th>
+        	</tr>
+        	<tr>
+        		<th/>
+        		<th style="text-align:right;">Impuesto</th>
+        		<th style="width:45px; text-align:left;">
+        			<c:out value="${factura.impuesto}"/>%
+				</th>
+        		<th>Subtotal Impuesto:</th>
+        		<th style="width:120px; text-align:right;">
+        			<c:out value="${factura.totalImpuesto}"/>
+				</th>
+        	</tr>
+        	<tr>
+        		<th/>
+        		<th colspan="2">
+        		</th>
+        		<th>Total:</th>
+        		<th style="width:120px; text-align:right;">
+        			<c:out value="${factura.total}"/>
+				</th>
+			</tr>
+        </tfoot>
+        </table>
+     </div>
+     
+     <field:arbolRelacion presupuesto="${factura.presupuestoOrigen}" ordentrabajo="${factura.ordenTrabajoOrigen}" />
+	    
+    </page:show>
+</div>

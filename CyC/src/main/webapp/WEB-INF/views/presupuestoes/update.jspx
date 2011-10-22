@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+  
+  	<spring:url value="/resources/scripts/presupuesto.js" var="js_presupuesto_url"/>
+	<script src="${js_presupuesto_url}" type="text/javascript">
+        <!-- //required for FF3 and Opera -->
+    </script>
+  
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_orco_domain_Presupuesto" modelAttribute="presupuesto" path="/presupuestoes" z="txdKadtOaFhGNkeTTmej9xyLYAo=">
+      	<div style="display: block; overflow: hidden;">	 
+    	 <div style="float:left; width: 50%;">
+    		<field:datetime dateTimePattern="dd/MM/yyyy" field="fecha" id="c_orco_domain_Presupuesto_fecha" z="user-managed"/>
+       		<field:input field="presupuestoFormulario" id="c_orco_domain_Presupuesto_presupuestoFormulario" z="user-managed"/>
+      		<field:select field="cliente" id="c_orco_domain_Presupuesto_cliente" itemValue="id" items="${clientes}" path="/clientes" z="u5lyhoI2zf8Owqajj/c65mbhseM="/>
+        	<field:textarea field="observaciones" id="c_orco_domain_Presupuesto_observaciones" z="l8zcgZ2ncvr++sVS/lzywx17xuo="/>
+         </div>
+       	 <div style="float:right; width: 50%;">
+       		<field:textarea field="estadoGlobalPresupuesto" render="false" id="c_orco_domain_Presupuesto_estadoGlobalPresupuesto" z="user-managed"/>
+       		<div style="float:left"><field:datetime dateTimePattern="dd/MM/yyyy" field="fechaInicio" id="c_orco_domain_Presupuesto_fechaInicio" z="user-managed"/></div>
+       		<field:time field="horaInicio" label="" id="c_orco_domain_Presupuesto_horaInicio" itemValue="valor" items="${tiempos}" path="/tiempos" z="user-managed"/>
+        	<div style="float:left"><field:datetime dateTimePattern="dd/MM/yyyy" field="fechaFin" id="c_orco_domain_Presupuesto_fechaFin" z="user-managed"/></div>
+     	   	<field:time field="horaFin" label="" id="c_orco_domain_Presupuesto_horaFin" itemValue="valor" items="${tiempos}" path="/tiempos" z="user-managed"/>
+     	 	<field:input field="condicionesPago" id="c_orco_domain_Presupuesto_condicionesPago" z="LqQWJtWYHYufXQl4c4+YJFuWn6M="/>
+          	<field:textarea field="comentarios" id="c_orco_domain_Presupuesto_comentarios" z="641hGy0/MNdvXHIX4qXh3L8pDGA="/>
+       		<field:input render="false" field="impuesto" id="c_orco_domain_Presupuesto_impuesto"  validationMessageCode="field_invalid_number" z="user-managed"/>
+        	<field:input render="false" field="bonificacion" id="c_orco_domain_Presupuesto_bonificacion"  validationMessageCode="field_invalid_number" z="user-managed"/>
+         </div>					
+        </div>
+    
+      <div style="width:100%; margin-bottom:5px;">  
+        <table name="lineasGrid">
+       	<thead>
+        	<tr>
+        	<th>Cantidad</th>
+        	<th>Descripción del Trabajo</th>
+        	<th>Prioridad</th>
+        	<th>Precio Unitario</th>
+        	<th>Precio Total</th>
+        	<th>Gan.</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<c:forEach items="${presupuesto.lineasPresentacion}" var="linea" varStatus="statusFor" >
+       			<tr>
+					<td>
+						<input type="hidden" id="linea_id" name="linea_id" value="${linea.id}" />
+						<input id="cantidad" name="cantidad" onkeyup="actualizarTotales();" style="width:50px; text-align:right;" type="text" value="${linea.cantidad}"/>
+					</td>
+					<td>
+						<input id="descripcionTrabajo" name="descripcionTrabajo" style="width:160px" type="text" value="${linea.descripcionTrabajo}"/>
+					</td>
+					<td>
+						<select id="prioridad" name="prioridad" style="width: 105px;">
+	                    	<c:forEach items="${prioridads}" var="item">
+		                    <c:choose>			                    
+			                    <c:when test="${item == (linea.prioridad)}">
+				                      <option value="${item.id}" selected="selected"><spring:eval expression="item.texto" /></option>
+				                </c:when>
+				                <c:otherwise>
+				                      <option value="${item.id}"><spring:eval expression="item.texto" /></option>
+				               </c:otherwise>
+			                </c:choose>
+	                    	</c:forEach>
+	                  	</select>
+					</td>
+					<td>
+						<input id="precioUnitario" name="precioUnitario" onkeyup="actualizarTotales();" style="width:100px; text-align:right;" type="text" value="${linea.precioUnitario}"/>
+					</td>
+					<td>
+						<input id="precioTotal" name="precioTotal" readonly="readonly" style="width:100px; text-align:right;" type="text" value="${linea.precioTotal}"/>
+					</td>
+					<td>
+					<c:choose>			                    
+                    <c:when  test="${linea.ganado}">
+                    	<input id="ganado" name="ganado"  style="width:30px;" type="checkbox" value="${statusFor.index}" checked="checked"  />
+                    </c:when>
+                    <c:otherwise>
+                    	<input id="ganado" name="ganado"  style="width:30px;" type="checkbox" value="${statusFor.index}"  />
+                    </c:otherwise>
+	                </c:choose>
+			        </td>
+				</tr>
+	    	</c:forEach>
+        </tbody>
+        <tfoot>
+        	<tr>
+        		<th colspan="2" style="text-align:right;">Bonificación</th>
+        		<th>
+        			<input id="porcBonificacion" name="porcBonificacion" onkeyup="actualizarTotales();" style="width:45px; text-align:right;" type="text" value="${presupuesto.bonificacion}"/>%
+        		</th>
+        		<th>Subtotal:</th>
+        		<th>
+        			<input id="subtotal" name="subtotal" readonly="readonly" style="width:100px; text-align:right;" type="text" value="${presupuesto.subtotalPresupuesto}"/>
+				</th>
+				<th></th>
+        	</tr>
+        	<tr>
+        		<th colspan="2" style="text-align:right;">Impuesto</th>
+        		<th>
+        			<input id="porcImpuesto" name="porcImpuesto" onkeyup="actualizarTotales();" style="width:45px; text-align:right;" type="text" value="${presupuesto.impuesto}"/>%
+        		</th>
+        		<th>Subtotal Impuesto:</th>
+        		<th>
+        			<input id="subtotalImpuesto" name="subtotalImpuesto" readonly="readonly" style="width:100px; text-align:right;" type="text" value="${presupuesto.totalImpuesto}"/>
+				</th>
+				<th></th>
+        	</tr>
+        	<tr>
+        		<th colspan="3">
+        		</th>
+        		<th>Total:</th>
+        		<th>
+        			<input id="total" name="total" readonly="readonly" style="width:100px; text-align:right;" type="text" value="${presupuesto.totalPresupuesto}"/>
+				</th>
+				<th></th>
+        	</tr>
+        </tfoot>	
+        </table>
+     </div>
+   		<field:simple field="lineas" id="c_orco_domain_Presupuesto_lineas" messageCode="entity_reference_not_managed" messageCodeAttribute="Presupuesto Linea" render="false" z="user-managed"/>
+    	
+    </form:update>
+</div>

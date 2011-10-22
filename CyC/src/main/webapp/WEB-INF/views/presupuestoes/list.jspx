@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" 
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+
+      
+
+    
+    <page:list id="pl_orco_domain_Presupuesto" items="${presupuestoes}" z="Oc8hfW05OwmCyj9cksLHmlMGSfw=">
+    
+    	<page:search path="/presupuestoes" modelAttribute="presupuestoFilter" id="presupuestoFilter" title_msg="Filtro de Búsqueda" >
+	   		<div style="width: 100%; display: block; ">
+		   		<div style="float: left; width: 60%;">
+		    		<field:input  id="c_orco_filter_presupuesto_texto" field="texto" type="java.lang.String" label="Texto" required="false" z="user-managed"/>
+		    		<field:select id="c_orco_filter_presupuesto_cliente" field="cliente" itemValue="id" items="${clientes}" path="/clientes" label="Cliente" required="false" z="user-managed"/>
+		      	</div>
+		    	<div style="float: left; width: 40%;">
+		    		<field:datetime id="c_orco_filter_presupuesto_fechaDesde" field="fechaDesde" dateTimePattern="dd/MM/yyyy" label="Fecha Desde" required="false" />
+		     		<field:datetime id="c_orco_filter_presupuesto_fechaHasta" field="fechaHasta" dateTimePattern="dd/MM/yyyy" label="Fecha Hasta" required="false" />
+		    	</div>
+	    	</div>
+	    </page:search>   
+    
+    
+      <c:choose>
+        <c:when test="${not empty presupuestoes}">
+           <table:table data="${presupuestoes}" id="l_orco_domain_Presupuesto" path="/presupuestoes" z="V9LB724z2kprcZ06N+p5NBxIXnM=" delete="false">
+	            <table:column id="c_orco_domain_Presupuesto_presupuestoFormulario" property="presupuestoFormulario" z="dCEFHZ/s4QPWLQHRiUlYE0DgrJo="/>
+	            <table:column id="c_orco_domain_Presupuesto_ganado" property="ganado" render="false" z="user-managed"/>
+	            <table:column id="c_orco_domain_Presupuesto_cliente" property="cliente" z="tx0RgBDSmRXw6g/PzXIZkzRCj+4="/>
+	            <table:column id="c_orco_domain_Presupuesto_fecha" property="fecha" z="ln7L6yWlh30wviTeqOS75WMeCz0="/>
+	            <table:column id="c_orco_domain_Presupuesto_condicionesPago" property="condicionesPago" render="false" z="user-managed"/>
+	            <table:column id="c_orco_domain_Presupuesto_observaciones" property="observaciones" render="false" z="user-managed"/>
+	        </table:table>
+        </c:when>
+        <c:otherwise>
+          <spring:message arguments="Presupuestos" code="entity_not_found" />
+        </c:otherwise>
+      </c:choose>
+    
+       
+    </page:list>
+</div>

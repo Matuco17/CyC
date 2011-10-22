@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_orco_domain_Cliente" object="${cliente}" path="/clientes" print="false" print_template="false" z="user-managed">
+        <field:display field="nombre" id="s_orco_domain_Cliente_nombre" object="${cliente}" z="wq8rNCfXLmkjhvWI7PBNI07dG/E="/>
+        <field:display field="direccion" id="s_orco_domain_Cliente_direccion" label="Direcci�n" object="${cliente}" z="user-managed"/>
+        <field:display field="ciudad" id="s_orco_domain_Cliente_ciudad" object="${cliente}" z="M7uX/QShIcykAXnhas+3SkVnf+8="/>
+        <field:display field="provincia" id="s_orco_domain_Cliente_provincia" object="${cliente}" z="TqBgJPw5CiqMjRSEt9sTOcCERPs="/>
+        <field:display field="cuit" id="s_orco_domain_Cliente_cuit" object="${cliente}" z="5dpWFA4lQXtPX5pXZ1fDPYVsOqk="/>
+        <field:display field="telefono" id="s_orco_domain_Cliente_telefono" label="Tel�fono" object="${cliente}" z="user-managed"/>
+    	<field:display field="userNamePortal" id="s_orco_domain_Cliente_userNamePortal" object="${cliente}" z="9l+pzP/p9Xa6SU1zRtd7MZF/MZE="/>
+        <field:display field="passwordPortal" id="s_orco_domain_Cliente_passwordPortal" object="${cliente}" render="false" z="user-managed"/>
+    </page:show>
+</div>

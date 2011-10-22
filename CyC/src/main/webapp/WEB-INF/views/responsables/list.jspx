@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_orco_domain_Responsable" items="${responsables}" z="5y8cw9ZHaHW5+7g8DucxsXec1I4=">
+        <table:table data="${responsables}" id="l_orco_domain_Responsable" path="/responsables" z="HObwVOjr981GmAYTZDeBsJST4mM=">
+            <table:column id="c_orco_domain_Responsable_apellido" property="apellido" z="CmnpP+7O4duPJaG/MjlB4rwk1MA="/>
+            <table:column id="c_orco_domain_Responsable_nombres" property="nombres" z="1juzdJ7hzb7tfeI55PJiU8ZWcMc="/>
+        
+            <table:column id="c_orco_domain_Responsable_password" property="password" render="false" z="user-managed"/>
+            <table:column id="c_orco_domain_Responsable_esOperario" property="esOperario" render="false" z="user-managed"/>
+            <table:column id="c_orco_domain_Responsable_esAdministrativo" property="esAdministrativo" render="false" z="user-managed"/>
+        	<table:column id="c_orco_domain_Responsable_username" property="username" z="YVXdZ0GZplf/FjNL0YANpJ/gsmA="/>
+        </table:table>
+    </page:list>
+</div>

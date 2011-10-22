@@ -1,0 +1,56 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+
+  <jsp:directive.attribute name="presupuesto" type="java.lang.Object" required="false" description="El presupuesto origen del arbol " />
+  <jsp:directive.attribute name="ordentrabajo" type="java.lang.Object" required="false" description="La orden de trabajo origen del arbol " />
+  
+  
+  <c:if test="${presupuesto != null || ordentrabajo != null}" >
+  	<util:panel title="Arbol de Comprobantes Relacionados" id="arbol" openPane="false">
+	   	<c:choose>
+		   	<c:when test="${presupuesto != null}" >			
+			   	<ul>
+			  		<li>Presupuesto: <a href="/CyC/presupuestoes/${presupuesto.id}" target="_BLANK" > ${presupuesto} </a></li>
+			  		<ul>
+			  			<c:forEach items="${presupuesto.ordenes}" var="orden">
+			  				<li>
+			             		Orden: <a href="/CyC/ordentrabajoes/${orden.id}" target="_BLANK" > ${orden} </a>
+			  					<ul>
+			  						<c:forEach items="${orden.remitos}" var="remito">
+			  							<li>Remito: <a href="/CyC/remitoes/${remito.id}" target="_BLANK" > ${remito} </a></li>
+			  						</c:forEach>
+			  						<c:forEach items="${orden.facturas}" var="factura">
+			  							<li>Factura: <a href="/CyC/facturas/${factura.id}" target="_BLANK" > ${factura} </a></li>
+			  						</c:forEach>
+			  					</ul>
+			  				</li>
+			      		</c:forEach>
+			 			<c:forEach items="${orden.remitos}" var="remito">
+							<c:if test="${remito.ordenTrabajoOrigen == null}">
+								<li>Remito: <a href="/CyC/remitoes/${remito.id}" target="_BLANK" > ${remito} </a></li>
+							</c:if>
+						</c:forEach>
+						<c:forEach items="${orden.facturas}" var="factura">
+							<c:if test="${factura.ordenTrabajoOrigen == null}">
+								<li>Factura: <a href="/CyC/facturas/${factura.id}" target="_BLANK" > ${factura} </a></li>
+							</c:if>	
+						</c:forEach>	
+			  		</ul>
+			  	</ul>
+			</c:when>
+			<c:otherwise>
+	       		Orden: <a href="/CyC/ordentrabajoes/${ordentrabajo.id}" target="_BLANK" > ${ordentrabajo} </a>
+				<ul>
+					<c:forEach items="${ordentrabajo.remitos}" var="remito">
+						<li>Remito: <a href="/CyC/remitoes/${remito.id}" target="_BLANK" > ${remito} </a></li>
+					</c:forEach>
+					<c:forEach items="${ordentrabajo.facturas}" var="factura">
+						<li>Factura: <a href="/CyC/facturas/${factura.id}" target="_BLANK" > ${factura} </a></li>
+					</c:forEach>
+				</ul>		  	
+			</c:otherwise>
+		</c:choose>
+	</util:panel>
+ </c:if>
+ 
+</jsp:root>

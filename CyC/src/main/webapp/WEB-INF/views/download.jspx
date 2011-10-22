@@ -1,0 +1,9 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+	<jsp:output omit-xml-declaration="yes" />
+
+
+<body onload="window.open('${Archivo.url}','Download');window.close(); " >
+<label class="label" style="width: 500px;">Descargando ${Archivo.nombre} para imprimir</label>
+</body>  
+
+</div>

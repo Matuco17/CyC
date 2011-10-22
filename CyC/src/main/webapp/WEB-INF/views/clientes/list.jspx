@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_orco_domain_Cliente" items="${clientes}" z="/sscGxcbvEIjawxZJM1HyndpNMg=">
+        
+        <page:search path="/clientes" modelAttribute="clienteFilter" id="clienteFilter" title_msg="Filtro de Búsqueda" >
+	   		<div style="width: 100%; display: block; ">
+		    		<field:input  id="c_orco_filter_presupuesto_texto" field="texto" type="java.lang.String" label="Texto" required="false" z="user-managed"/>
+			</div>
+	    </page:search>   
+        
+        
+        
+        <table:table data="${clientes}" id="l_orco_domain_Cliente" path="/clientes" z="IXSpinzyS5QKll4F62McYfi7fGE=">
+            <table:column id="c_orco_domain_Cliente_nombre" property="nombre" z="U/mOoMdKdy2NaVg5vihBJzbAn+E="/>
+            <table:column id="c_orco_domain_Cliente_direccion" property="direccion" render="false" z="user-managed"/>
+            <table:column id="c_orco_domain_Cliente_ciudad" property="ciudad" render="false" z="user-managed"/>
+            <table:column id="c_orco_domain_Cliente_provincia" property="provincia" render="false" z="user-managed"/>
+          	<table:column id="c_orco_domain_Cliente_cuit" property="cuit" render="true" z="user-managed"/>
+            <table:column id="c_orco_domain_Cliente_telefono" label="Tel�fono" property="telefono" z="user-managed"/>
+        </table:table>
+    </page:list>
+</div>

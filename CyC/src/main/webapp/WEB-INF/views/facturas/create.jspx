@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_orco_domain_Factura" modelAttribute="factura" path="/facturas" render="${empty dependencies}" z="qWB+DlUIG8wtzGjlXcIFkev5Kgo=">
+        <jsp:include page="newEditForm.jspx"/>
+        
+        
+        
+        
+        <!-- Estos figuran todos con render="false" ya que se utiliza el mismo formulario para la edicion y la creacion de nuevas facturas -->
+        <field:input field="facturaFormulario" id="c_orco_domain_Factura_facturaFormulario" max="20" render="false" z="user-managed"/>
+        <field:select field="cliente" id="c_orco_domain_Factura_cliente" itemValue="id" items="${clientes}" path="/clientes" render="false" z="user-managed"/>
+        <field:datetime dateTimePattern="${factura_fecha_date_format}" field="fecha" id="c_orco_domain_Factura_fecha" render="false" z="user-managed"/>
+        <field:textarea field="condicionesVenta" id="c_orco_domain_Factura_condicionesVenta" render="false" z="user-managed"/>
+        <field:input field="impuesto" id="c_orco_domain_Factura_impuesto" render="false" validationMessageCode="field_invalid_number" z="user-managed"/>
+        <field:input field="bonificacion" id="c_orco_domain_Factura_bonificacion" render="false" validationMessageCode="field_invalid_number" z="user-managed"/>
+        <field:textarea field="tipsBusqueda" id="c_orco_domain_Factura_tipsBusqueda" render="false" z="user-managed"/>
+        <field:simple field="lineas" id="c_orco_domain_Factura_lineas" messageCode="entity_reference_not_managed" messageCodeAttribute="Factura Linea" render="false" z="user-managed"/>
+    	<field:select field="presupuestoOrigen" id="c_orco_domain_Factura_presupuestoOrigen" itemValue="id" items="${presupuestoes}" path="/presupuestoes" render="false" z="user-managed"/>
+        <field:select field="ordenTrabajoOrigen" id="c_orco_domain_Factura_ordenTrabajoOrigen" itemValue="id" items="${ordentrabajoes}" path="/ordentrabajoes" render="false" z="user-managed"/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_orco_domain_Factura" render="${not empty dependencies}" z="P3VXIzpG/qyEaLzVTAFCqt8MvuE="/>
+</div>

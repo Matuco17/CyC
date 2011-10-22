@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+xmlns:jsp="http://java.sun.com/JSP/Page" 
+xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_orco_domain_OrdenCompra" object="${ordencompra}" path="/ordencompras" print_template="false" z="3VNryTZS1UHyt4thdQTITiqVdeM=">
+        
+        <div style="display: block; overflow: hidden;">	 
+    	 <div style="float:left; width: 50%;">
+	 		<field:display field="ordenCompraNro" id="s_orco_domain_OrdenCompra_ordenCompraNro" object="${ordencompra}" z="9r96hqZb0Kk45qf28qb1PvTidyc="/>
+     		<field:display field="proveedor" id="s_orco_domain_OrdenCompra_proveedor" object="${ordencompra}" z="XQy6tI1lY2S9LNNAlhr9iWAHpcc="/>
+      		<field:display date="true" dateTimePattern="${ordenCompra_fecha_date_format}" field="fecha" id="s_orco_domain_OrdenCompra_fecha" object="${ordencompra}" z="sF54Lkn6hWVyH9f01pUoz6exSTw="/>
+       		<field:display field="ordenTrabajo" id="s_orco_domain_OrdenCompra_ordenTrabajo" object="${ordencompra}" z="u7Gt7Utz7RMfPLBJF01pYxOEpYw="/>
+        	<field:display field="remitoProveedorNro" id="s_orco_domain_OrdenCompra_remitoProveedorNro" object="${ordencompra}" z="PcJkoQTPbeXz9bOX95XFQBhZ2jI="/>
+          </div>
+       	 <div style="float:right; width: 50%;">
+       		<field:display field="aprobo" id="s_orco_domain_OrdenCompra_aprobo" object="${ordencompra}" z="Nrz45LvLTDD/A/1Eu1DH8pCuV/w="/>
+       		<field:display field="condicionesPago" id="s_orco_domain_OrdenCompra_condicionesPago" object="${ordencompra}" z="gytVUIHo4TXY40Zm7IGylKEhzL8="/>
+        	<field:display date="true" dateTimePattern="${ordenCompra_fechaentrega_date_format}" field="fechaEntrega" id="s_orco_domain_OrdenCompra_fechaEntrega" object="${ordencompra}" z="8TW/qPoxICDTxuGBRntfXHjq2wo="/>
+         </div>			
+       </div>
+        
+        <!-- Campos que no se ven de una -->
+     	<field:display field="impuesto" id="s_orco_domain_OrdenCompra_impuesto" render="false" object="${ordencompra}" z="OxtOdNtSCXvZOz0ocTFWcZ8y0hk="/>
+        <field:display field="lineas" id="s_orco_domain_OrdenCompra_lineas" render="false" object="${ordencompra}" z="Zj/FmYiUw06hx+V3QiIp+3wu3k8="/>
+        <field:display field="tipsBusqueda" id="s_orco_domain_OrdenCompra_tipsBusqueda" render="false" object="${ordencompra}" z="fnMqXQ5NlLmcSmWfmF7WnYVCYMY="/>
+        
+        <div style="width:100%; margin-bottom:5px;">  
+        <table name="lineasGrid">
+       	<thead>
+        	<tr>
+        	<th>Cantidad</th>
+        	<th colspan="2">Descripci&amp;oacute;n</th>
+        	<th>Precio Unitario</th>
+        	<th>Precio Total</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<c:forEach items="${ordencompra.lineasPresentacion}" var="linea">
+				<tr>
+					<td style="width:50px; text-align:right;">
+						<c:out value="${linea.cantidad}"/>
+					</td>
+					<td colspan="2" style="width:285px;">
+						<c:out value="${linea.descripcion}"/>
+					</td>
+					<td style="width:120px; text-align:right;">
+						<c:out value="${linea.precioUnitario}"/>
+					</td>
+					<td style="width:120px; text-align:right;">
+						<c:out value="${linea.precioTotal}"/>
+					</td>
+				</tr>
+	    	</c:forEach>
+        </tbody>
+        <tfoot>
+        	<tr>
+        		<th/>
+        		<th colspan="2" />
+        		<th>Subtotal:</th>
+        		<th style="width:120px; text-align:right;">
+        			<c:out value="${ordencompra.subtotal}"/>
+				</th>
+        	</tr>
+        	<tr>
+        		<th/>
+        		<th style="text-align:right;">Impuesto</th>
+        		<th style="width:45px; text-align:left;">
+        			<c:out value="${ordencompra.impuesto}"/>%
+				</th>
+        		<th>Subtotal Impuesto:</th>
+        		<th style="width:120px; text-align:right;">
+        			<c:out value="${ordencompra.totalImpuesto}"/>
+				</th>
+        	</tr>
+        	<tr>
+        		<th/>
+        		<th colspan="2" />
+        		<th>Total:</th>
+        		<th style="width:120px; text-align:right;">
+        			<c:out value="${ordencompra.total}"/>
+				</th>
+			</tr>
+        </tfoot>
+        </table>
+     </div>
+        
+        
+    </page:show>
+</div>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_orco_domain_OrdenTrabajo" modelAttribute="ordenTrabajo" path="/ordentrabajoes" render="${empty dependencies}" z="w2BZ0xPh3xsYcWBE0gcN0FQs/Qk=">
+       <div style="display: block; overflow: hidden;">	 
+    	 <div style="float:left; width: 50%;">
+	     	<field:input field="nroOrden" id="c_orco_domain_OrdenTrabajo_nroOrden" validationMessageCode="field_invalid_integer" z="Q9gKH147QMdvdfhelpO6K0eOr3A="/>
+  		 	<field:select disabled="true" field="presupuestoOrigen" id="c_orco_domain_OrdenTrabajo_presupuestoOrigen" itemValue="id" items="${presupuestoes}" object="${ordenTrabajo.presupuestoOrigen}" path="/presupuestoes" render="${ordenTrabajo.presupuestoOrigen != null}" z="user-managed"/>
+	     	<field:select disabled="${ordenTrabajo.presupuestoOrigen != null}" field="cliente" id="c_orco_domain_OrdenTrabajo_cliente" itemValue="id" items="${clientes}" object="${ordenTrabajo.cliente}" path="/clientes" z="user-managed"/>
+   		   		 
+   		  	<div style="float:left">
+            <field:datetime dateTimePattern="${ordenTrabajo_fechainicio_date_format}" field="fechaInicio" id="c_orco_domain_OrdenTrabajo_fechaInicio" z="zQowcn3A9vhbk3Tku6aG5n0fD1A="/>
+                </div>
+	        <field:time field="horaInicio" id="c_orco_domain_OrdenTrabajo_horaInicio" itemValue="valor" items="${tiempos}" label="" path="/tiempos" z="user-managed"/>
+	        <div style="float:left">
+            <field:datetime dateTimePattern="${ordenTrabajo_fechafin_date_format}" field="fechaFin" id="c_orco_domain_OrdenTrabajo_fechaFin" z="wtFA48twcpwAcuIktX3IsBjeuaQ="/>
+                </div>
+	        <field:time field="horaFin" id="c_orco_domain_OrdenTrabajo_horaFin" itemValue="valor" items="${tiempos}" label="" path="/tiempos" z="user-managed"/>
+      		<field:select field="responsable" emptyValueEnable="true"  id="c_orco_domain_OrdenTrabajo_responsable" itemValue="id" items="${responsables}" path="/responsables" z="user-managed"/>
+       		<field:select field="atendio" id="c_orco_domain_OrdenTrabajo_atendio" itemValue="id" items="${responsables}" label="Atendi?" path="/responsables" z="user-managed"/>
+        	<field:select field="entregadoPor" id="c_orco_domain_OrdenTrabajo_entregadoPor" itemValue="id" items="${responsables}" path="/responsables" z="Q+etrvFi7D7n8vuAUyQYxJ3SRm4="/>
+    		<field:input field="responsableCliente" id="c_orco_domain_OrdenTrabajo_responsableCliente" z="user-managed"/>
+        	<field:datetime dateTimePattern="${ordenTrabajo_fechaentrega_date_format}" field="fechaEntrega" id="c_orco_domain_OrdenTrabajo_fechaEntrega" z="VjKospGuAHWyBN6KnDAVlssORJQ="/>
+         </div>
+       	 <div style="float:right; width: 50%;">
+        	<field:input field="porcentajeAvance" id="c_orco_domain_OrdenTrabajo_porcentajeAvance" validationMessageCode="field_invalid_number" z="+nCYu9t6PSYn9eJbwhpKYxyMlF8="/>
+      	 	<field:input field="ordenCompra" id="c_orco_domain_OrdenTrabajo_ordenCompra" z="ZStj7GhdyfjWP4FHlrcRpRcUVNQ="/>
+      		<field:input field="precioEstimado" id="c_orco_domain_OrdenTrabajo_precioEstimado" validationMessageCode="field_invalid_number" z="dN/PIig4i856zqtHUUCb4+cdXxo="/>
+        	<field:textarea field="materialesNecesarios" id="c_orco_domain_OrdenTrabajo_materialesNecesarios" z="ctlbnxoN7+J9C0025HdxGMpnvgQ="/>
+        	<field:input field="material" id="c_orco_domain_OrdenTrabajo_material" z="user-managed"/>
+        	<field:input field="materialProvistoPor" id="c_orco_domain_OrdenTrabajo_materialProvistoPor" z="user-managed"/>
+        	<field:input field="certificadoDeCalidad" id="c_orco_domain_OrdenTrabajo_certificadoDeCalidad" z="user-managed"/>
+   	 	  	<field:checkbox field="controlCalidad" id="c_orco_domain_OrdenTrabajo_controlcalidad"  z="user-managed"/>
+     		<field:textarea field="observaciones" id="c_orco_domain_OrdenTrabajo_observaciones"  z="user-managed"/>
+     	 </div>
+       </div>
+       
+        
+     	
+    <field:simple field="lineas" id="c_orco_domain_OrdenTrabajo_lineas" messageCode="entity_reference_not_managed" messageCodeAttribute="Orden Trabajo Linea" render="false" z="user-managed"/>
+        
+        
+   <div style="width:100%; margin-bottom:5px;">  
+        <table name="lineasGrid">
+       	<thead>
+        	<tr>
+        	<th>Item</th>
+        	<th>Cantidad</th>
+        	<th>Descripci&amp;oacute;n del Trabajo</th>
+        	<th>Prioridad</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<c:forEach items="${ordenTrabajo.lineasPresentacion}" var="linea" varStatus="statusFor">
+				<tr>
+					<td>
+						<input id="item" name="item" style="width:20px; text-align:right;" type="text" value="${statusFor.index + 1}"/>
+					</td>
+					<td>
+						<input id="presupuestoLineaOrigen" name="presupuestoLineaOrigen" type="hidden" value="${linea.presupuestoLineaOrigen.id}"/>
+						<input id="cantidad" name="cantidad" style="width:50px; text-align:right;" type="text" value="${linea.cantidad}"/>
+					</td>
+					<td>
+						<input id="descripcionTrabajo" name="descripcionTrabajo" style="width:340px" type="text" value="${linea.descripcion}"/>
+					</td>
+					<td>
+						<select id="prioridad" name="prioridad" style="width: 105px;">
+	                    	<c:forEach items="${prioridads}" var="item">
+		                       	<c:choose>			                    
+			                    <c:when test="${item == (linea.prioridad)}">
+				                      <option selected="selected" value="${item.id}">
+                                                    <spring:eval expression="item.texto"/>
+                                                </option>
+				                </c:when>
+				                <c:otherwise>
+				                      <option value="${item.id}">
+                                                    <spring:eval expression="item.texto"/>
+                                                </option>
+				               	</c:otherwise>
+			                	</c:choose>		                      
+	                    	</c:forEach>
+	                  	</select>
+					</td>
+				</tr>
+	    	</c:forEach>
+        </tbody>
+        <tfoot>
+        	<tr>
+        		<td colspan="4"/>
+        	</tr>
+        </tfoot>
+     </table>
+	</div>	
+        
+        
+    
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_orco_domain_OrdenTrabajo" render="${not empty dependencies}" z="yfLXIhV0Uik+DlVCSWZ4P8t2Qlo="/>
+</div>

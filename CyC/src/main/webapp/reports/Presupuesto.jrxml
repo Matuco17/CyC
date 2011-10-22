@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Presupuesto" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="44" rightMargin="41" topMargin="40" bottomMargin="41">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="221"/>
+	<property name="ireport.y" value="17"/>
+	<parameter name="PresupuestoId" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="membrete_img" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[select
+    p.*,
+    pl.*,
+    cl.*,
+    pl.cantidad * pl.precio_unitario as importe
+from
+    presupuesto p
+    inner join presupuesto_linea pl
+        on (p.id = pl.presupuesto)
+    left join cliente cl
+        on (p.cliente = cl.id)
+where
+    p.id = $P{PresupuestoId}
+order by
+    pl.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="comentarios" class="java.lang.String"/>
+	<field name="condiciones_pago" class="java.lang.String"/>
+	<field name="estado_global_presupuesto" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Timestamp"/>
+	<field name="fecha_fin" class="java.sql.Timestamp"/>
+	<field name="fecha_inicio" class="java.sql.Timestamp"/>
+	<field name="ganado" class="java.lang.Boolean"/>
+	<field name="hora_fin" class="java.lang.Integer"/>
+	<field name="hora_inicio" class="java.lang.Integer"/>
+	<field name="impuesto" class="java.math.BigDecimal"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="presupuesto_formulario" class="java.lang.String"/>
+	<field name="version" class="java.lang.Integer"/>
+	<field name="cliente" class="java.lang.Long"/>
+	<field name="bonificacion" class="java.math.BigDecimal"/>
+	<field name="tips_busqueda" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Long"/>
+	<field name="descripcion_trabajo" class="java.lang.String"/>
+	<field name="precio_unitario" class="java.math.BigDecimal"/>
+	<field name="presupuesto" class="java.lang.Long"/>
+	<field name="prioridad" class="java.lang.Long"/>
+	<field name="ciudad" class="java.lang.String"/>
+	<field name="cuit" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="provincia" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="user_name_portal" class="java.lang.String"/>
+	<field name="password_portal" class="java.lang.String"/>
+	<field name="importe" class="java.math.BigDecimal"/>
+	<variable name="SubTotal" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{importe}]]></variableExpression>
+	</variable>
+	<variable name="TotalBonificacion" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{SubTotal}.multiply($F{bonificacion}).multiply(new BigDecimal(-0.01))]]></variableExpression>
+	</variable>
+	<variable name="TotalImpuesto" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{SubTotal}.add($V{TotalBonificacion}).multiply($F{impuesto}).multiply(new BigDecimal(0.01))]]></variableExpression>
+	</variable>
+	<variable name="TotalPresupuesto" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{SubTotal}.add($V{TotalBonificacion}).add($V{TotalImpuesto})]]></variableExpression>
+	</variable>
+	<variable name="VerBonificacion" class="java.lang.Boolean">
+		<variableExpression><![CDATA[($F{bonificacion}.doubleValue() > 0.0)]]></variableExpression>
+	</variable>
+	<variable name="VerIVA" class="java.lang.Boolean">
+		<variableExpression><![CDATA[($F{impuesto}.doubleValue() > 0)]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="0" width="218" height="63"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="312" y="0" width="189" height="43"/>
+				<textElement>
+					<font size="30"/>
+				</textElement>
+				<text><![CDATA[Presupuesto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="43" width="46" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="429" y="62" width="72" height="1"/>
+			</line>
+			<image>
+				<reportElement x="12" y="2" width="27" height="29"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{membrete_img}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="39" y="0" width="189" height="29"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Mecanizados C&C]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="29" width="189" height="14"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Malvinas 1024 - Bahía Blanca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="43" width="189" height="14"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Tel: +54 (291) 4533269]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yy">
+				<reportElement x="425" y="43" width="84" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="401" y="3" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cuit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="4" width="49" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="3" width="49" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.U.I.T.:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="63" y="23" width="273" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="63" y="3" width="273" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="401" y="24" width="100" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="1" width="59" height="19" backcolor="#F0F0F0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="61" y="1" width="297" height="19" backcolor="#F0F0F0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Descripción]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="507" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="61" y="0" width="1" height="20"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="358" y="1" width="74" height="19" backcolor="#F0F0F0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ P. Unitario]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="0" width="507" height="1"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="433" y="1" width="74" height="19" backcolor="#F0F0F0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ P. Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="432" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="357" y="0" width="1" height="20"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="2" width="57" height="18"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="63" y="2" width="293" height="18"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion_trabajo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="358" y="2" width="73" height="18"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{precio_unitario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="433" y="2" width="73" height="18"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{importe}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="507" height="1"/>
+			</line>
+			<line>
+				<reportElement x="357" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="61" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="507" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="432" y="0" width="1" height="20"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="73" splitType="Stretch">
+			<rectangle>
+				<reportElement x="358" y="31" width="74" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="358" y="11" width="75" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="432" y="11" width="77" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="236" y="31" width="122" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="432" y="51" width="77" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="432" y="31" width="77" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="236" y="11" width="122" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="409" y="11" width="16" height="20">
+					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ %]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="31" width="16" height="20">
+					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ %]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="365" y="11" width="45" height="20">
+					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{bonificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="31" width="45" height="20">
+					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{impuesto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="236" y="11" width="100" height="20">
+					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Bonificación ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="31" width="100" height="20">
+					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[IVA ]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="432" y="11" width="76" height="20">
+					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TotalBonificacion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="432" y="31" width="76" height="20">
+					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TotalImpuesto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="432" y="51" width="76" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TotalPresupuesto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="53" splitType="Stretch">
+			<printWhenExpression><![CDATA[($F{observaciones} != null) && ($F{observaciones}.length() > 0)]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="20" width="505" height="32"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="0" width="97" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

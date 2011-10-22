@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_orco_domain_Proveedor" items="${proveedors}" z="IzJhAYBDseHIdaAG5MOfZNtXWNE=">
+        <table:table data="${proveedors}" id="l_orco_domain_Proveedor" path="/proveedors" z="gjbt3VjrpjEWt8qPmGRqEEPOnSY=">
+            <table:column id="c_orco_domain_Proveedor_nombre" property="nombre" z="gya4br9QeNU2lCh46zxYrb6Cnqs="/>
+            <table:column id="c_orco_domain_Proveedor_codigo" property="codigo" z="XdAFt9Nt4/7ptDqXFc0UKmIM2yE="/>
+            <table:column id="c_orco_domain_Proveedor_direccion" render="false" property="direccion" z="L/nxrf2HvyLBzX/0fAfLCKxR9xQ="/>
+            <table:column id="c_orco_domain_Proveedor_cuidad" render="false" property="cuidad" z="ZjrPPyzpktUnoNHalEldkVF5Lsk="/>
+            <table:column id="c_orco_domain_Proveedor_cuit" render="false" property="cuit" z="g88Qf37uwF3+WZ1Oi2Mh5Tt81P0="/>
+            <table:column id="c_orco_domain_Proveedor_telefono" property="telefono" z="4MoOpn0r7NCrW1yzq66dQWOvLls="/>
+        </table:table>
+    </page:list>
+</div>

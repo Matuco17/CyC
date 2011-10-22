@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_orco_domain_Proveedor" object="${proveedor}" print="fakse" print_template="false" path="/proveedors" z="Y4Ws+Y0K4Ssc2ewdFvhoD9hPaIM=">
+        <field:display field="nombre" id="s_orco_domain_Proveedor_nombre" object="${proveedor}" z="6Vx2/GLq8sYVisnrVeE/KwkrpRk="/>
+        <field:display field="codigo" id="s_orco_domain_Proveedor_codigo" object="${proveedor}" z="mVRAdUhNOB4onTm0Vxw4wcwfTig="/>
+        <field:display field="direccion" id="s_orco_domain_Proveedor_direccion" object="${proveedor}" z="IokLPYFU7/AAxgvHx7Sw3vNUXXg="/>
+        <field:display field="cuidad" id="s_orco_domain_Proveedor_cuidad" object="${proveedor}" z="Fii+/mAUdB/t5D0MGwd3Gfh/jc8="/>
+        <field:display field="cuit" id="s_orco_domain_Proveedor_cuit" object="${proveedor}" z="E58raM+BpWi1yusywA0jXzg6Uew="/>
+        <field:display field="telefono" id="s_orco_domain_Proveedor_telefono" object="${proveedor}" z="4gfKL1uyx7BAQdcd5QqlTSYUfDk="/>
+        <field:display field="provincia" id="s_orco_domain_Proveedor_provincia" object="${proveedor}" z="geFMGmH3uP9Nu4wzWssSD2YUd+k="/>
+        <field:display field="email" id="s_orco_domain_Proveedor_email" object="${proveedor}" z="LdnvtT/ntQZpYrAgp0YKgSXxvRc="/>
+        <field:display field="web" id="s_orco_domain_Proveedor_web" object="${proveedor}" z="jLcr3qn1tkc+PUFFAY3UvHWAofw="/>
+    </page:show>
+</div>

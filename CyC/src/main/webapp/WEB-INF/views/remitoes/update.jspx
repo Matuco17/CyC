@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_orco_domain_Remito" modelAttribute="remito" path="/remitoes" z="V5D1dqExf8NULnyC1/ii2AgJDdA=">
+          
+        <jsp:include page="newEditForm.jspx"/>
+        
+        <!-- Estos figuran todos con render="false" ya que se utiliza el mismo formulario para la edicion y la creacion de nuevos Remitos -->
+      	<field:select field="cliente" id="c_orco_domain_Remito_cliente" itemValue="id" items="${clientes}" path="/clientes" render="false" z="user-managed"/>
+        <field:input field="remitoFormulario" id="c_orco_domain_Remito_remitoFormulario" max="20" render="false" z="user-managed"/>
+        <field:textarea field="transporte" id="c_orco_domain_Remito_transporte" render="false" z="user-managed"/>
+        <field:datetime dateTimePattern="${remito_fecha_date_format}" field="fecha" id="c_orco_domain_Remito_fecha" render="false" z="user-managed"/>
+        <field:input field="valorDeclarado" id="c_orco_domain_Remito_valorDeclarado" render="false" validationMessageCode="field_invalid_number" z="user-managed"/>
+        <field:textarea field="observaciones" id="c_orco_domain_Remito_observaciones" render="false" z="user-managed"/>
+        <field:simple field="lineas" id="c_orco_domain_Remito_lineas" messageCode="entity_reference_not_managed" messageCodeAttribute="Remito Linea" render="false" z="user-managed"/>
+        <field:textarea field="tipsBusqueda" id="c_orco_domain_Remito_tipsBusqueda" render="false" z="user-managed"/>
+   		<field:select field="presupuestoOrigen" id="c_orco_domain_Remito_presupuestoOrigen" itemValue="id" items="${presupuestoes}" path="/presupuestoes" render="false" z="user-managed"/>
+        <field:select field="ordenTrabajoOrigen" id="c_orco_domain_Remito_ordenTrabajoOrigen" itemValue="id" items="${ordentrabajoes}" path="/ordentrabajoes" render="false" z="user-managed"/>
+    </form:update>
+</div>

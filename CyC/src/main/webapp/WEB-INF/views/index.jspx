@@ -1,0 +1,31 @@
+<div xmlns:spring="http://www.springframework.org/tags" 
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:sec="http://www.springframework.org/security/tags"
+  	version="2.0">
+  
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="app_name" code="application_name" />
+  <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" />
+  
+  <sec:authorize ifAllGranted="ORCO_USUARIO_SISTEMA" >
+	<sec:authorize ifAllGranted="ORCO_USUARIO_INTERNO" >
+	  <util:panel id="title" title="${title}">
+	    <h3>
+	      <spring:message code="welcome_h3" arguments="${app_name}" />
+	    </h3>
+	    <p>
+	      <spring:message code="welcome_text" />
+	    </p>
+	  </util:panel>
+	</sec:authorize>
+	<sec:authorize ifAllGranted="ORCO_ROLE_CLIENTE" >
+	  <util:panel id="title" title="${title}">
+	    <h3>
+	      <spring:message code="welcome_cliente_text" />
+	    </h3>
+	  </util:panel>
+	</sec:authorize>
+  </sec:authorize> 
+  
+</div>

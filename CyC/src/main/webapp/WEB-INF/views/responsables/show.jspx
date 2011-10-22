@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_orco_domain_Responsable" object="${responsable}" path="/responsables" print_template="false" print="false" z="user-managed">
+        <field:display field="apellido" id="s_orco_domain_Responsable_apellido" object="${responsable}" z="0ukmR4tH4DGM9+cpqNnXfc6xULI="/>
+        <field:display field="nombres" id="s_orco_domain_Responsable_nombres" object="${responsable}" z="fDG6XW7CphlLp3xrE8trXwZEy0M="/>
+   
+    	<field:display field="username" id="s_orco_domain_Responsable_username" object="${responsable}" z="t96xGGudhJ1r9JFfpGNzWYZjfi0="/>
+        <field:display bool="true" field="esOperario" id="s_orco_domain_Responsable_esOperario" object="${responsable}" z="user-managed"/>
+        <field:display bool="true" field="esAdministrativo" id="s_orco_domain_Responsable_esAdministrativo" object="${responsable}" z="user-managed"/>
+    
+        <field:display field="password" id="s_orco_domain_Responsable_password" object="${responsable}" render="false" z="user-managed"/>
+    </page:show>
+</div>

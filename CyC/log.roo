@@ -1,0 +1,234 @@
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-07 14:13:08
+project --topLevelPackage orco --projectName CyC --java 6
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-07 14:13:11
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-07 14:13:37
+persistence setup --database MYSQL --provider HIBERNATE 
+entity --class orco.domain.Cliente
+entity --class orco.domain.Presupuesto
+entity --class orco.domain.PresupuestoLinea
+entity --class orco.domain.Prioridad
+controller all --package ~.web
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-07 14:53:12
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-07 14:57:45
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-07 14:58:09
+backup
+backup
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-07 21:21:53
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-08 08:46:13
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-08 17:21:02
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-09 09:53:22
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-09 17:09:07
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-10 14:52:43
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-10 14:55:25
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-10 14:55:43
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-10 18:27:54
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 13:45:47
+entity --class ~.domain.Responsable
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 13:51:17
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 13:51:36
+hint
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 14:37:08
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 14:37:20
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 15:09:44
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 15:10:03
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 15:13:12
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 15:13:24
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 15:53:59
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 15:54:36
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 15:55:08
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 15:55:22
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 16:18:38
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 16:19:31
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 16:37:31
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 16:37:54
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 16:38:43
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 16:39:44
+hint
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 17:07:38
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 17:07:52
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 17:14:45
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-11 17:14:55
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-11 17:17:10
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-12 08:39:02
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-12 08:44:32
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-12 08:44:49
+entity --class ~.domain.OrdenTrabajo
+entity --class ~.domain.OrdenTrabajoLinea
+controller all --package ~.web
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-12 17:08:28
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-18 20:09:05
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-18 20:37:13
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-11-25 09:21:26
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-11-25 18:16:18
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-07 11:40:21
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-07 11:42:44
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-08 13:01:53
+// [failed] entity --class ~.domain.OrdenTrabajo
+// [failed] entity --class ~.domain.Presupuesto
+// [failed] finder list --class ~.domain.OrdenTrabajo --filter cliente
+// [failed] finder list --class ~.domain.OrdenTrabajo --filter cliente
+// [failed] finder list --class ~.domain.OrdenTrabajo --filter cliente
+// [failed] entity --class ~.domain.Presupuesto
+// [failed] finder add --class ~.domain.Presupuesto --finderName findPresupuestosFiltrado
+// [failed] finder add --class ~.domain.Presupuesto --finderName findByCliente
+finder list --class ~.domain.Presupuesto --filter cliente
+finder list --class ~.domain.Presupuesto --filter presupuesto
+finder list --class ~.domain.Presupuesto --filter palabra,cliente
+finder list --class ~.domain.Presupuesto --filter palabra,cliente
+finder list --class ~.domain.Presupuesto --filter cliente
+finder add --class ~.domain.Presupuesto --finderName findPresupuestoesByCliente
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-08 20:44:48
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-10 08:48:32
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-10 08:51:01
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-10 08:54:18
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-10 08:55:25
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-10 08:55:56
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-10 08:57:09
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-10 08:57:34
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-10 10:15:11
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-10 11:49:12
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-10 11:59:48
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2010-12-17 10:56:46
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2010-12-17 10:57:18
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-03 18:16:52
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-03 18:58:15
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-04 12:14:44
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-04 12:28:41
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-05 09:59:48
+security setup
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-05 10:02:51
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-07 16:18:29
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-07 16:26:45
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-07 16:34:29
+// [failed] finder add --finderName findResponsablesByUsername --class orco.domain.Responsable
+finder add --finderName findResponsablesByUsername --class orco.domain.Responsable
+finder add --finderName findClientesByUserNamePortal --class orco.domain.Cliente
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-07 16:37:52
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-07 16:40:00
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-07 16:40:17
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-07 16:40:49
+finder add --finderName findPresupuestoesByFecha --class orco.domain.Presupuesto
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-07 16:42:23
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-07 16:42:54
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-07 16:44:03
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-11 11:14:02
+// [failed] finder add --finderName findOrdenTrabajoByCliente --class orco.domain.OrdenTrabajo
+// [failed] finder add --finderName findOrdenTrabajoByCliente --class orco.domain.OrdenTrabajo
+// [failed] finder add --finderName findOrdenTrabajoByResponsable --class orco.domain.OrdenTrabajo
+// [failed] finder add --finderName findOrdenTrabajoByhoraFin --class orco.domain.OrdenTrabajo
+// [failed] finder add --finderName findOrdenTrabajoByHoraFin --class orco.domain.OrdenTrabajo
+finder add --finderName findOrdenTrabajoesByCliente --class orco.domain.OrdenTrabajo
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-11 11:35:37
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-18 10:49:04
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-18 10:49:47
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-20 11:37:22
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-20 12:04:06
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-26 14:24:15
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-26 14:27:32
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-01-26 14:39:30
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-01-26 14:40:19
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-02 09:18:18
+entity --class ~.domain.Remito
+entity --class ~.domain.RemitoLinea
+entity --class ~.domain.Factura
+entity --class ~.domain.FacturaLinea
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-02 10:16:17
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-02 10:16:26
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-02 10:32:46
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-02 10:33:15
+// [failed] controller all --package ~.web
+controller scaffold --class ~.web.RemitoController --entity ~.domain.Remito
+controller scaffold --class ~.web.FacturaController --entity ~.domain.Factura
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-02 10:52:47
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-03 18:25:42
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-03 18:26:14
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-08 16:39:35
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-08 16:43:31
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-08 16:45:29
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-08 16:46:04
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-08 16:46:21
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-08 16:47:27
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-08 16:49:17
+// [failed] web mvc install language --code es 
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-08 16:57:35
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-12 17:38:06
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-12 17:46:23
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-12 20:07:26
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-12 20:10:09
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-02-16 19:27:44
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-02-16 19:29:07
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-03-24 14:08:56
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-03-24 14:12:28
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-04-07 18:11:07
+// [failed] entity --class ~.domain.OrdenTrabajo
+field string --fieldName responsableCliente --sizeMax 128
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-04-07 18:16:25
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-04-11 18:03:26
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-04-11 18:03:30
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-04-21 15:11:40
+// [failed] entity --class ~.domain.OrdenTrabajo
+field number --fieldName nroOrden --type java.lang.Long
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-04-21 15:21:45
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-04-23 11:28:59
+entity --class ~.domain.Proveedor
+entity --class ~.domain.OrdenCompra
+entity --class ~domain.OrdenCompraLinea
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-04-23 11:31:30
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log opened at 2011-04-23 11:31:42
+controller scaffold --entity ~.domain.OrdenCompra --class ~.web.OrdenCompraController
+controller scaffold --entity ~.domain.Proveedor --class ~.web.ProveedorController
+exit
+// Spring Roo 1.1.0.RELEASE [rev 793f2b0] log closed at 2011-04-23 12:06:06
+// Spring Roo 1.1.4.RELEASE [rev f787ce7] log opened at 2011-10-13 21:24:29
+// [failed] entity --class orco.domain.OrdenTrabajo
+field set --fieldName responsables --type orco.domain.Responsable 
+// Spring Roo 1.1.4.RELEASE [rev f787ce7] log closed at 2011-10-13 21:40:08

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_orco_domain_Prioridad" modelAttribute="prioridad" path="/prioridads" z="DKNe7uDTRkC6U+BnF80d8UcS78I=">
+        <field:input field="valor" id="c_orco_domain_Prioridad_valor" validationMessageCode="field_invalid_integer" z="pGYJjaBaJ91VvXflmlRK2jx2ztk="/>
+        <field:input field="texto" id="c_orco_domain_Prioridad_texto" z="Mb3fSMVW4bbEDYEOXaVjf9YParA="/>
+    </form:update>
+</div>

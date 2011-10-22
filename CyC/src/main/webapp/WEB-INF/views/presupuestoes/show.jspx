@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_orco_domain_Presupuesto" object="${presupuesto}" path="/presupuestoes" z="kbqSRDvh5ISg65PEwNkYIiluEGE=">
+        <div style="display: block; overflow: hidden;">	 
+    	 <div style="float:left; width: 50%;">
+    	    <field:display field="presupuestoFormulario" id="s_orco_domain_Presupuesto_presupuestoFormulario" object="${presupuesto}" z="882ib8m6cWkknP+6BMjxV29hdSI="/>
+	        <field:display field="cliente" id="s_orco_domain_Presupuesto_cliente" object="${presupuesto}" z="brB27K6zHUBG9v2tZZdp5OL0X+4="/>
+	        <field:display date="true" dateTimePattern="${presupuesto_fecha_date_format}" field="fecha" id="s_orco_domain_Presupuesto_fecha" object="${presupuesto}" z="cMfbf9Bw4spRxNsOIpoqrVCuIO8="/>
+	        <field:display field="observaciones" id="s_orco_domain_Presupuesto_observaciones" object="${presupuesto}" z="rP3Ba4FOS7wZVNrx6j4bkxUAMu0="/>
+	     </div>
+       	 <div style="float:right; width: 50%;">
+       	    <field:display field="estadoGlobalPresupuesto" render="false" id="s_orco_domain_Presupuesto_estadoGlobalPresupuesto" object="${presupuesto}" z="JKuM9hdiQxZ93LslYuHb9TL86nI="/>
+	       	<field:display field="fechaInicio" render ="false" date="true" dateTimePattern="${presupuesto_fechainicio_date_format}" id="s_orco_domain_Presupuesto_fechaInicio" object="${presupuesto}" z="UK/MmA2UMgBzuzkY4f0oOWHBRlE="/>
+	      	<field:display field="horaInicio" render="false" id="s_orco_domain_Presupuesto_horaInicio" object="${presupuesto}" z="SsmxAs5SQJ1bSiB2VuM2ov5gzgU="/>
+	       	<field:display field="fechaHoraInicio" id="s_orco_domain_Presupuesto_fechaInicio" object="${presupuesto}" z="UK/MmA2UMgBzuzkY4f0oOWHBRlE="/>
+	      	<field:display field="fechaFin" render="false" date="true" dateTimePattern="${presupuesto_fechafin_date_format}" id="s_orco_domain_Presupuesto_fechaFin" object="${presupuesto}" z="ey/t1aJ3FgZzAIAZD7cygZKmRvk="/>
+	        <field:display field="horaFin" render="false" id="s_orco_domain_Presupuesto_horaFin" object="${presupuesto}" z="p1xxKmcrx38aDfNlvfajevNT09c="/>
+	     	<field:display field="fechaHoraFin" id="s_orco_domain_Presupuesto_fechaFin" object="${presupuesto}" z="ey/t1aJ3FgZzAIAZD7cygZKmRvk="/>
+	        <field:display field="condicionesPago" id="s_orco_domain_Presupuesto_condicionesPago" object="${presupuesto}" z="VthgndEjSLfxmjS+p/mMOZSvsKw="/>
+	        <field:display field="comentarios" id="s_orco_domain_Presupuesto_comentarios" object="${presupuesto}" z="yyqgkqCvjdgUlefZ9iZkJXR7oLc="/>
+	     </div>			
+        </div>
+      
+     <field:display field="bonificacion" id="s_orco_domain_Presupuesto_bonificacion" object="${presupuesto}" render="false" z="user-managed"/>
+	 <field:display field="impuesto" id="s_orco_domain_Presupuesto_impuesto" object="${presupuesto}" render="false" z="user-managed"/>
+	 <field:display field="lineas" id="s_orco_domain_Presupuesto_lineas" object="${presupuesto}" render="false" z="user-managed"/>
+    
+    <div style="width:100%;">  
+        <table name="lineasGrid">
+       	<thead>
+        	<tr>
+        	<th>Cantidad</th>
+        	<th>Descripción del Trabajo</th>
+        	<th>Prioridad</th>
+        	<th>Precio Unitario</th>
+        	<th>Precio Total</th>
+        	<th>Gan.</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<c:forEach items="${presupuesto.lineasPresentacion}" var="linea">
+				<tr>
+					<td style="width:50px; text-align:right;">
+						<c:out value="${linea.cantidad}"/>
+					</td>
+					<td style="width:160px;">
+						<c:out value="${linea.descripcionTrabajo}"/>
+					</td>
+					<td style="width:95px; text-align:center;">
+						<c:out value="${linea.prioridad.texto}"/>
+					</td>
+					<td style="width:100px; text-align:right;">
+						<c:out value="${linea.precioUnitario}"/>
+					</td>
+					<td style="width:100px; text-align:right;">
+						<c:out value="${linea.precioTotal}"/>
+					</td>
+					<td style="width:25px; text-align:center;">
+						<c:choose>
+						<c:when test="${linea.ganado}">X</c:when>
+						<c:otherwise></c:otherwise>
+						</c:choose>						
+					</td>
+				</tr>
+	    	</c:forEach>
+        </tbody>
+        <tfoot>
+        	<tr>
+        		<th colspan="2" style="text-align:right;">Bonificación</th>
+        		<th style="width:45px; text-align:left;">
+        			<c:out value="${presupuesto.bonificacion}"/>%
+				</th>
+        		<th>Subtotal:</th>
+        		<th style="width:100px; text-align:right;">
+        			<c:out value="${presupuesto.subtotalPresupuesto}"/>
+				</th>
+				<th></th>
+        	</tr>
+        	<tr>
+        		<th colspan="2" style="text-align:right;">Impuesto</th>
+        		<th style="width:45px; text-align:left;">
+        			<c:out value="${presupuesto.impuesto}"/>%
+				</th>
+        		<th>Subtotal Impuesto:</th>
+        		<th style="width:100px; text-align:right;">
+        			<c:out value="${presupuesto.totalImpuesto}"/>
+				</th>
+				<th></th>
+        	</tr>
+        	<tr>
+        		<th colspan="3">
+        		</th>
+        		<th>Total:</th>
+        		<th style="width:100px; text-align:right;">
+        			<c:out value="${presupuesto.totalPresupuesto}"/>
+				</th>
+				<th></th>
+			</tr>
+        </tfoot>	
+        </table>
+    	</div>
+    	<field:arbolRelacion presupuesto="${presupuesto}" />
+		
+    	
+    	<br/>
+    	<div id="panelAcciones" class="submit">
+    		<spring:url value="/resources/images/newfrom.png" var="newfrom_image_url" />
+            <span class="quicklink">
+	            <a class="imagebutton" href="/CyC/ordentrabajoes/frompresupuesto/${presupuesto.id}" alt="Crear Orden de Trabajo" title="Crear Orden de Trabajo">
+	              <img alt="Crear Orden de Trabajo" class="image" src="${fn:escapeXml(newfrom_image_url)}" title="Crear Orden de Trabajo" />
+	              Orden de Trabajo
+	            </a>
+            </span>
+            <span class="quicklink">
+	            <a class="imagebutton" href="/CyC/remitoes/frompresupuesto/${presupuesto.id}" alt="Crear Remito" title="Crear Remito">
+	              <img alt="Crear Remito" class="image" src="${fn:escapeXml(newfrom_image_url)}" title="Crear Remito" />
+	              Remito
+	            </a>
+            </span>
+            <span class="quicklink">
+	            <a class="imagebutton" href="/CyC/facturas/frompresupuesto/${presupuesto.id}" alt="Crear Factura" title="Crear Factura">
+	              <img alt="Crear Factura" class="image" src="${fn:escapeXml(newfrom_image_url)}" title="Crear Factura" />
+	              Factura
+	            </a>
+            </span>
+    	</div>
+    	
+    	
+    </page:show>
+</div>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+     
+    <page:list id="pl_orco_domain_OrdenCompra" items="${ordencompras}" z="ShGh5AWnZan6veBDKswwQnVl7ys=">
+        
+        <page:search id="ordenCompraFilter" modelAttribute="ordenCompraFilter" path="/ordencompras" title_msg="Filtro de B?squeda">
+	   		<div style="width: 100%; display: block; ">
+		   		<div style="float: left; width: 60%;">
+		    		<field:input field="texto" id="c_orco_filter_ordencompra_texto" label="Texto" required="false" type="java.lang.String" z="user-managed"/>
+		    		<field:select field="proveedor" id="c_orco_filter_ordencompra_proveedor" itemValue="id" items="${proveedors}" label="Proveedor" path="/proveedors" required="false" z="user-managed"/>
+		      	</div>
+		    	<div style="float: left; width: 40%;">
+		    		<field:datetime dateTimePattern="dd/MM/yyyy" field="fechaDesde" id="c_orco_filter_ordencompra_fechaDesde" label="Fecha Desde" required="false"/>
+		     		<field:datetime dateTimePattern="dd/MM/yyyy" field="fechaHasta" id="c_orco_filter_ordencompra_fechaHasta" label="Fecha Hasta" required="false"/>
+		    	</div>
+	    	</div>
+	    </page:search>   
+       
+        <table:table data="${ordencompras}" id="l_orco_domain_OrdenCompra" path="/ordencompras" delete="false" z="BHCNQNBCaSMuG3yfi9j9NmwaxcE=">
+            <table:column id="c_orco_domain_OrdenCompra_ordenCompraNro" property="ordenCompraNro" z="sbgoKlqsYX9VlOkrIW1PnVroqcE="/>
+            <table:column id="c_orco_domain_OrdenCompra_fecha" property="fecha" z="IfwIBcb2O+edvs11Bc51fneErv8="/>
+            <table:column id="c_orco_domain_OrdenCompra_proveedor" property="proveedor" z="OFAzJtoL6qcJNl9+pCcxFgMH8WQ="/>
+            <table:column id="c_orco_domain_OrdenCompra_ordenTrabajo" property="ordenTrabajo" render="false" z="eNG+QwdE9gP2yKtKhH+GIBZ3Spw="/>
+            <table:column id="c_orco_domain_OrdenCompra_remitoProveedorNro" property="remitoProveedorNro" render="false" z="WLmA74aMUleCMSZyCrFvWjcoo3A="/>
+            <table:column id="c_orco_domain_OrdenCompra_aprobo" property="aprobo" render="false" z="sHpu5XMtFITa7SQCCFMA8YzK/7E="/>
+        </table:table>
+    
+    </page:list>
+</div>

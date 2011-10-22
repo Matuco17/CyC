@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:sec="http://www.springframework.org/security/tags" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <!-- Seteo de variables para modificacion de las opciones estandar sobre la orden de trabajo -->
+    <c:set value="/ordentrabajoes?size=10&amp;page=1" var="listUrl"/>
+    <c:set value="true" var="visibilityDelete"/>
+    
+	<sec:authorize ifAllGranted="ORCO_ROLE_OPERARIO">
+		<c:set value="/ordentrabajoes/tallerlista" var="listUrl"/>
+    	<c:set value="false" var="visibilityDelete"/>
+    </sec:authorize>
+     
+    
+    <page:show delete="${visibilityDelete}" id="ps_orco_domain_OrdenTrabajo" listUrl="${listUrl}" object="${ordentrabajo}" path="/ordentrabajoes" print_template="false" z="user-managed">
+        <div style="display: block; overflow: hidden;">	 
+    	 <div style="float:left; width: 50%;">
+		  	<field:display field="nroOrden" id="c_orco_domain_OrdenTrabajo_nroOrden" object="${ordentrabajo}" z="eWdqMWz8s2Z34O0euTti+0OnleQ="/>
+	        <field:display field="presupuestoOrigen" id="s_orco_domain_OrdenTrabajo_presupuestoOrigen" object="${ordentrabajo}" z="aFiLvigVLOdYR7JDUbehhbXtf+k="/>
+	      	<field:display field="cliente" id="s_orco_domain_OrdenTrabajo_cliente" object="${ordentrabajo}" z="55hom0/QrcAXR9T3YJ7OYMqWYPs="/>
+   		    <field:display date="true" dateTimePattern="${ordenTrabajo_fechainicio_date_format}" field="fechaInicio" id="s_orco_domain_OrdenTrabajo_fechaInicio" object="${ordentrabajo}" render="false" z="user-managed"/>
+	        <field:display field="horaInicio" id="s_orco_domain_OrdenTrabajo_horaInicio" object="${ordentrabajo}" render="false" z="user-managed"/>
+	        <field:display field="fechaHoraInicio" id="s_orco_domain_OrdenTrabajo_fechaInicio" object="${ordentrabajo}" z="Rmd5lD9QMkiVdptpcfkWtQOOURk="/>
+	        <field:display date="true" dateTimePattern="${ordenTrabajo_fechafin_date_format}" field="fechaFin" id="s_orco_domain_OrdenTrabajo_fechaFin" object="${ordentrabajo}" render="false" z="user-managed"/>
+	        <field:display field="horaFin" id="s_orco_domain_OrdenTrabajo_horaFin" object="${ordentrabajo}" render="false" z="user-managed"/>
+        	<field:display field="fechaHoraFin" id="s_orco_domain_OrdenTrabajo_fechaFin" object="${ordentrabajo}" z="Rmd5lD9QMkiVdptpcfkWtQOOURk="/>
+	        <field:display field="responsable" id="s_orco_domain_OrdenTrabajo_responsable" object="${ordentrabajo}" z="Y0GmmsguRIjrSDaHKptWp7jbK8Y="/>
+       		<field:display field="atendio" id="s_orco_domain_OrdenTrabajo_atendio" label="Atendi?" object="${ordentrabajo}" z="user-managed"/>
+        	<field:display field="entregadoPor" id="s_orco_domain_OrdenTrabajo_entregadoPor" object="${ordentrabajo}" z="2PtE4bpa+iYU+p62N2RtX0wN7wQ="/>
+    		<field:display field="responsableCliente" id="s_orco_domain_OrdenTrabajo_responsableCliente" object="${ordentrabajo}" z="jsnC6Atx6dRIg+5Tg6Igl6lohnU="/>
+        	<field:display date="true" dateTimePattern="${ordenTrabajo_fechaentrega_date_format}" field="fechaEntrega" id="s_orco_domain_OrdenTrabajo_fechaEntrega" object="${ordentrabajo}" z="H/zAM0y9JfzW3xvRFC9rQ4T7qNQ="/>
+    	 </div>
+       	 <div style="float:right; width: 50%;">
+           	<field:display field="porcentajeAvance" id="s_orco_domain_OrdenTrabajo_porcentajeAvance" object="${ordentrabajo}" z="eWdqMWz8s2Z34O0euTti+0OnleQ="/>
+        	<field:display field="ordenCompra" id="s_orco_domain_OrdenTrabajo_ordenCompra" object="${ordentrabajo}" z="kJN7iVwit4emmbgxmqmdjyV5A3w="/>
+     		<field:display field="materialesNecesarios" id="s_orco_domain_OrdenTrabajo_materialesNecesarios" object="${ordentrabajo}" z="MZY4UU0k0GsEuDw+yodqcsR/VK4="/>
+        	<field:display field="material" id="s_orco_domain_OrdenTrabajo_material" object="${ordentrabajo}" z="Tk3B6Pwru1qUJ1u5wgw6mKdwYgY="/>
+        	<field:display field="precioEstimado" id="s_orco_domain_OrdenTrabajo_precioEstimado" object="${ordentrabajo}" z="nHL1rEmaPFiP1BZW/MC7N7t7j6Y="/>
+        	<field:display field="materialProvistoPor" id="s_orco_domain_OrdenTrabajo_materialProvistoPor" object="${ordentrabajo}" z="MwoqpNNp7lDawniW7BvJ4KoxcGY="/>
+        	<field:display field="certificadoDeCalidad" id="s_orco_domain_OrdenTrabajo_certificadoDeCalidad" object="${ordentrabajo}" z="Goim68Ey2O0irlmr5tE8mCfs+oA="/>
+  		 	<field:display bool="true" field="controlCalidad" id="c_orco_domain_OrdenTrabajo_controlcalidad" object="${ordentrabajo}" z="user-managed"/>
+      		<field:display field="observaciones" id="c_orco_domain_OrdenTrabajo_observaciones" object="${ordentrabajo}"  z="user-managed"/>
+     	</div>			
+       </div>
+       
+       
+     
+       <field:display field="lineas" id="s_orco_domain_OrdenTrabajo_lineas" object="${ordentrabajo}" render="false" z="user-managed"/>
+       
+       <div style="width:100%;">  
+	        <table name="lineasGrid">
+	       	<thead>
+	        	<tr>
+	        	<th>Item</th>
+	        	<th>Cantidad</th>
+	        	<th>Descripci&amp;oacute;n del Trabajo</th>
+	        	<th>Prioridad</th>
+	        	<th>Fin.</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<c:forEach items="${ordentrabajo.lineasPresentacion}" var="linea" varStatus="statusFor">
+					<tr>
+						<td style="width:30px; text-align:right; height: 15px">
+							<c:out value="${linea.item}"/>
+						</td>
+						<td style="width:50px; text-align:right; height: 15px">
+							<c:out value="${linea.cantidad}"/>
+						</td>
+						<td style="width:355px;">
+							<c:out value="${linea.descripcion}"/>
+						</td>
+						<td style="width:105px; text-align:center;">
+							<c:out value="${linea.prioridad.texto}"/>
+						</td>
+						<td style="width:25px; text-align:center;">
+							<c:choose>
+							<c:when test="${linea.finalizado}">X</c:when>
+							<c:otherwise/>
+							</c:choose>	
+						</td>
+					</tr>
+		    	</c:forEach>
+	        </tbody>
+	        <tfoot>
+	        	<tr>
+	        		<th colspan="5" style="height:15px;"/>
+	        	</tr>
+	        </tfoot>
+	     </table>
+		</div>	
+		
+		<field:arbolRelacion presupuesto="${ordentrabajo.presupuestoOrigen}" ordentrabajo="${ordentrabajo}" />
+		
+		<br/>
+   		<div class="submit" id="panelAcciones">
+    		<spring:url value="/resources/images/newfrom.png" var="newfrom_image_url"/>
+            <span class="quicklink">
+	            <a alt="Crear Remito" class="imagebutton" href="/CyC/remitoes/fromordentrabajo/${ordentrabajo.id}" title="Crear Remito">
+	              <img alt="Crear Remito" class="image" src="${fn:escapeXml(newfrom_image_url)}" title="Crear Remito"/>
+	              Remito
+	            </a>
+            </span>
+            <span class="quicklink">
+	            <a alt="Crear Factura" class="imagebutton" href="/CyC/facturas/fromordentrabajo/${ordentrabajo.id}" title="Crear Factura">
+	              <img alt="Crear Factura" class="image" src="${fn:escapeXml(newfrom_image_url)}" title="Crear Factura"/>
+	              Factura
+	            </a>
+            </span>
+
+    	</div>
+    	
+    	
+    		   	
+    </page:show>
+</div>

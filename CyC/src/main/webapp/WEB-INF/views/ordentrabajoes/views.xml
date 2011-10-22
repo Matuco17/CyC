@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="ordentrabajoes/list">
+        <put-attribute name="body" value="/WEB-INF/views/ordentrabajoes/list.jspx"/>
+    </definition>
+<definition extends="default" name="ordentrabajoes/show">
+        <put-attribute name="body" value="/WEB-INF/views/ordentrabajoes/show.jspx"/>
+    </definition>
+<definition extends="default" name="ordentrabajoes/create">
+        <put-attribute name="body" value="/WEB-INF/views/ordentrabajoes/create.jspx"/>
+    </definition>
+<definition extends="default" name="ordentrabajoes/update">
+        <put-attribute name="body" value="/WEB-INF/views/ordentrabajoes/update.jspx"/>
+    </definition>
+<definition extends="default" name="ordentrabajoes/findOrdenTrabajoesByCliente">
+        <put-attribute name="body" value="/WEB-INF/views/ordentrabajoes/findOrdenTrabajoesByCliente.jspx"/>
+    </definition>
+    
+    <!-- Pantallas de Taller -->    
+    <definition extends="default" name="ordentrabajoes/tallerlista">
+        <put-attribute name="body" value="/WEB-INF/views/ordentrabajoes/tallerList.jspx"/>
+    </definition>
+    
+    <definition extends="default" name="ordentrabajoes/reportesxls">
+        <put-attribute name="body" value="/WEB-INF/views/ordentrabajoes/reportesXls.jspx"/>
+    </definition>
+
+</tiles-definitions>

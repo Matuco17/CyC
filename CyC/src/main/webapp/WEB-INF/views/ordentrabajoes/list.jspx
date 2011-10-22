@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    
+        <page:list id="pl_orco_domain_OrdenTrabajo" items="${ordentrabajoes}" z="67I1hw3LVxsxz8Xj9I7ozniPClE=">
+	       
+	       	<page:search id="ordenTrabajoFilter" modelAttribute="ordenTrabajoFilter" path="/ordentrabajoes" title_msg="Filtro de B�squeda">
+	   		<div style="width: 100%; display: block; ">
+		   		<div style="float: left; width: 55%;">
+		    		<field:input field="ordenTrabajoNro" id="c_orco_filter_ordenTrabajo_id" label="Nro. Orden" required="false" type="java.lang.Long" z="user-managed"/>
+		    		<field:input field="texto" id="c_orco_filter_ordenTrabajo_texto" label="Texto" required="false" type="java.lang.String" z="user-managed"/>
+		    		<field:select field="cliente" id="c_orco_filter_ordenTrabajo_cliente" itemValue="id" items="${clientes}" label="Cliente" path="/clientes" required="false" z="user-managed"/>
+		    		<field:checkbox field="ordenFinalizada"  id="c_orco_filter_ordenTrabajo_ordenFinalizada" label="Orden Finalizada" z="user-managed"/>
+		      	</div>
+		    	<div style="float: left; width: 45%;">
+		    		<field:datetime dateTimePattern="dd/MM/yyyy" field="fechaInicioDesde" id="c_orco_filter_ordenTrabajo_fechaInicioDesde" label="F. Inicio Desde" required="false" z="user-managed"/>
+		     		<field:datetime dateTimePattern="dd/MM/yyyy" field="fechaInicioHasta" id="c_orco_filter_ordenTrabajo_fechaInicioHasta" label="F. Inicio Hasta" required="false" z="user-managed"/>
+		     		<field:datetime dateTimePattern="dd/MM/yyyy" field="fechaFinDesde" id="c_orco_filter_ordenTrabajo_fechaFinDesde" label="F. Fin Desde" required="false" z="user-managed"/>
+		     		<field:datetime dateTimePattern="dd/MM/yyyy" field="fechaFinHasta" id="c_orco_filter_ordenTrabajo_fechaFinHasta" label="F. Fin Hasta" required="false" z="user-managed"/>
+		    	</div>
+	    	</div>
+	    	</page:search> 
+	       
+	       <jsp:include page="reportesXls.jspx" />
+	       
+	       <c:choose>
+	        <c:when test="${not empty ordentrabajoes}">
+		        <table:table data="${ordentrabajoes}" delete="false" id="l_orco_domain_OrdenTrabajo" path="/ordentrabajoes" z="user-managed">
+		            <table:column id="c_orco_domain_OrdenTrabajo_nroOrden" label="Nro." property="nroOrden" z="D3logKCzeXVJ5zMLDnodPb3EDEY="/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_ordenCompra" property="ordenCompra" label="Odn. Compra" z="D3logKCzeXVJ5zMLDnodPb3EDEY="/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_presupuestoOrigen" property="presupuestoOrigen" render="false" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_cliente" property="clienteNombre" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_fechaInicio" property="fechaInicio" render="false" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_horaInicio" property="horaInicio" render="false" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_fechaFin" property="fechaFin" render="false" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_horaFin" property="horaFin" render="false" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_fechaInicio" property="fechaHoraInicio" render="true" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_fechaFin" property="fechaHoraFin" render="true" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_porcentajeAvance" property="porcentajeAvance" label="%" z="7csiunr46Fdp3/WlL7P9jINajcw="/>
+		        </table:table>
+	        </c:when>
+	        <c:otherwise>
+	          <spring:message arguments="Ordenes de Trabajo" code="entity_not_found"/>
+	        </c:otherwise>
+	      </c:choose>
+	       
+	    </page:list>
+	    
+	    
+	   
+	    
+</div>

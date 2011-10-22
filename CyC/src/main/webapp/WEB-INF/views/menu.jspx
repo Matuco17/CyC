@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:sec="http://www.springframework.org/security/tags" id="menu" version="2.0">
+	<jsp:output omit-xml-declaration="yes"/>
+<!-- 
+<spring:url var="banner" value="/resources/images/logoIntranet.jpg" />
+<spring:url var="home" value="/" />
+<spring:message code="button_home" var="home_label" />
+<a href="${home}" name="${fn:escapeXml(home_label)}" title="${fn:escapeXml(home_label)}">
+  <img src="${banner}" />
+</a>
+ -->
+
+<sec:authorize ifAllGranted="ORCO_USUARIO_SISTEMA">
+	
+<menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+    
+    <sec:authorize ifAllGranted="ORCO_ROLE_CLIENTE">
+		
+	 	<menu:category id="c_portal_cliente" label="Portal Cliente" z="user-managed">
+		    <menu:item id="i_portal_cliente_ordenes" label="Ordenes de Trabajo" url="/portalclientes/ordenestrabajo" z="user-managed"/>
+		</menu:category>
+    
+    </sec:authorize>
+    
+    <sec:authorize ifAllGranted="ORCO_USUARIO_INTERNO">
+
+		<!-- Prespuestos -->	
+		<sec:authorize ifAllGranted="ORCO_ROLE_ADMINISTRATIVO">
+		    <menu:category id="c_presupuesto" z="MvMg7TkPlpEvjksU2rk942gNBtU=">
+		        <menu:item id="i_presupuesto_new" messageCode="global_menu_new" url="/presupuestoes?form" z="lyn8kUSvTXr5I8wIqi1jhJXMs1w="/>
+		        <menu:item id="i_presupuesto_list" messageCode="global_menu_list" url="/presupuestoes?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="yFjIaEgyZGhwWiuuE+oMPKXzW04="/>
+		    </menu:category>
+		</sec:authorize>
+		
+		<!-- Ordenes de Trabajo -->    
+		<sec:authorize ifAnyGranted="ORCO_ROLE_ADMINISTRATIVO, ORCO_ROLE_OPERARIO">
+	        <menu:category id="c_ordentrabajo" z="iXHFqIitUsCXHTi66M5zvwHL1ZQ=">
+		        <menu:item id="i_ordentrabajo_new" messageCode="global_menu_new" url="/ordentrabajoes?form" z="z4aNt5qohr03DEyzXW8g75N2fdQ="/>
+		        
+		        <sec:authorize ifAllGranted="ORCO_ROLE_ADMINISTRATIVO,">
+			    	<menu:item id="i_ordentrabajo_list" messageCode="global_menu_list" url="/ordentrabajoes?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="nXwYy+Tz7r4ipZYFnuCOg1DH/fk="/>
+		  		</sec:authorize>  
+		    	
+		  		<sec:authorize ifAllGranted="ORCO_ROLE_OPERARIO">
+			        <menu:item id="i_ordentrabajo_taller_list" label="Ordenes Taller" url="/ordentrabajoes/tallerlista" z="user-managed"/>
+	    		</sec:authorize>  
+		    	<menu:item id="fi_ordentrabajo_cliente" messageCode="global_menu_find" render="false" url="/ordentrabajoes?find=ByCliente&amp;form" z="user-managed"/>
+            </menu:category>
+		</sec:authorize>
+		
+		<!-- Remitos -->		
+		<sec:authorize ifAllGranted="ORCO_ROLE_ADMINISTRATIVO">
+			<menu:category id="c_remito" render="true" z="user-managed">
+	            <menu:item id="i_remito_new" messageCode="global_menu_new" render="true" url="/remitoes?form" z="user-managed"/>
+	            <menu:item id="i_remito_list" messageCode="global_menu_list" render="true" url="/remitoes?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+	        </menu:category>
+		</sec:authorize>
+
+		<!-- Facturas -->
+		<sec:authorize ifAllGranted="ORCO_ROLE_ADMINISTRATIVO">
+	    	<menu:category id="c_factura" render="true" z="user-managed">
+	            <menu:item id="i_factura_new" messageCode="global_menu_new" render="true" url="/facturas?form" z="user-managed"/>
+	            <menu:item id="i_factura_list" messageCode="global_menu_list" render="true" url="/facturas?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+            </menu:category>
+	    </sec:authorize>
+		
+		<!-- Ordenes de Compra -->
+		<sec:authorize ifAllGranted="ORCO_ROLE_ADMINISTRATIVO">
+	  		<menu:category id="c_ordencompra" z="56j2Xyx15ndDM0p7hdTGBlFL+Ss=">
+	            <menu:item id="i_ordencompra_new" messageCode="global_menu_new" url="/ordencompras?form" z="QwSiQs4OV+J0FyBS2aNvtF0JLLY="/>
+	            <menu:item id="i_ordencompra_list" messageCode="global_menu_list" url="/ordencompras?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="F34zJoReM257YZx9O6oKUHwmNRM="/>
+	        </menu:category>
+	    </sec:authorize>
+	    
+    
+		<!-- Clientes -->
+		<sec:authorize ifAllGranted="ORCO_ROLE_ADMINISTRATIVO">
+	    	<menu:category id="c_cliente" z="OA12E4nwdOcMU0p7LaQV8KKBm5E=">
+		       	<menu:item id="i_cliente_new" messageCode="global_menu_new" url="/clientes?form" z="cDLtjRjIN5c0dyE1ltBb0Mk1DJo="/>
+		     	<menu:item id="i_cliente_list" messageCode="global_menu_list" url="/clientes?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="zKfM6WXIMY7V4CwP1OXAjjfJAzw="/>
+		    	<menu:item id="fi_cliente_usernameportal" messageCode="global_menu_find" render="false" url="/clientes?find=ByUserNamePortal&amp;form" z="user-managed"/>
+		    </menu:category>
+		</sec:authorize>
+
+		<!-- Proveedores -->
+	    <sec:authorize ifAllGranted="ORCO_ROLE_ADMINISTRATIVO">
+		    <menu:category id="c_proveedor" z="V989yjE/HZsoD5NBvps5BrKtJ5M=">
+	            <menu:item id="i_proveedor_new" messageCode="global_menu_new" url="/proveedors?form" z="0YG5sO7ZlMKyKMSbeMrlkIgFRmY="/>
+	            <menu:item id="i_proveedor_list" messageCode="global_menu_list" url="/proveedors?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="nzkdG8ZQW5BCYsUUX8kTeVyhpZk="/>
+	        </menu:category>
+	    </sec:authorize>
+		
+		<!-- Responsable -->
+		<sec:authorize ifAllGranted="ORCO_ROLE_ADMINISTRATIVO">
+	  		<menu:category id="c_responsable" z="Wr2ur0w0/no20VkNQFWHvf1IC0A=">
+		        <menu:item id="i_responsable_new" messageCode="global_menu_new" url="/responsables?form" z="qC1EAVUrgX5m/+Sb67NCyTCUQTo="/>
+		        <menu:item id="i_responsable_list" messageCode="global_menu_list" url="/responsables?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="eH+JWrsrYOAscmV8j9nikdIaCZk="/>
+		    	<menu:item id="fi_responsable_username" messageCode="global_menu_find" render="false" url="/responsables?find=ByUsername&amp;form" z="user-managed"/>
+		    </menu:category>
+		</sec:authorize>  
+		
+		    <!-- Menues que no se ven -->
+		    
+		  	<menu:category id="c_prioridad" render="false" z="user-managed">
+		        <menu:item id="i_prioridad_new" messageCode="global_menu_new" url="/prioridads?form" z="XUv+6yd3D7wOEN9sbZe1lPIe2Ok="/>
+		    	<menu:item id="i_prioridad_list" messageCode="global_menu_list" url="/prioridads?page=${empty param.page ? 1 : param.page}&amp;size=${empty param.size ? 10 : param.size}" z="3WkTjsURKZqSD75z1zjwY0y5wR0="/>
+		    </menu:category>
+		
+	</sec:authorize>
+
+
+    
+    </menu:menu>
+    
+</sec:authorize>
+</div>

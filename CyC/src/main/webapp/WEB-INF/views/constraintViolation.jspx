@@ -1,0 +1,17 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:fn="http://java.sun.com/jsp/jstl/functions"  xmlns:spring="http://www.springframework.org/tags" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="title" text="Borrado no Permitido" />
+  <util:panel id="title" title="${title}">
+    <h2>${fn:escapeXml(title)}</h2>
+    <p>
+    	No es posible eliminar el item ya que existe otro elemento en el sistema que lo utiliza.
+    </p>
+    <p>
+    	<input id="btnVolver" type="button" onclick="javascript:history.back();" >
+    		Volver
+    	</input>
+    </p>
+    
+  </util:panel>
+</div>
+

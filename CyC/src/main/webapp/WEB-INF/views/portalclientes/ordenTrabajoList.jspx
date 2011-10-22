@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" 
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    
+        <page:list id="pl_orco_domain_OrdenTrabajo" items="${ordentrabajoes}" z="user-managed">
+	       
+	       <c:choose>
+	        <c:when test="${not empty ordentrabajoes}">
+		        <table:table data="${ordentrabajoes}" id="l_orco_domain_OrdenTrabajo" path="/ordentrabajoes" z="user-managed"
+		        show="false" create="false" delete="false" update="false">
+		            <table:column id="c_orco_domain_OrdenTrabajo_id" label="Nro. Orden" property="id" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_ordenCompra" property="ordenCompra" z="user-managed"/>
+		            <table:column id="c_orco_domain_OrdenTrabajo_porcentajeAvance" property="porcentajeAvance" z="user-managed"/>
+		        </table:table>
+	        </c:when>
+	        <c:otherwise>
+	          <spring:message arguments="Ordenes de Trabajo" code="entity_not_found" />
+	        </c:otherwise>
+	      </c:choose>
+	       
+	    </page:list>
+	    
+	    
+	   
+	    
+</div>

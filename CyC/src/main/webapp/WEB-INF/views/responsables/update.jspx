@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_orco_domain_Responsable" modelAttribute="responsable" path="/responsables" z="ylvv8E1kEiSiXaX6ine8eO/QwWQ=">
+    	
+    	<jsp:include page="newEditForm.jspx"/>
+    
+    	<!-- Estos figuran todos con render="false" ya que se utiliza el mismo formulario para la edicion y la creacion de nuevas facturas -->
+     	<field:input field="apellido" id="c_orco_domain_Responsable_apellido" render="false" z="user-managed"/>
+        <field:input field="nombres" id="c_orco_domain_Responsable_nombres" render="false" z="user-managed"/>
+        <field:input field="username" id="c_orco_domain_Responsable_username" max="30" render="false" z="user-managed"/>
+        <field:input field="password" id="c_orco_domain_Responsable_password" max="30" render="false" z="user-managed"/>
+        <field:checkbox field="esOperario" id="c_orco_domain_Responsable_esOperario" render="false" z="user-managed"/>
+        <field:checkbox field="esAdministrativo" id="c_orco_domain_Responsable_esAdministrativo" render="false" z="user-managed"/>
+    </form:update>
+</div>

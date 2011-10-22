@@ -1,0 +1,47 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:form="http://www.springframework.org/tags/form" 
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags"	version="2.0">
+  <jsp:output omit-xml-declaration="yes"/>
+
+  <jsp:directive.attribute name="id" type="java.lang.String" required="true" description="The identifier for this tag (do not change!)"/>
+  <jsp:directive.attribute name="path" type="java.lang.String" required="true" description="Specify the relative URL path (wit leading /)" />
+  <jsp:directive.attribute name="modelAttribute" type="java.lang.String" required="true" description="The name of the model attribute for form binding" />
+  <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+  <jsp:directive.attribute name="openPane" type="java.lang.Boolean" required="false" description="Control if the title pane is opened or closed by default (default: true)"/>
+  <jsp:directive.attribute name="title_msg" type="java.lang.String" required="true" description="Specify the title of the search panel" />
+  <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)"/>
+
+	
+
+  <c:if test="${empty render or render}">
+    <util:panel id="${id}" title="${title_msg}" openPane="${openPane}"  >
+      <spring:url value="${path}" var="form_url" />
+      
+      <form:form action="${fn:escapeXml(form_url)}" name="searchform" method="GET" modelAttribute="${modelAttribute}" >
+        <jsp:doBody />
+        <br/>
+        <div class="submit" id="${fn:escapeXml(id)}_submit" >
+          <spring:message code="button_find" var="find_button"/>
+          <!-- 
+          <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
+           -->
+			<!-- Comentado ya que se le agrego icono a esto           
+           <input id="proceed" type="submit" value="${fn:escapeXml(find_button)}"/>
+            -->
+           <spring:url value="/resources/images/find.png" var="find_image_url" />
+          
+	          
+           <a class="imagebutton" href="javascript:document.searchform.submit();" alt="${fn:escapeXml(find_button)}" title="${fn:escapeXml(find_button)}">
+             <img alt="${fn:escapeXml(find_button)}" class="image" src="${fn:escapeXml(find_image_url)}" title="${fn:escapeXml(find_button)}" />
+             ${fn:escapeXml(find_button)}
+           </a>
+           
+        </div>
+      </form:form>
+    </util:panel>
+  </c:if>
+</jsp:root>

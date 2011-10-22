@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="ByUserNamePortal" id="ff_orco_domain_Cliente" path="/clientes" z="mcfalvaH7NwtZ1yl0m9vdk6pJEU=">
+        <field:input disableFormBinding="true" field="userNamePortal" id="f_orco_domain_Cliente_userNamePortal" max="30" z="HrGW57EA0SIPOUbS9K4d3MHn9ws="/>
+    </form:find>
+</div>

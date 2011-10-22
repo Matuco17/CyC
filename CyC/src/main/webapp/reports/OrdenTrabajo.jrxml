@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdenTrabajo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/orco/Documents/workspace-sts/CyC/src/main/webapp/WEB-INF/reports/OrdenTrabajo/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="OrdenTrabajoId" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logoreducido_img" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[select
+otl.*,
+ot.*,
+cl.nombre as ClienteNombre,
+cl.telefono as ClienteTelefono,
+r.apellido as ResponsableApellido,
+r.nombres as ResponsableNombres,
+a.apellido as AtendioApellido,
+a.nombres as AtendioNombres,
+e.apellido as EntregadoPorApellido,
+e.nombres as EntregadoPorNombres,
+pri.texto as TextoPrioridad
+from
+    orden_trabajo ot
+    inner join orden_trabajo_linea otl
+	on (ot.id = otl.orden_trabajo)
+    left join prioridad pri
+	on (otl.prioridad = pri.id)
+    left join cliente cl
+	on (ot.cliente = cl.id)
+    left join responsable r
+	on (ot.responsable = r.id)
+    left join responsable a
+          on (ot.atendio = a.id)
+    left join responsable e
+          on (ot.entregado_por = e.id)
+where
+     ot.id = $P{OrdenTrabajoId}
+order by
+     otl.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="cantidad" class="java.lang.Long"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="finalizado" class="java.lang.Boolean"/>
+	<field name="version" class="java.lang.Integer"/>
+	<field name="orden_trabajo" class="java.lang.Long"/>
+	<field name="presupuesto_linea_origen" class="java.lang.Long"/>
+	<field name="prioridad" class="java.lang.Long"/>
+	<field name="fecha_fin" class="java.sql.Date"/>
+	<field name="fecha_inicio" class="java.sql.Date"/>
+	<field name="hora_fin" class="java.lang.Integer"/>
+	<field name="hora_inicio" class="java.lang.Integer"/>
+	<field name="materiales_necesarios" class="java.lang.String"/>
+	<field name="porcentaje_avance" class="java.lang.Float"/>
+	<field name="presupuesto_origen" class="java.lang.Long"/>
+	<field name="responsable" class="java.lang.Long"/>
+	<field name="orden_compra" class="java.lang.String"/>
+	<field name="cliente" class="java.lang.Long"/>
+	<field name="tips_busqueda" class="java.lang.String"/>
+	<field name="atendio" class="java.lang.Long"/>
+	<field name="material" class="java.lang.String"/>
+	<field name="precio_estimado" class="java.math.BigDecimal"/>
+	<field name="entregado_por" class="java.lang.Long"/>
+	<field name="fecha_entrega" class="java.sql.Date"/>
+	<field name="material_provisto_por" class="java.lang.String"/>
+	<field name="certificado_de_calidad" class="java.lang.String"/>
+	<field name="responsable_cliente" class="java.lang.String"/>
+	<field name="nro_orden" class="java.lang.Long"/>
+	<field name="ClienteNombre" class="java.lang.String"/>
+	<field name="ClienteTelefono" class="java.lang.String"/>
+	<field name="ResponsableApellido" class="java.lang.String"/>
+	<field name="ResponsableNombres" class="java.lang.String"/>
+	<field name="AtendioApellido" class="java.lang.String"/>
+	<field name="AtendioNombres" class="java.lang.String"/>
+	<field name="EntregadoPorApellido" class="java.lang.String"/>
+	<field name="EntregadoPorNombres" class="java.lang.String"/>
+	<field name="TextoPrioridad" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="453" y="0" width="85" height="36"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nro_orden}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="416" y="0" width="37" height="36"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="0" width="300" height="36"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Orden de Trabajo]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="0" width="53" height="41"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logoreducido_img}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="139" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="105" y="10" width="201" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ClienteNombre}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="105" y="30" width="201" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ClienteTelefono}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement x="427" y="30" width="77" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha_fin}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="504" y="10" width="35" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{hora_inicio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement x="426" y="10" width="77" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="504" y="30" width="35" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{hora_fin}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="105" y="50" width="201" height="20">
+					<printWhenExpression><![CDATA[$F{responsable} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ResponsableApellido} + ", " + $F{ResponsableNombres}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="426" y="50" width="113" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{orden_compra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="10" width="95" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="30" width="95" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="50" width="95" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Responsable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="10" width="106" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="30" width="106" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="50" width="106" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Orden de Compra]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="105" y="70" width="201" height="20">
+					<printWhenExpression><![CDATA[$F{atendio} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{AtendioApellido} + ", " + $F{AtendioNombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="70" width="95" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Atendió]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="105" y="90" width="201" height="20">
+					<printWhenExpression><![CDATA[$F{entregado_por} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{EntregadoPorApellido} + ", " + $F{EntregadoPorNombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="90" width="95" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Entregado Por]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="70" width="106" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Precio Estimado]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="426" y="70" width="113" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{precio_estimado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="90" width="106" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Fecha Entrega]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement x="426" y="90" width="113" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha_entrega}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="105" y="110" width="201" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{responsable_cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="110" width="95" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Resp. del Cliente]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement mode="Opaque" x="10" y="0" width="79" height="20" backcolor="#F0F0F0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="89" y="0" width="364" height="20" backcolor="#F0F0F0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Descripción]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="541" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="89" y="0" width="1" height="20"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="0" width="91" height="20" backcolor="#F0F0F0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Prioridad]]></text>
+			</staticText>
+			<line>
+				<reportElement x="450" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="10" y="0" width="531" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="75" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cantidad}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="92" y="0" width="354" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="10" y="0" width="531" height="1"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="453" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TextoPrioridad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="111" splitType="Immediate">
+			<rectangle>
+				<reportElement x="10" y="0" width="531" height="20" forecolor="#F0F0F0" backcolor="#F0F0F0"/>
+			</rectangle>
+			<line>
+				<reportElement x="10" y="19" width="531" height="1"/>
+			</line>
+			<line>
+				<reportElement x="10" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="541" y="0" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement x="10" y="0" width="531" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="30" width="122" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Material]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="132" y="30" width="410" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{material}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="50" width="122" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Material Provisto Por]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="132" y="50" width="410" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{material_provisto_por}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="70" width="122" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Certificado de Calidad]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="132" y="70" width="410" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{certificado_de_calidad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="132" y="90" width="410" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="90" width="122" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Remito/Factura]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="165" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="28" width="529" height="57"/>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="12" y="31" width="526" height="53"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{materiales_necesarios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="8" width="529" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Materiales Necesarios ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="96" width="241" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Firma del Cliente (Conforme a la descripción)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="96" width="241" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Firma del Cliente (Conforme al Retiro)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="297" y="141" width="241" height="1"/>
+			</line>
+			<line>
+				<reportElement x="10" y="140" width="241" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

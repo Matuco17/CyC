@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" 
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" 
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    
+        
+	<util:panel title="Reportes Excel" id="panrepxls" openPane="false">
+		
+		<spring:url value="/resources/images/xls.png" var="spreadsheet_image_url" />
+                	
+		 <div class="quicklinks">
+              <span class="quicklink">
+              	<spring:url value="/ordentrabajoes/xls/finalizadas" var="xls_form_url" />
+                <spring:message arguments="${typeName}" code="entity_spreadsheet" var="spreadsheet_label" />
+                <a href="${fn:escapeXml(xls_form_url)}" class="imagebutton" alt="${fn:escapeXml(spreadsheet_label_ot)}" title="${fn:escapeXml(spreadsheet_label_ot)}" target="_BLANK">
+                  <img alt="${fn:escapeXml(spreadsheet_label_ot)}" class="image" src="${fn:escapeXml(spreadsheet_image_url)}" title="${fn:escapeXml(spreadsheet_label_ot)}" />
+                  Listado Excel de Ordenes Finalizadas
+                </a>
+              </span>
+              <span class="quicklink">
+              	<spring:url value="/ordentrabajoes/xls/pendientes" var="xls_form_url" />
+                <spring:message arguments="${typeName}" code="entity_spreadsheet" var="spreadsheet_label" />
+                <a href="${fn:escapeXml(xls_form_url)}" class="imagebutton" alt="${fn:escapeXml(spreadsheet_label_ot)}" title="${fn:escapeXml(spreadsheet_label_ot)}" target="_BLANK">
+                  <img alt="${fn:escapeXml(spreadsheet_label_ot)}" class="image" src="${fn:escapeXml(spreadsheet_image_url)}" title="${fn:escapeXml(spreadsheet_label_ot)}" />
+                  Listado Excel de Ordenes Pendientes
+                </a>
+              </span>
+        </div>
+	</util:panel>  
+	    
+	   
+	    
+</div>

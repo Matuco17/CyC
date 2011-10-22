@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_orco_domain_OrdenCompra" modelAttribute="ordencompra" path="/ordencompras" render="${empty dependencies}" z="scQ4w9XycXGpLZfdaoI2sGEDtMk=">
+        
+        <jsp:include page="newEditForm.jspx"/>
+        
+        <!-- Estos figuran todos con render="false" ya que se utiliza el mismo formulario para la edicion y la creacion de nuevas Ordenes de compra -->
+        <field:input field="ordenCompraNro" id="c_orco_domain_OrdenCompra_ordenCompraNro" render="false" validationMessageCode="field_invalid_integer" z="3PjTrOORT4U3iKl6Mmw4rSGCksQ="/>
+        <field:datetime dateTimePattern="${ordenCompra_fecha_date_format}" field="fecha" render="false" id="c_orco_domain_OrdenCompra_fecha" z="gmxy52hu56MxKwIjZR4JP7Ke0ME="/>
+        <field:select field="proveedor" id="c_orco_domain_OrdenCompra_proveedor" render="false" itemValue="id" items="${proveedors}" path="/proveedors" z="kiHJNtxKd0fr6rRZXKg8KewR0R4="/>
+        <field:select field="ordenTrabajo" id="c_orco_domain_OrdenCompra_ordenTrabajo" render="false" itemValue="id" items="${ordentrabajoes}" path="/ordentrabajoes" z="EvyRHIZIhxM0EKfNSptecmXX91o="/>
+        <field:textarea field="remitoProveedorNro" id="c_orco_domain_OrdenCompra_remitoProveedorNro" render="false" z="Zcw90BEpnC3nZqOMSuwa0nZRX+Y="/>
+        <field:select field="aprobo" id="c_orco_domain_OrdenCompra_aprobo" render="false" itemValue="id" items="${responsables}" path="/responsables" z="Vl+uyYPxes7GCrJrSBCtFwGDrEY="/>
+        <field:textarea field="condicionesPago" id="c_orco_domain_OrdenCompra_condicionesPago" render="false" z="JkNGhF9fFSwoRGW0eJPfxgYrs8c="/>
+        <field:datetime dateTimePattern="${ordenCompra_fechaentrega_date_format}" field="fechaEntrega" render="false" id="c_orco_domain_OrdenCompra_fechaEntrega" z="2j+FYnDlRkCslFEBOJ8GwuR0rG0="/>
+        <field:input field="impuesto" id="c_orco_domain_OrdenCompra_impuesto" render="false" validationMessageCode="field_invalid_number" z="i/U2S0zjUPIzW9jV5JBCy6GMii0="/>
+        <field:simple field="lineas" id="c_orco_domain_OrdenCompra_lineas" render="false" messageCode="entity_reference_not_managed" messageCodeAttribute="Orden Compra Linea" z="miI1dRLkYhr8f2vb7HX8DVFgc3A="/>
+        <field:textarea field="tipsBusqueda" id="c_orco_domain_OrdenCompra_tipsBusqueda" render="false" z="s5cPzMnlp2QB30Luw0ZWfGqHk9E="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_orco_domain_OrdenCompra" render="${not empty dependencies}" z="4dV/P55B7vech2YkZAgcbzH9Q2Q="/>
+</div>

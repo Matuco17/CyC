@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_orco_domain_Remito" object="${remito}" path="/remitoes" print="false" z="user-managed">
+   
+       <div style="display: block; overflow: hidden;">	 
+    	 <div style="float:left; width: 50%;">
+	 		<field:display field="remitoFormulario" id="s_orco_domain_Remito_remitoFormulario" object="${remito}" z="UeIcq7ABuux+4ts7TFfucrVtgNU="/>
+        	<field:display field="cliente" id="s_orco_domain_Remito_cliente" object="${remito}" z="b/gCDQ3CZMoLqKLTmribrpeT+TY="/>
+        	<field:display date="true" dateTimePattern="${remito_fecha_date_format}" field="fecha" id="s_orco_domain_Remito_fecha" object="${remito}" z="KSAZtfxbp8WUPDexxfOEet9O8VI="/>
+        
+         	<field:display field="presupuestoOrigen" id="s_orco_domain_Remito_presupuestoOrigen" object="${remito}" render="${(remito.presupuestoOrigen != null)}" z="user-managed"/>
+        	<field:display field="ordenTrabajoOrigen" id="s_orco_domain_Remito_ordenTrabajoOrigen" object="${remito}" render="${(remito.ordenTrabajoOrigen != null)}" z="user-managed"/>
+      	 </div>
+       	 <div style="float:right; width: 50%;">
+  			<field:display field="transporte" id="s_orco_domain_Remito_transporte" object="${remito}" z="zo3bSzHFY7oj7e60q2zCYZsh74c="/>
+        	<field:display field="valorDeclarado" id="s_orco_domain_Remito_valorDeclarado" object="${remito}" z="lju5Nt4XzAs7ZhUnY1Ukhf/cieQ="/>
+        	<field:display field="observaciones" id="s_orco_domain_Remito_observaciones" object="${remito}" z="sPpLEP7EqqvP8Jf9v5Li+Q11wqo="/>
+         </div>			
+       </div>
+        
+        <!-- Estos campos no se ven -->
+        <field:display field="lineas" id="s_orco_domain_Remito_lineas" object="${remito}" render="false" z="user-managed"/>
+        <field:display field="tipsBusqueda" id="s_orco_domain_Remito_tipsBusqueda" object="${remito}" render="false" z="user-managed"/>
+        
+        <div style="width:100%;">  
+	        <table name="lineasGrid">
+	       	<thead>
+	        	<tr>
+	        	<th>Cantidad</th>
+	        	<th>Descripci&amp;oacute;n</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<c:forEach items="${remito.lineasPresentacion}" var="linea" varStatus="statusFor">
+					<tr>
+						<td style="width:50px; text-align:right; height: 15px">
+							<c:out value="${linea.cantidad}"/>
+						</td>
+						<td style="width:515px;">
+							<c:out value="${linea.descripcion}"/>
+						</td>
+					</tr>
+		    	</c:forEach>
+	        </tbody>
+	        <tfoot>
+	        	<tr>
+	        		<th colspan="4" style="height:15px;"/>
+	        	</tr>
+	        </tfoot>
+	     </table>
+		</div>	
+		
+        <field:arbolRelacion presupuesto="${remito.presupuestoOrigen}" ordentrabajo="${remito.ordenTrabajoOrigen}" />
+	 	<br/>
+        
+        
+    </page:show>
+</div>

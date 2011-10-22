@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+     
+    <spring:url value="/resources/scripts/presupuesto.js" var="js_presupuesto_url"/>
+	<script src="${js_presupuesto_url}" type="text/javascript">
+        <!-- //required for FF3 and Opera -->
+    </script>
+     
+      
+      <div style="display: block; overflow: hidden;">	 
+    	 <div style="float:left; width: 50%;">
+		    <field:input field="facturaFormulario" id="c_orco_domain_Factura_facturaFormulario" max="20" z="7UXurfFyucs52WyAGUWbIEvinak="/>
+ 			<field:select field="cliente" id="c_orco_domain_Factura_cliente" itemValue="id" items="${clientes}" path="/clientes" z="2uM1QDFJWgDZpUkHjczj4ntIF88="
+ 				disabled="${(factura.presupuestoOrigen != null) || (factura.ordenTrabajoOrigen != null)}" object="${factura.cliente}"  />
+ 			<field:select field="presupuestoOrigen" render="${(factura.presupuestoOrigen != null)}" disabled="true" object="${factura.presupuestoOrigen}" id="c_orco_domain_Factura_presupuestoOrigen" itemValue="id" items="${presupuestoes}" path="/presupuestoes" z="YO0hai7gjzByl8cdJbAdyH5YGH8="/>
+        	<field:select field="ordenTrabajoOrigen" render="${(factura.ordenTrabajoOrigen != null)}" disabled="true" object="${factura.ordenTrabajoOrigen}" id="c_orco_domain_Factura_ordenTrabajoOrigen" itemValue="id" items="${ordentrabajoes}" path="/ordentrabajoes" z="xnWHIZLwpQ0EuaIvRyEvuNFaGw8="/>
+      	 </div>
+       	 <div style="float:right; width: 50%;">
+      		<field:datetime dateTimePattern="${factura_fecha_date_format}" field="fecha" id="c_orco_domain_Factura_fecha" z="hkf5761aJo9d/Y4xIROuNir9wkc="/>
+           	<field:input field="condicionesVenta" id="c_orco_domain_Factura_condicionesVenta" z="my2gTX0YlGaAqHNK64RkhYLuiwE="/>
+         </div>			
+       </div>
+     
+      <div style="width:100%; margin-bottom:5px;">  
+        <table name="lineasGrid">
+       	<thead>
+        	<tr>
+        	<th>Cantidad</th>
+        	<th colspan="2">Descripción</th>
+        	<th>Precio Unitario</th>
+        	<th>Precio Total</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<c:forEach items="${factura.lineasPresentacion}" var="linea">
+				<tr>
+					<td>
+						<input id="linea_id" name="linea_id" type="hidden" value="${linea.id}"/>
+						<input id="presupuestoLineaOrigen" name="presupuestoLineaOrigen" type="hidden" value="${linea.presupuestoLineaOrigen.id}"/>
+						<input id="ordenTrabajoLineaOrigen" name="ordenTrabajoLineaOrigen" type="hidden" value="${linea.ordenTrabajoLineaOrigen.id}"/>
+						<input id="cantidad" name="cantidad" onkeyup="actualizarTotales();" style="width:50px; text-align:right;" type="text" value="${linea.cantidad}"/>
+					</td>
+					<td colspan="2">
+						<input id="descripcionTrabajo" name="descripcion" style="width:310px" type="text" value="${linea.descripcion}"/>
+					</td>
+					<td>
+						<input id="precioUnitario" name="precioUnitario" onkeyup="actualizarTotales();" style="width:100px; text-align:right;" type="text" value="${linea.precioUnitario}"/>
+					</td>
+					<td>
+						<input id="precioTotal" name="precioTotal" readonly="readonly" style="width:100px; text-align:right;" type="text" value="${linea.precioTotal}"/>
+					</td>	
+				</tr>
+	    	</c:forEach>
+        </tbody>
+        <tfoot>
+        	<tr>
+        		<th></th>
+        		<th style="text-align:right;">Bonificación</th>
+        		<th>
+        			<input id="porcBonificacion" name="porcBonificacion" onkeyup="actualizarTotales();" style="width:45px; text-align:right;" type="text" value="${factura.bonificacion}"/>%
+        		</th>
+        		<th>Subtotal:</th>
+        		<th>
+        			<input id="subtotal" name="subtotal" readonly="readonly" style="width:100px; text-align:right;" type="text" value="${factura.subtotal}"/>
+				</th>
+        	</tr>
+        	<tr>
+        		<th></th>
+        		<th style="text-align:right;">Impuesto</th>
+        		<th>
+        			<input id="porcImpuesto" name="porcImpuesto" onkeyup="actualizarTotales();" style="width:45px; text-align:right;" type="text" value="${factura.impuesto}"/>%
+        		</th>
+        		<th>Subtotal Impuesto:</th>
+        		<th>
+        			<input id="subtotalImpuesto" name="subtotalImpuesto" readonly="readonly" style="width:100px; text-align:right;" type="text" value="${factura.totalImpuesto}"/>
+				</th>
+        	</tr>
+        	<tr>
+        		<th></th>
+        		<th colspan="2">
+        		</th>
+        		<th>Total:</th>
+        		<th>
+        			<input id="total" name="total" readonly="readonly" style="width:100px; text-align:right;" type="text" value="${factura.total}"/>
+				</th>
+        	</tr>
+        </tfoot>	
+        </table>
+     </div>
+     
+</div>
+ 

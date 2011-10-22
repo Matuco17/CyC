@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_orco_domain_Prioridad" items="${prioridads}" z="HGV6Mn168Ge6h437S1UyDHrI3Ys=">
+        <table:table data="${prioridads}" id="l_orco_domain_Prioridad" path="/prioridads" z="VTsLsf1F4+0Fz+85N1z8S7v0ZHU=">
+            <table:column id="c_orco_domain_Prioridad_texto" property="texto" z="6TvsciHohD7/7B9JFSNcooo8iSE="/>
+            <table:column id="c_orco_domain_Prioridad_valor" property="valor" z="1KZBAFD/X36X897wItiETNR/9SY="/>
+        </table:table>
+    </page:list>
+</div>

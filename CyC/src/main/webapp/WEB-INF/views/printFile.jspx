@@ -1,0 +1,22 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+	<jsp:output omit-xml-declaration="yes" />
+
+
+<spring:url value="/resources/scripts/printfile.js" var="js_printfile_url"/>
+<script src="${js_printfile_url}" type="text/javascript">
+    <!-- //required for FF3 and Opera -->
+</script>
+
+<embed ID='PDFObjectID' type='application/pdf' data='${Archivo.url}' >
+</embed>
+
+<link href="${Archivo.nombre}" rel="alternate" type="application/pdf" title="A PDF version of the page" media="print" />
+
+
+<body >
+	<label class="label" style="width: 500px;">Imprimiendo ${Archivo.nombre}</label>
+	<button id="btnimp" onclick="imprimir()">pepe</button>
+</body>  
+
+
+</div>

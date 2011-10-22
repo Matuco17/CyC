@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" 
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	version="2.0">
+	
+	<meta http-equiv="refresh" content="180" /> 
+	
+    <jsp:output omit-xml-declaration="yes"/>
+    
+        <page:list id="pl_orco_domain_OrdenTrabajo" items="${ordentrabajoes}" z="67I1hw3LVxsxz8Xj9I7ozniPClE=">
+	       
+	       <c:choose>
+	        <c:when test="${not empty ordentrabajoes}">
+		        <table:table data="${ordentrabajoes}" id="l_orco_domain_OrdenTrabajo" path="/ordentrabajoes" z="RDFmoZ1DZlVWfDLmD0ybfyyXzHI=" 
+		        	delete="false" create="false" >
+		            <table:column id="c_orco_domain_OrdenTrabajo_nroOrden" property="nroOrden" z="D3logKCzeXVJ5zMLDnodPb3EDEY="/>
+		     		<table:column id="c_orco_domain_OrdenTrabajo_cliente" property="clienteNombre" z="user-managed"/>
+		          	<table:column id="c_orco_domain_OrdenTrabajo_porcentajeAvance" property="porcentajeAvance" z="7csiunr46Fdp3/WlL7P9jINajcw="/>
+		        	<table:column id="c_orco_domain_Ordentrabajo_vencimiento" property="vencimiento" z="7csiunr46Fdp3/WlL7P9jINajcw="/>
+		        </table:table>
+	        </c:when>
+	        <c:otherwise>
+	          <spring:message arguments="Ordenes de Trabajo" code="entity_not_found" />
+	        </c:otherwise>
+	      </c:choose>
+	       
+	    </page:list>	   
+</div>
