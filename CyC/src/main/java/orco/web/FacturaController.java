@@ -165,21 +165,30 @@ public class FacturaController extends BasicController {
         return "redirect:/facturas?page=" + ((page == null) ? "1" : page.toString()) + "&size=" + ((size == null) ? "10" : size.toString());
     }
     
-    @RequestMapping(value = "/printtemplate/{id}", method = RequestMethod.GET)
-    public String printTemplate(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model, HttpServletRequest request) {
-    	//Busco la factura
-		Factura factAImprimir = Factura.findFactura(id);
-        
-		//Creo los parametros a pasar
-		Map<String, Object> params = new HashMap<String, Object>();
-        params.put("FacturaId", id);
-        params.put("remitoFormularioRelacionado", factAImprimir.getRemitoFormulario());
-        
-        printGenerico(model, request, params, 
-        				"FacturaTemplate.jasper", 
-        				"facturaT_" + id.toString() + ".pdf");
-       
-        return VIEW_IMPRIMIR;
+    @RequestMapping(value = "/print/{id}/{type}", method = RequestMethod.GET)
+    public String print(@PathVariable("id") Long id,@PathVariable("type") String type, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model, HttpServletRequest request) {
+    	String jasperFile = null;
+    	String pdfFile = null;
+    	if (type.equalsIgnoreCase(Constantes.PRINT_TYPE_TEMPLATE)){
+    		jasperFile = "FacturaTempalte.jasper";
+    		pdfFile = "facturaT_" + id.toString() + ".pdf";
+    	}	
+    	
+    	if (jasperFile != null){
+	    	//Busco la factura
+			Factura factAImprimir = Factura.findFactura(id);
+	        
+			//Creo los parametros a pasar
+			Map<String, Object> params = new HashMap<String, Object>();
+	        params.put("FacturaId", id);
+	        params.put("remitoFormularioRelacionado", factAImprimir.getRemitoFormulario());
+	        
+	        //Imprimo el reporte
+	        printGenerico(model, request, params, jasperFile, pdfFile);
+	       
+	        return Constantes.VIEW_IMPRIMIR;
+    	}
+    	return null;
     }
 
 

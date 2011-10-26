@@ -137,17 +137,26 @@ public class OrdenCompraController extends BasicController {
         return "redirect:/ordencompras?page=" + ((page == null) ? "1" : page.toString()) + "&size=" + ((size == null) ? "10" : size.toString());
     }
     
-    @RequestMapping(value = "/print/{id}", method = RequestMethod.GET)
-    public String printTemplate(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model, HttpServletRequest request) {
-    	//Creo los parametros a pasar
-		Map<String, Object> params = new HashMap<String, Object>();
-        params.put("OrdenCompraId", id);
-        
-        printGenerico(model, request, params, 
-        				"OrdenCompra.jasper", 
-        				"ordenCompra_" + id.toString() + ".pdf");
-       
-        return VIEW_IMPRIMIR;
+    @RequestMapping(value = "/print/{id}/{type}", method = RequestMethod.GET)
+    public String print(@PathVariable("id") Long id, @PathVariable("type") String type, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model, HttpServletRequest request) {
+    	String jasperFile = null;
+    	String pdfFile = null;
+    	if (type.equalsIgnoreCase(Constantes.PRINT_TYPE_COMMON)){
+    		jasperFile = "OrdenCompra.jasper";
+    		pdfFile = "ordenCompra_" + id.toString() + ".pdf";
+    	} 
+    	
+    	if (jasperFile != null){
+    	
+	    	//Creo los parametros a pasar
+			Map<String, Object> params = new HashMap<String, Object>();
+	        params.put("OrdenCompraId", id);
+	        
+	        printGenerico(model, request, params, jasperFile, pdfFile);
+	       
+	        return Constantes.VIEW_IMPRIMIR;
+    	}
+    	return null;
     }
 
 
@@ -167,15 +176,7 @@ public class OrdenCompraController extends BasicController {
 	    } catch (Exception e) {
 			ordenCompra.setImpuesto(new BigDecimal(0));
 		}	
-	    /*
-		String porcBonificacion = request.getParameter("porcBonificacion");
-		try {
-			ordenCompra.setBonificacion(new BigDecimal(porcBonificacion));
-		} catch (Exception e) {
-			ordenCompra.setBonificacion(new BigDecimal(0));
-		}
-		*/
-		
+	   		
 		//Completo la parte de lineas para que las inserte ya que no lo esta agregando
     	String[] ids = request.getParameterValues("linea_id");
     	String[] cantidades = request.getParameterValues("cantidad");

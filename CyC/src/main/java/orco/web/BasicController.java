@@ -301,11 +301,6 @@ public class BasicController {
 	  * Prints
 	  */
 	   
-	   /**
-	    * Constantes basicas que se pueden utilizar en mas de un Controller
-	    */
-	    public static String VIEW_IMPRIMIR = "printFile";
-	    
 	    /**
 	     * 
 	     * @param model Modelo de la llamada http
@@ -327,6 +322,12 @@ public class BasicController {
 				//Agrego la imagen de Membrete por si el reporte lo necesita
 				try {
 					params.put("membrete_img", new FileInputStream(request.getSession().getServletContext().getRealPath("/images/" + "membrete.jpg")));
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				//Agrego la imagen del fondo del presupuesto
+				try {
+					params.put("presupuesto_back", new FileInputStream(request.getSession().getServletContext().getRealPath("/images/" + "PresupuestoEnBlanco.jpg")));
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}

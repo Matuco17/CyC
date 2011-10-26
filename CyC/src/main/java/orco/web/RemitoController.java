@@ -158,18 +158,28 @@ public class RemitoController extends BasicController {
         return "redirect:/remitoes?page=" + ((page == null) ? "1" : page.toString()) + "&size=" + ((size == null) ? "10" : size.toString());
     }
         
-    @RequestMapping(value = "/printtemplate/{id}", method = RequestMethod.GET)
-    public String printTemplate(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/print/{id}/{type}", method = RequestMethod.GET)
+    public String print(@PathVariable("id") Long id, @PathVariable("type") String type, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model model, HttpServletRequest request) {
+      	String jasperFile = null;
+    	String pdfFile = null;
+    	if (type.equalsIgnoreCase(Constantes.PRINT_TYPE_TEMPLATE)){
+     		jasperFile = "RemitoTemplate.jasper";
+    		pdfFile = "remitoT_" + id.toString() + ".pdf";
+    	}
     	
-    	//Creo el map con los parametros
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("RemitoId", id);
-        
-        printGenerico(model, request, params, 
-				"RemitoTemplate.jasper", 
-				"remitoT_" + id.toString() + ".pdf");
-       
-        return VIEW_IMPRIMIR;
+    	if (jasperFile != null){
+	    	//Creo los parametros a pasar
+			Map<String, Object> params = new HashMap<String, Object>();
+	        params.put("RemitoId", id);
+	        
+	        printGenerico(model, request, params, jasperFile, pdfFile);
+	       
+	        return Constantes.VIEW_IMPRIMIR;
+    	}
+    	return null;
+    	
+    	
+    	
     }
     
     /**

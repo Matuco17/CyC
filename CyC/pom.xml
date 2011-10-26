@@ -8,11 +8,12 @@
 	<name>CyC</name>
 	<properties>
 		<roo.version>1.1.4.RELEASE</roo.version>
-		<spring.version>3.0.6.RELEASE</spring.version>
+		<spring.version>3.0.5.RELEASE</spring.version>
+		<jasperreports.version>4.1.1</jasperreports.version>
 		<aspectj.version>1.6.10</aspectj.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<spring-security.version>3.0.6.RELEASE</spring-security.version>
+	<spring-security.version>3.0.5.RELEASE</spring-security.version>
     </properties>
 	<repositories>
         <repository>
@@ -386,7 +387,12 @@
     	<dependency>
 	        <groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>4.0.1</version>
+			<version>${jasperreports.version}</version>
+		</dependency>
+     	<dependency>
+	        <groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+			<version>4.0.0</version>
 		</dependency>
      	<dependency>
 			<groupId>com.lowagie</groupId>

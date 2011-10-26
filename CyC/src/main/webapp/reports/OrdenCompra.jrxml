@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdenCompra" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="44" rightMargin="41" topMargin="40" bottomMargin="41">
 	<property name="ireport.zoom" value="1.3660269107301422"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="168"/>
+	<property name="ireport.y" value="38"/>
 	<parameter name="OrdenCompraId" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -95,7 +95,7 @@ order by
 			</line>
 			<image>
 				<reportElement x="12" y="2" width="27" height="29"/>
-				<imageExpression class="java.io.InputStream"><![CDATA[$P{membrete_img}]]></imageExpression>
+				<imageExpression><![CDATA[$P{membrete_img}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="39" y="0" width="189" height="29"/>
@@ -121,14 +121,14 @@ order by
 			<textField pattern="dd/MM/yy">
 				<reportElement x="425" y="31" width="84" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="457" y="2" width="52" height="29"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="20"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Long"><![CDATA[$F{orden_compra_nro}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{orden_compra_nro}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="425" y="2" width="32" height="29"/>
@@ -154,7 +154,7 @@ order by
 			<textField pattern="">
 				<reportElement x="425" y="49" width="84" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.Long"><![CDATA[$F{ot_nro}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ot_nro}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="325" y="49" width="100" height="20"/>
@@ -171,7 +171,7 @@ order by
 			<textField isBlankWhenNull="true">
 				<reportElement x="366" y="4" width="140" height="20"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cuit}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cuit}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="8" y="3" width="69" height="20"/>
@@ -193,7 +193,7 @@ order by
 			<textField isBlankWhenNull="true">
 				<reportElement x="77" y="3" width="217" height="20"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="366" y="23" width="140" height="1"/>
@@ -201,7 +201,7 @@ order by
 			<textField isBlankWhenNull="true">
 				<reportElement x="77" y="23" width="217" height="20"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{direccion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="8" y="23" width="69" height="20"/>
@@ -216,7 +216,7 @@ order by
 			<textField isBlankWhenNull="true">
 				<reportElement x="77" y="44" width="217" height="20"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cuidad} + " - " + $F{provincia} ]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cuidad} + " - " + $F{provincia}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="8" y="44" width="69" height="20"/>
@@ -231,7 +231,7 @@ order by
 			<textField isBlankWhenNull="true">
 				<reportElement x="366" y="24" width="140" height="20"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{telefono}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="308" y="24" width="57" height="20"/>
@@ -246,7 +246,7 @@ order by
 			<textField isBlankWhenNull="true">
 				<reportElement x="366" y="45" width="140" height="20"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{email}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="308" y="45" width="57" height="20"/>
@@ -315,22 +315,22 @@ order by
 			<textField>
 				<reportElement x="3" y="2" width="57" height="18"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.Long"><![CDATA[$F{cantidad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="63" y="2" width="293" height="18"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement x="358" y="2" width="73" height="18"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{precio_unitario}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{precio_unitario}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement x="433" y="2" width="73" height="18"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{importe}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{importe}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="1" y="0" width="507" height="1"/>
@@ -378,7 +378,7 @@ order by
 					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{impuesto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{impuesto}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="236" y="5" width="100" height="20">
@@ -392,12 +392,12 @@ order by
 					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{TotalImpuesto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{TotalImpuesto}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement x="432" y="25" width="76" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{Total}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="254" y="55" width="56" height="20"/>
@@ -409,7 +409,7 @@ order by
 			<textField isBlankWhenNull="true">
 				<reportElement x="310" y="55" width="170" height="20"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{aprobador}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{aprobador}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="310" y="74" width="170" height="1"/>
@@ -417,7 +417,7 @@ order by
 			<textField isBlankWhenNull="true">
 				<reportElement x="156" y="82" width="324" height="20"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{condiciones_pago}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{condiciones_pago}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="37" y="82" width="119" height="20"/>
@@ -432,7 +432,7 @@ order by
 			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
 				<reportElement x="156" y="55" width="86" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha_entrega}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_entrega}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="37" y="55" width="119" height="20"/>

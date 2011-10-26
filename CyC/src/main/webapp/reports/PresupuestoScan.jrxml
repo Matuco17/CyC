@@ -2,8 +2,11 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PresupuestoTemplate" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="44" rightMargin="41" topMargin="40" bottomMargin="41">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="276"/>
 	<parameter name="PresupuestoId" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="presupuesto_back" class="java.io.InputStream">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -73,7 +76,12 @@ order by
 		<variableExpression><![CDATA[($F{impuesto}.doubleValue() > 0)]]></variableExpression>
 	</variable>
 	<background>
-		<band splitType="Stretch"/>
+		<band height="761">
+			<image>
+				<reportElement x="0" y="0" width="510" height="761"/>
+				<imageExpression><![CDATA[$P{presupuesto_back}]]></imageExpression>
+			</image>
+		</band>
 	</background>
 	<title>
 		<band height="95" splitType="Stretch">
@@ -81,6 +89,13 @@ order by
 				<reportElement x="302" y="72" width="84" height="23"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="358" y="25" width="137" height="23" forecolor="#808080"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuesto_formulario}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -196,7 +211,7 @@ order by
 					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<text><![CDATA[Bonificación ]]></text>
+				<text><![CDATA[Bonificaci�n ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="236" y="31" width="100" height="20">

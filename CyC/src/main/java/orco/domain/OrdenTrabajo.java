@@ -407,9 +407,6 @@ public class OrdenTrabajo {
 
     private Long nroOrden;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Responsable> responsables = new HashSet<Responsable>();
-
     @Transactional
     public void persist() {
         actualizarTipsBusqueda(this);

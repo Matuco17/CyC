@@ -34,23 +34,23 @@ order by
 	<field name="impuesto" class="java.math.BigDecimal"/>
 	<field name="tips_busqueda" class="java.lang.String"/>
 	<field name="cliente" class="java.lang.Long"/>
-	<field name="presupuesto_origen" class="java.lang.Long"/>
 	<field name="orden_trabajo_origen" class="java.lang.Long"/>
+	<field name="presupuesto_origen" class="java.lang.Long"/>
 	<field name="cantidad" class="java.lang.Long"/>
 	<field name="descripcion" class="java.lang.String"/>
 	<field name="precio_unitario" class="java.math.BigDecimal"/>
 	<field name="factura" class="java.lang.Long"/>
-	<field name="presupuesto_linea_origen" class="java.lang.Long"/>
 	<field name="orden_trabajo_linea_origen" class="java.lang.Long"/>
+	<field name="presupuesto_linea_origen" class="java.lang.Long"/>
 	<field name="ciudad" class="java.lang.String"/>
 	<field name="cuit" class="java.lang.String"/>
 	<field name="direccion" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
+	<field name="password_portal" class="java.lang.String"/>
 	<field name="provincia" class="java.lang.String"/>
 	<field name="telefono" class="java.lang.String"/>
-	<field name="version" class="java.lang.Integer"/>
 	<field name="user_name_portal" class="java.lang.String"/>
-	<field name="password_portal" class="java.lang.String"/>
+	<field name="version" class="java.lang.Integer"/>
 	<field name="importe" class="java.math.BigDecimal"/>
 	<variable name="SubTotal" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{importe}]]></variableExpression>

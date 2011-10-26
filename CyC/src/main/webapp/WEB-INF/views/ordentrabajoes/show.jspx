@@ -13,7 +13,7 @@
     </sec:authorize>
      
     
-    <page:show delete="${visibilityDelete}" id="ps_orco_domain_OrdenTrabajo" listUrl="${listUrl}" object="${ordentrabajo}" path="/ordentrabajoes" print_template="false" z="user-managed">
+    <page:show delete="${visibilityDelete}" id="ps_orco_domain_OrdenTrabajo" listUrl="${listUrl}" object="${ordentrabajo}" path="/ordentrabajoes" print="true" z="user-managed">
         <div style="display: block; overflow: hidden;">	 
     	 <div style="float:left; width: 50%;">
 		  	<field:display field="nroOrden" id="c_orco_domain_OrdenTrabajo_nroOrden" object="${ordentrabajo}" z="eWdqMWz8s2Z34O0euTti+0OnleQ="/>

@@ -14,6 +14,13 @@ public class Constantes {
 	public static String ULTIMO_ORDENCOMPRA_FILTER = "lastOCFilter";
 	public static String ULTIMO_CLIENTE_FILTER = "lastClFilter";
 	
-	
+	/**
+    * Constantes basicas que se pueden utilizar en mas de un Controller
+    */
+	public static String VIEW_IMPRIMIR = "printFile";
+	public static String PRINT_TYPE_COMMON = "common";
+	public static String PRINT_TYPE_TEMPLATE = "template";
+	public static String PRINT_TYPE_SCAN = "scan";
+	   
 	
 }

@@ -212,13 +212,6 @@ privileged aspect OrdenTrabajo_Roo_JavaBean {
     public void OrdenTrabajo.setFacturas(Set<Factura> facturas) {
         this.facturas = facturas;
     }
-    
-    public Set<Responsable> OrdenTrabajo.getResponsables() {
-        return this.responsables;
-    }
 
-    public void OrdenTrabajo.setResponsables(Set<Responsable> responsables) {
-        this.responsables = responsables;
-    }
 
 }

@@ -2,7 +2,7 @@
 <div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" version="2.0">
 	
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_orco_domain_Presupuesto" object="${presupuesto}" path="/presupuestoes" z="kbqSRDvh5ISg65PEwNkYIiluEGE=">
+    <page:show id="ps_orco_domain_Presupuesto" object="${presupuesto}" path="/presupuestoes" print="true" print_scan="true" print_template="true"  z="kbqSRDvh5ISg65PEwNkYIiluEGE=">
         <div style="display: block; overflow: hidden;">	 
     	 <div style="float:left; width: 50%;">
     	    <field:display field="presupuestoFormulario" id="s_orco_domain_Presupuesto_presupuestoFormulario" object="${presupuesto}" z="882ib8m6cWkknP+6BMjxV29hdSI="/>

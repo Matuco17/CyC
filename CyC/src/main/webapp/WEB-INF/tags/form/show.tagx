@@ -11,6 +11,7 @@
   <jsp:directive.attribute name="delete" type="java.lang.Boolean" required="false" description="Include 'delete' link into table (default true)" />
   <jsp:directive.attribute name="print" type="java.lang.Boolean" required="false" description="Include 'printer' link into table (default true)" />
   <jsp:directive.attribute name="print_template" type="java.lang.Boolean" required="false" description="Include 'printer with template' link into table (default true)" />
+  <jsp:directive.attribute name="print_scan" type="java.lang.Boolean" required="false" description="Include 'printer with template' link into table (default true)" />
   <jsp:directive.attribute name="label" type="java.lang.String" required="false" description="The label used for this object, will default to a message bundle if not supplied" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="openPane" type="java.lang.Boolean" required="false" description="Control if the title pane is opened or closed by default (default: true)" />
@@ -38,13 +39,16 @@
     </c:if>
     
     <c:if test="${empty print}">
-      <c:set var="print" value="true" />
+      <c:set var="print" value="false" />
     </c:if>
     
     <c:if test="${empty print_template}">
-      <c:set var="print_template" value="true" />
+      <c:set var="print_template" value="false" />
     </c:if>
     
+    <c:if test="${empty print_scan}">
+      <c:set var="print_scan" value="false" />
+    </c:if>
                 
 	<c:if test="${empty listUrl}">
     	<spring:url value="${path}" var="list_form_url" />
@@ -115,29 +119,40 @@
 	                <spring:url value="/resources/images/list.png" var="list_image_url" />
 	                <a href="${fn:escapeXml(list_form_url)}" class="imagebutton" alt="${fn:escapeXml(list_label)}" title="${fn:escapeXml(list_label)}">
 	                  <img alt="${fn:escapeXml(list_label)}" class="image" src="${fn:escapeXml(list_image_url)}" title="${fn:escapeXml(list_label)}" />
-	                  Listado
+	                  Listar
 	                </a>
 	            </span>
             </c:if>
             <c:if test="${print}">
               <span class="quicklink">
-              	<spring:url value="print/${itemId}" var="print_form_url" />
+              	<spring:url value="print/${itemId}/common" var="print_form_url" />
                 <spring:url value="/resources/images/print.png" var="print_image_url" />
                 <spring:message arguments="${typeName}" code="entity_print" var="print_label" />
                 <a href="${fn:escapeXml(print_form_url)}" class="imagebutton" alt="${fn:escapeXml(print_label)}" title="${fn:escapeXml(print_label)}" target="_BLANK">
                   <img alt="${fn:escapeXml(print_label)}" class="image" src="${fn:escapeXml(print_image_url)}" title="${fn:escapeXml(print_label)}" />
-                  Imprimir
+                  Imp.
                 </a>
               </span>
             </c:if>
             <c:if test="${print_template}">
               <span class="quicklink">
-              	<spring:url value="printtemplate/${itemId}" var="printtemplate_form_url" />
+              	<spring:url value="print/${itemId}/template" var="printtemplate_form_url" />
                 <spring:url value="/resources/images/print.png" var="printtemplate_image_url" />
                 <spring:message arguments="${typeName}" code="entity_print" var="print_label" />
                 <a href="${fn:escapeXml(printtemplate_form_url)}" class="imagebutton" alt="${fn:escapeXml(print_label)}" title="${fn:escapeXml(print_label)}" target="_BLANK">
                   <img alt="${fn:escapeXml(print_label)}" class="image" src="${fn:escapeXml(printtemplate_image_url)}" title="${fn:escapeXml(print_label)}" />
-                  Imp. con plantilla
+                  Plantilla
+                </a>
+              </span>
+            </c:if>
+            <c:if test="${print_scan}">
+              <span class="quicklink">
+              	<spring:url value="print/${itemId}/scan" var="printscan_form_url" />
+                <spring:url value="/resources/images/print.png" var="printscan_image_url" />
+                <spring:message arguments="${typeName}" code="entity_print" var="print_label" />
+                <a href="${fn:escapeXml(printscan_form_url)}" class="imagebutton" alt="${fn:escapeXml(print_label)}" title="${fn:escapeXml(print_label)}" target="_BLANK">
+                  <img alt="${fn:escapeXml(print_label)}" class="image" src="${fn:escapeXml(printscan_image_url)}" title="${fn:escapeXml(print_label)}" />
+                  Scan
                 </a>
               </span>
             </c:if>
