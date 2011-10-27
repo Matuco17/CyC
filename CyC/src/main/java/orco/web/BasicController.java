@@ -327,7 +327,7 @@ public class BasicController {
 				}
 				//Agrego la imagen del fondo del presupuesto
 				try {
-					params.put("presupuesto_back", new FileInputStream(request.getSession().getServletContext().getRealPath("/images/" + "presupuestoEnBlanco.jpg")));
+					params.put("presupuesto_back", new FileInputStream(request.getSession().getServletContext().getRealPath("/images/" + "PresupuestoEnBlanco.jpg")));
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}

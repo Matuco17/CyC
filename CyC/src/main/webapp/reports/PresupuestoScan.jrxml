@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PresupuestoTemplate" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="44" rightMargin="41" topMargin="40" bottomMargin="41">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="480"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="PresupuestoId" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -78,23 +78,23 @@ order by
 	</variable>
 	<background>
 		<band height="761">
-			<image scaleImage="RealSize">
-				<reportElement x="0" y="0" width="510" height="72"/>
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="510" height="761"/>
 				<imageExpression><![CDATA[$P{presupuesto_back}]]></imageExpression>
 			</image>
 		</band>
 	</background>
 	<title>
-		<band height="95" splitType="Stretch">
+		<band height="104" splitType="Stretch">
 			<textField pattern="dd       MM       yy">
-				<reportElement x="302" y="72" width="84" height="23"/>
+				<reportElement x="302" y="81" width="84" height="23"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement x="358" y="25" width="137" height="23" forecolor="#808080"/>
+				<reportElement x="358" y="28" width="137" height="23" forecolor="#808080"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="10"/>
+					<font fontName="Monospaced" size="15"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{presupuesto_formulario}]]></textFieldExpression>
 			</textField>
@@ -147,12 +147,12 @@ order by
 				<textFieldExpression><![CDATA[$F{descripcion_trabajo}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="358" y="0" width="68" height="18"/>
+				<reportElement x="357" y="0" width="68" height="18"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{precio_unitario}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="432" y="1" width="76" height="18"/>
+				<reportElement x="429" y="1" width="76" height="18"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{importe}]]></textFieldExpression>
 			</textField>
@@ -161,21 +161,21 @@ order by
 	<columnFooter>
 		<band height="73" splitType="Stretch">
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="432" y="11" width="76" height="20">
+				<reportElement x="429" y="11" width="76" height="20">
 					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{TotalBonificacion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="432" y="31" width="77" height="20">
+				<reportElement x="429" y="31" width="77" height="20">
 					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{TotalImpuesto}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="432" y="51" width="77" height="20"/>
+				<reportElement x="429" y="51" width="77" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{TotalPresupuesto}]]></textFieldExpression>
 			</textField>
@@ -224,7 +224,7 @@ order by
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="63" splitType="Stretch">
+		<band height="64" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
 				<reportElement x="100" y="0" width="403" height="32"/>
 				<textElement/>
