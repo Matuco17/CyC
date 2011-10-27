@@ -2,11 +2,12 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PresupuestoTemplate" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="44" rightMargin="41" topMargin="40" bottomMargin="41">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="276"/>
+	<property name="ireport.y" value="480"/>
 	<parameter name="PresupuestoId" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="presupuesto_back" class="java.io.InputStream">
+		<parameterDescription><![CDATA[]]></parameterDescription>
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -77,8 +78,8 @@ order by
 	</variable>
 	<background>
 		<band height="761">
-			<image>
-				<reportElement x="0" y="0" width="510" height="761"/>
+			<image scaleImage="RealSize">
+				<reportElement x="0" y="0" width="510" height="72"/>
 				<imageExpression><![CDATA[$P{presupuesto_back}]]></imageExpression>
 			</image>
 		</band>

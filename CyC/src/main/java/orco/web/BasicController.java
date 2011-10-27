@@ -327,14 +327,14 @@ public class BasicController {
 				}
 				//Agrego la imagen del fondo del presupuesto
 				try {
-					params.put("presupuesto_back", new FileInputStream(request.getSession().getServletContext().getRealPath("/images/" + "PresupuestoEnBlanco.jpg")));
+					params.put("presupuesto_back", new FileInputStream(request.getSession().getServletContext().getRealPath("/images/" + "presupuestoEnBlanco.jpg")));
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
 				
 				
 				String pathTemplate = request.getSession().getServletContext().getRealPath("/reports/" + archivosJasper);
-	            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(pathTemplate); 
+	            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(pathTemplate); 
 	            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, 
 	          		  									params,
 	          		  									ExtraJdbcConnection.getConnection(request));
