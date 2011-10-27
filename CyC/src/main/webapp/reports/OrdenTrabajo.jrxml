@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdenTrabajo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.zoom" value="1.5026296018031553"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="5"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -39,6 +39,10 @@ cl.nombre as ClienteNombre,
 cl.telefono as ClienteTelefono,
 r.apellido as ResponsableApellido,
 r.nombres as ResponsableNombres,
+r2.apellido as Responsable2Apellido,
+r2.nombres as Responsable2Nombres,
+r3.apellido as Responsable3Apellido,
+r3.nombres as Responsable3Nombres,
 a.apellido as AtendioApellido,
 a.nombres as AtendioNombres,
 e.apellido as EntregadoPorApellido,
@@ -54,10 +58,15 @@ from
 	on (ot.cliente = cl.id)
     left join responsable r
 	on (ot.responsable = r.id)
+    left join responsable r2
+	on (ot.responsable2 = r2.id)
+    left join responsable r3
+	on (ot.responsable3 = r3.id)
     left join responsable a
           on (ot.atendio = a.id)
     left join responsable e
           on (ot.entregado_por = e.id)
+
 where
      ot.id = $P{OrdenTrabajoId}
 order by
@@ -93,10 +102,16 @@ order by
 	<field name="responsable" class="java.lang.Long"/>
 	<field name="control_calidad" class="java.lang.Boolean"/>
 	<field name="observaciones" class="java.lang.String"/>
+	<field name="responsable2" class="java.lang.Long"/>
+	<field name="responsable3" class="java.lang.Long"/>
 	<field name="ClienteNombre" class="java.lang.String"/>
 	<field name="ClienteTelefono" class="java.lang.String"/>
 	<field name="ResponsableApellido" class="java.lang.String"/>
 	<field name="ResponsableNombres" class="java.lang.String"/>
+	<field name="Responsable2Apellido" class="java.lang.String"/>
+	<field name="Responsable2Nombres" class="java.lang.String"/>
+	<field name="Responsable3Apellido" class="java.lang.String"/>
+	<field name="Responsable3Nombres" class="java.lang.String"/>
 	<field name="AtendioApellido" class="java.lang.String"/>
 	<field name="AtendioNombres" class="java.lang.String"/>
 	<field name="EntregadoPorApellido" class="java.lang.String"/>
@@ -135,181 +150,185 @@ order by
 		</band>
 	</title>
 	<pageHeader>
-		<band height="139" splitType="Stretch">
+		<band height="173" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="105" y="10" width="201" height="20"/>
+				<reportElement x="96" y="10" width="201" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{ClienteNombre}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="105" y="30" width="201" height="20"/>
+				<reportElement x="96" y="30" width="201" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{ClienteTelefono}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
-				<reportElement x="427" y="30" width="77" height="20"/>
+				<reportElement x="406" y="30" width="77" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{fecha_fin}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="504" y="10" width="35" height="20"/>
+				<reportElement x="483" y="10" width="35" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{hora_inicio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
-				<reportElement x="426" y="10" width="77" height="20"/>
+				<reportElement x="406" y="10" width="77" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="504" y="30" width="35" height="20"/>
+				<reportElement x="483" y="30" width="35" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{hora_fin}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="105" y="50" width="201" height="20">
+				<reportElement x="96" y="90" width="201" height="20">
 					<printWhenExpression><![CDATA[$F{responsable} != null]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{ResponsableApellido} + ", " + $F{ResponsableNombres}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="426" y="50" width="113" height="20"/>
+				<reportElement x="406" y="50" width="113" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{orden_compra}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="10" width="95" height="20"/>
+				<reportElement x="10" y="10" width="86" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="30" width="95" height="20"/>
+				<reportElement x="10" y="30" width="86" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Teléfono]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="50" width="95" height="20"/>
+				<reportElement x="10" y="90" width="86" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
-				<text><![CDATA[Responsable]]></text>
+				<text><![CDATA[Responsables]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="10" width="106" height="20"/>
+				<reportElement x="310" y="10" width="85" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Inicio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="30" width="106" height="20"/>
+				<reportElement x="310" y="30" width="85" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Fin]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="50" width="106" height="20"/>
+				<reportElement x="310" y="50" width="85" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
-				<text><![CDATA[Orden de Compra]]></text>
+				<text><![CDATA[O. de Compra]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="105" y="70" width="201" height="20">
+				<reportElement x="406" y="110" width="149" height="20">
 					<printWhenExpression><![CDATA[$F{atendio} != null]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{AtendioApellido} + ", " + $F{AtendioNombres}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="70" width="95" height="20"/>
+				<reportElement x="311" y="110" width="84" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Atendió]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="105" y="90" width="201" height="20">
+				<reportElement x="406" y="130" width="149" height="20">
 					<printWhenExpression><![CDATA[$F{entregado_por} != null]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{EntregadoPorApellido} + ", " + $F{EntregadoPorNombres}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="90" width="95" height="20"/>
+				<reportElement x="311" y="130" width="84" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Entregado Por]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="320" y="70" width="106" height="20"/>
+				<reportElement x="310" y="70" width="85" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Precio Estimado]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="426" y="70" width="113" height="20"/>
+				<reportElement x="405" y="70" width="113" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{precio_estimado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="320" y="90" width="106" height="20"/>
+				<reportElement x="310" y="90" width="85" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Fecha Entrega]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
-				<reportElement x="426" y="90" width="113" height="20"/>
+				<reportElement x="406" y="90" width="113" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{fecha_entrega}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="105" y="110" width="201" height="20"/>
+				<reportElement x="96" y="50" width="201" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{responsable_cliente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="110" width="95" height="20"/>
+				<reportElement x="10" y="50" width="86" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Resp. del Cliente]]></text>
 			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="110" width="201" height="20">
+					<printWhenExpression><![CDATA[$F{responsable2} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Responsable2Apellido} + ", " + $F{Responsable2Nombres}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="130" width="201" height="20">
+					<printWhenExpression><![CDATA[$F{responsable3} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Responsable3Apellido} + ", " + $F{Responsable3Nombres}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="20">
 			<staticText>
-				<reportElement mode="Opaque" x="10" y="0" width="79" height="20" backcolor="#F0F0F0"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[ Cantidad]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="89" y="0" width="364" height="20" backcolor="#F0F0F0"/>
+				<reportElement mode="Opaque" x="96" y="0" width="357" height="20" backcolor="#F0F0F0"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[ Descripción]]></text>
 			</staticText>
 			<line>
-				<reportElement x="10" y="0" width="1" height="20"/>
-			</line>
-			<line>
 				<reportElement x="541" y="0" width="1" height="20"/>
 			</line>
 			<line>
-				<reportElement x="89" y="0" width="1" height="20"/>
+				<reportElement x="96" y="0" width="1" height="20"/>
 			</line>
 			<staticText>
 				<reportElement mode="Opaque" x="450" y="0" width="91" height="20" backcolor="#F0F0F0"/>
@@ -321,20 +340,40 @@ order by
 			<line>
 				<reportElement x="450" y="0" width="1" height="20"/>
 			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="11" y="0" width="29" height="20" backcolor="#F0F0F0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="40" y="0" width="56" height="20" backcolor="#F0F0F0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Cantidad]]></text>
+			</staticText>
+			<line>
+				<reportElement x="39" y="0" width="1" height="20"/>
+			</line>
 			<line>
 				<reportElement x="10" y="0" width="531" height="1"/>
+			</line>
+			<line>
+				<reportElement x="10" y="0" width="1" height="20"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="10" y="0" width="75" height="20"/>
+				<reportElement x="39" y="0" width="53" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cantidad}.toString()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="92" y="0" width="354" height="20"/>
+				<reportElement x="98" y="0" width="350" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 			</textField>
@@ -345,6 +384,11 @@ order by
 				<reportElement x="453" y="0" width="89" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{TextoPrioridad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="12" y="0" width="23" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{item}.toString()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -397,7 +441,7 @@ order by
 				<text><![CDATA[Certificado de Calidad]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="132" y="70" width="410" height="20"/>
+				<reportElement x="132" y="70" width="208" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{certificado_de_calidad}]]></textFieldExpression>
 			</textField>
@@ -412,6 +456,18 @@ order by
 				</textElement>
 				<text><![CDATA[Remito/Factura]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="340" y="70" width="96" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Control de Calidad]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="436" y="70" width="102" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{control_calidad})?"Si":"No"]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>

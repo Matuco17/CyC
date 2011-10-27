@@ -17,6 +17,8 @@
                 </div>
 	        <field:time field="horaFin" id="c_orco_domain_OrdenTrabajo_horaFin" itemValue="valor" items="${tiempos}" label="" path="/tiempos" z="user-managed"/>
       		<field:select field="responsable" emptyValueEnable="true"  id="c_orco_domain_OrdenTrabajo_responsable" itemValue="id" items="${responsables}" path="/responsables" z="user-managed"/>
+       		<field:select field="responsable2" hasLabel="false" emptyValueEnable="true"  id="c_orco_domain_OrdenTrabajo_responsable" itemValue="id" items="${responsables}" path="/responsables" z="user-managed"/>
+       		<field:select field="responsable3" hasLabel="false" label="" emptyValueEnable="true"  id="c_orco_domain_OrdenTrabajo_responsable" itemValue="id" items="${responsables}" path="/responsables" z="user-managed"/>
        		<field:select field="atendio" id="c_orco_domain_OrdenTrabajo_atendio" itemValue="id" items="${responsables}" label="Atendi?" path="/responsables" z="user-managed"/>
         	<field:select field="entregadoPor" id="c_orco_domain_OrdenTrabajo_entregadoPor" itemValue="id" items="${responsables}" path="/responsables" z="Q+etrvFi7D7n8vuAUyQYxJ3SRm4="/>
     		<field:input field="responsableCliente" id="c_orco_domain_OrdenTrabajo_responsableCliente" z="user-managed"/>

@@ -81,6 +81,23 @@ privileged aspect OrdenTrabajo_Roo_JavaBean {
         this.responsable = responsable;
     }
     
+    public Responsable OrdenTrabajo.getResponsable2() {
+        return this.responsable2;
+    }
+    
+    public void OrdenTrabajo.setResponsable2(Responsable responsable2) {
+        this.responsable2 = responsable2;
+    }
+    
+    public Responsable OrdenTrabajo.getResponsable3() {
+        return this.responsable3;
+    }
+    
+    public void OrdenTrabajo.setResponsable3(Responsable responsable3) {
+        this.responsable3 = responsable3;
+    }
+    
+    
     public Cliente OrdenTrabajo.getCliente() {
         return this.cliente;
     }

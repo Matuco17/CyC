@@ -26,6 +26,8 @@
 	        <field:display field="horaFin" id="s_orco_domain_OrdenTrabajo_horaFin" object="${ordentrabajo}" render="false" z="user-managed"/>
         	<field:display field="fechaHoraFin" id="s_orco_domain_OrdenTrabajo_fechaFin" object="${ordentrabajo}" z="Rmd5lD9QMkiVdptpcfkWtQOOURk="/>
 	        <field:display field="responsable" id="s_orco_domain_OrdenTrabajo_responsable" object="${ordentrabajo}" z="Y0GmmsguRIjrSDaHKptWp7jbK8Y="/>
+       		<field:display field="responsable2" hasLabel="false" id="s_orco_domain_OrdenTrabajo_responsable" object="${ordentrabajo}" z="Y0GmmsguRIjrSDaHKptWp7jbK8Y="/>
+       		<field:display field="responsable3" hasLabel="false" id="s_orco_domain_OrdenTrabajo_responsable" object="${ordentrabajo}" z="Y0GmmsguRIjrSDaHKptWp7jbK8Y="/>
        		<field:display field="atendio" id="s_orco_domain_OrdenTrabajo_atendio" label="Atendi?" object="${ordentrabajo}" z="user-managed"/>
         	<field:display field="entregadoPor" id="s_orco_domain_OrdenTrabajo_entregadoPor" object="${ordentrabajo}" z="2PtE4bpa+iYU+p62N2RtX0wN7wQ="/>
     		<field:display field="responsableCliente" id="s_orco_domain_OrdenTrabajo_responsableCliente" object="${ordentrabajo}" z="jsnC6Atx6dRIg+5Tg6Igl6lohnU="/>

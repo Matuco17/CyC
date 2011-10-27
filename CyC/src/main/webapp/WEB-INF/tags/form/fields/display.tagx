@@ -10,12 +10,18 @@
   <jsp:directive.attribute name="bool" type="java.lang.Boolean" required="false" description="Indicate that this field is of type java.lang.Boolean" />
   <jsp:directive.attribute name="dateTimePattern" type="java.lang.String" required="false" description="The date / time pattern to use if the field is a date or calendar type" />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+  <jsp:directive.attribute name="hasLabel" type="java.lang.Boolean" required="false" description="The item hasn't label" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
 
   <c:if test="${empty render or render}">
     <c:if test="${not empty object and empty label}">
       <spring:message code="label_${fn:toLowerCase(fn:substringAfter(id,'_'))}" var="label" />
     </c:if>
+
+    <c:if test="${empty hasLabel}">
+	    <c:set value="true" var="hasLabel" />
+  	</c:if>
+    
 
     <c:if test="${empty dateTimePattern}">
       <c:set value="dd/MM/yy" var="dateTimePattern" />
@@ -25,7 +31,15 @@
     <c:set var="sec_field" value="${fn:escapeXml(field)}" />
 
     <div id="_${fn:escapeXml(id)}_id" style="width: 100%; min-width: 250px;">
-      <label for="_${fn:escapeXml(field)}_id"><c:out value="${label}" />:</label>
+      <c:choose>
+	      <c:when test="${hasLabel}">
+	       <label for="_${sec_field}_id">
+	         <c:out value="${fn:escapeXml(label)}" />:</label>
+	      </c:when>
+	      <c:otherwise>
+	      	<label for="_${sec_field}_id"  >.</label>
+	      </c:otherwise>
+     </c:choose>
       <div class="box" id="_${fn:escapeXml(id)}_${fn:escapeXml(field)}_id">
         <c:choose>
         	<c:when test="${not empty object[field]}">

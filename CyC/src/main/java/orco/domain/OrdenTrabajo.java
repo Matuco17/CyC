@@ -67,6 +67,14 @@ public class OrdenTrabajo {
     @JoinColumn
     private Responsable responsable;
 
+    @ManyToOne(targetEntity = Responsable.class)
+    @JoinColumn
+    private Responsable responsable2;
+
+    @ManyToOne(targetEntity = Responsable.class)
+    @JoinColumn
+    private Responsable responsable3;
+
     @ManyToOne(targetEntity = Cliente.class)
     @JoinColumn
     private Cliente cliente;
