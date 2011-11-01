@@ -25,12 +25,12 @@
 			  					</ul>
 			  				</li>
 			      		</c:forEach>
-			 			<c:forEach items="${orden.remitos}" var="remito">
+			 			<c:forEach items="${presupuesto.remitos}" var="remito">
 							<c:if test="${remito.ordenTrabajoOrigen == null}">
 								<li>Remito: <a href="/CyC/remitoes/${remito.id}" target="_BLANK" > ${remito} </a></li>
 							</c:if>
 						</c:forEach>
-						<c:forEach items="${orden.facturas}" var="factura">
+						<c:forEach items="${presupuesto.facturas}" var="factura">
 							<c:if test="${factura.ordenTrabajoOrigen == null}">
 								<li>Factura: <a href="/CyC/facturas/${factura.id}" target="_BLANK" > ${factura} </a></li>
 							</c:if>	

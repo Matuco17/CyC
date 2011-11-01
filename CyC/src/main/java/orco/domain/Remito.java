@@ -351,7 +351,11 @@ public class Remito {
     }
     
     public String toString() {
-        return remitoFormulario;
+        if (remitoFormulario != null && remitoFormulario.length() > 0){
+			return remitoFormulario;
+		} else {
+			return "id: " + this.getId().toString();
+		}
     }
     
 }

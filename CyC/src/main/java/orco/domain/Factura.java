@@ -407,7 +407,11 @@ public class Factura {
 	}
     
 	public String toString(){
-		return facturaFormulario;
+		if (facturaFormulario != null && facturaFormulario.length() > 0){
+			return facturaFormulario;
+		} else {
+			return "id: " + this.getId().toString();
+		}
 	}
 	
     

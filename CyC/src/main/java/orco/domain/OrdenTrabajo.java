@@ -480,7 +480,7 @@ public class OrdenTrabajo {
         if (nroOrden != null) {
             return String.valueOf(nroOrden);
         } else {
-            return "Sin Nro";
+            return "id: " + this.getId().toString();
         }
     }
 

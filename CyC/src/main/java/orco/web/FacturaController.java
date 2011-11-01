@@ -170,7 +170,7 @@ public class FacturaController extends BasicController {
     	String jasperFile = null;
     	String pdfFile = null;
     	if (type.equalsIgnoreCase(Constantes.PRINT_TYPE_TEMPLATE)){
-    		jasperFile = "FacturaTempalte.jasper";
+    		jasperFile = "FacturaTemplate.jasper";
     		pdfFile = "facturaT_" + id.toString() + ".pdf";
     	}	
     	

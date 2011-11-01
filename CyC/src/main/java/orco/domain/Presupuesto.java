@@ -414,11 +414,11 @@ public class Presupuesto {
     
     
     public String toString() {
-        return presupuestoFormulario;
-    	/*
-        sb.append(getPresupuestoFormulario());
-        return sb.toString();
-        */
+        if (presupuestoFormulario != null && presupuestoFormulario.length() > 0){
+			return presupuestoFormulario;
+		} else {
+			return "id: " + this.getId().toString();
+		}
     }
 
 
