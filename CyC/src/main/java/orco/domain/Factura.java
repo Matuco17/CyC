@@ -409,8 +409,10 @@ public class Factura {
 	public String toString(){
 		if (facturaFormulario != null && facturaFormulario.length() > 0){
 			return facturaFormulario;
-		} else {
+		} else if (this.getId() != null){
 			return "id: " + this.getId().toString();
+		} else {
+			return "";
 		}
 	}
 	

@@ -479,9 +479,11 @@ public class OrdenTrabajo {
     public String toString() {
         if (nroOrden != null) {
             return String.valueOf(nroOrden);
-        } else {
-            return "id: " + this.getId().toString();
-        }
+		} else if (this.getId() != null){
+			return "id: " + this.getId().toString();
+		} else {
+			return "";
+		}
     }
 
 

@@ -5,9 +5,10 @@
   <jsp:directive.attribute name="ordentrabajo" type="java.lang.Object" required="false" description="La orden de trabajo origen del arbol " />
   
   
-  <c:if test="${presupuesto != null || ordentrabajo != null}" >
-  	<util:panel title="Arbol de Comprobantes Relacionados" id="arbol" openPane="false">
-	   	<c:choose>
+ <util:panel title="Arbol de Comprobantes Relacionados" id="arbol" openPane="false">
+ 	<c:choose>
+ 	<c:when test="${presupuesto != null || ordentrabajo != null}" >
+ 	   	<c:choose>
 		   	<c:when test="${presupuesto != null}" >			
 			   	<ul>
 			  		<li>Presupuesto: <a href="/CyC/presupuestoes/${presupuesto.id}" target="_BLANK" > ${presupuesto} </a></li>
@@ -50,7 +51,9 @@
 				</ul>		  	
 			</c:otherwise>
 		</c:choose>
-	</util:panel>
- </c:if>
+	</c:when>
+	<c:otherwise>No existen comprobantes relacionados.</c:otherwise>
+	</c:choose>
+</util:panel>
  
 </jsp:root>

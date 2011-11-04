@@ -416,8 +416,10 @@ public class Presupuesto {
     public String toString() {
         if (presupuestoFormulario != null && presupuestoFormulario.length() > 0){
 			return presupuestoFormulario;
-		} else {
+		} else if (this.getId() != null){
 			return "id: " + this.getId().toString();
+		} else {
+			return "";
 		}
     }
 
