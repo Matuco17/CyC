@@ -352,7 +352,8 @@ public class OrdenTrabajoController extends BasicController {
 					cantidad = 0;
 				}
     			if (cantidad > 0){
-    				otL.setItem(Long.parseLong(items[i]));
+    				if (items[i] != null && items[i].trim().length() > 0)
+    					otL.setItem(Long.parseLong(items[i]));
     				
     				otL.setCantidad(new Long(cantidad));
 	        		
