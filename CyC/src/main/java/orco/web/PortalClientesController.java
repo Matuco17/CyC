@@ -33,13 +33,13 @@ public class PortalClientesController extends BasicController {
         	 
         	 
         	 //Busco las ordenes de trabajo de acuerdo al filtro realizado
-        	 List<OrdenTrabajo> ordenTrabajoList = new ArrayList<OrdenTrabajo>();
-             float nrOfPages = (float) ordenTrabajoList.size() / sizeNo;
+        	 float nrOfPages = (float) OrdenTrabajo.countFindOrdenTrabajo(ordenTrabajoFilter) / sizeNo;
              
-             if (page != null) {
-     			ordenTrabajoList = ordenTrabajoList.subList(page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo);
+             List<OrdenTrabajo> ordenTrabajoList = new ArrayList<OrdenTrabajo>();
+     		 if (page != null || size != null) {
+     			ordenTrabajoList = OrdenTrabajo.findOrdenTrabajo(ordenTrabajoFilter, page == null ? 0 : (page.intValue() - 1) * sizeNo, sizeNo);
              } else {
-             	ordenTrabajoList =  ordenTrabajoList.subList(0, 10);
+             	ordenTrabajoList =  OrdenTrabajo.findOrdenTrabajo(ordenTrabajoFilter, 0, 10);
              }
              model.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
              model.addAttribute("ordentrabajoes", ordenTrabajoList);
