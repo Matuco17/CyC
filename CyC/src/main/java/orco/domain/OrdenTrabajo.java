@@ -116,6 +116,7 @@ public class OrdenTrabajo {
 
     private Boolean controlCalidad;
 
+    
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "orden_trabajo_origen")
     private Set<Remito> remitos = new java.util.HashSet<Remito>();
@@ -450,6 +451,13 @@ public class OrdenTrabajo {
     public OrdenTrabajo merge() {
         actualizarTipsBusqueda(this);
         if (this.entityManager == null) this.entityManager = entityManager();
+        
+      //Le hago un merge a las relacionaes que tiene el comprobante
+        OrdenTrabajo orig = findOrdenTrabajo(id);
+        this.setRemitos(orig.getRemitos());
+        this.setFacturas(orig.getFacturas());       
+        
+        
         OrdenTrabajo merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;

@@ -8,7 +8,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 import javax.persistence.Version;
 import javax.validation.constraints.Size;
@@ -88,7 +91,6 @@ public class Presupuesto {
     @JoinColumn(name = "presupuesto")
     private Set<PresupuestoLinea> lineas = new java.util.HashSet<PresupuestoLinea>();
 
-    
     
     
     @OneToMany(fetch = FetchType.LAZY)
@@ -273,6 +275,13 @@ public class Presupuesto {
     public Presupuesto merge() {
         actualizarTipsBusqueda(this);
         if (this.entityManager == null) this.entityManager = entityManager();
+        
+        //Le hago un merge a las relacionaes que tiene el comprobante
+        Presupuesto orig = findPresupuesto(id);
+        this.setOrdenes(orig.getOrdenes());
+        this.setRemitos(orig.getRemitos());
+        this.setFacturas(orig.getFacturas());        
+        
         Presupuesto merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
