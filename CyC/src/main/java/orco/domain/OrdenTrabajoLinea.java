@@ -39,7 +39,7 @@ public class OrdenTrabajoLinea {
     
     private Long item;
     
-
+	private Integer nroLinea;
 
 	/**
      * Campos agregados para la impresion de la orden de trabajo
@@ -109,4 +109,12 @@ public class OrdenTrabajoLinea {
     public void setVersion(Integer version) {
         this.version = version;
     }
+    
+    public Integer getNroLinea() {
+		return nroLinea;
+	}
+
+	public void setNroLinea(Integer nroLinea) {
+		this.nroLinea = nroLinea;
+	}
 }

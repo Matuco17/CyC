@@ -224,6 +224,7 @@ public class Factura {
             if (pLinea.getGanado() != null && pLinea.getGanado().booleanValue()) {
                 FacturaLinea fLinea = new FacturaLinea();
                 
+                fLinea.setNroLinea(pLinea.getNroLinea());
                 fLinea.setCantidad(pLinea.getCantidad());
                 fLinea.setDescripcion(pLinea.getDescripcionTrabajo());
                 fLinea.setPrecioUnitario(pLinea.getPrecioUnitario());
@@ -257,6 +258,7 @@ public class Factura {
             if (otLinea.getFinalizado() != null && otLinea.getFinalizado().booleanValue()) {
                 FacturaLinea fLinea = new FacturaLinea();
                 
+                fLinea.setNroLinea(otLinea.getNroLinea());
                 fLinea.setCantidad(otLinea.getCantidad());
                 fLinea.setDescripcion(otLinea.getDescripcion());
                 
@@ -426,11 +428,11 @@ public class Factura {
 
         @Override
         public int compare(FacturaLinea arg0, FacturaLinea arg1) {
-            if (arg0.getId() != null && arg1.getId() != null) {
-                return arg0.getId().compareTo(arg1.getId());
-            } else if (arg0.getId() != null) {
+        	if (arg0.getNroLinea() != null && arg1.getNroLinea() != null) {
+                return arg0.getNroLinea().compareTo(arg1.getNroLinea());
+            } else if (arg0.getNroLinea() != null) {
                 return -1;
-            } else if (arg1.getId() != null) {
+            } else if (arg1.getNroLinea() != null) {
                 return 1;
             } else {
                 return 0;

@@ -45,6 +45,7 @@
        			<tr>
 					<td>
 						<input type="hidden" id="linea_id" name="linea_id" value="${linea.id}" />
+						<input id="nro_linea" name="nro_linea" type="hidden" value="${statusFor.index}" />
 						<input id="cantidad" name="cantidad" onkeyup="actualizarTotales();" style="width:50px; text-align:right;" type="text" value="${linea.cantidad}"/>
 					</td>
 					<td>

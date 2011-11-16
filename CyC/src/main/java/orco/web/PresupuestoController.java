@@ -205,6 +205,7 @@ public class PresupuestoController extends BasicController {
 		
 		//Completo la parte de lineas para que las inserte ya que no lo esta agregando
     	String[] ids = request.getParameterValues("linea_id");
+    	String[] nrosLineas = request.getParameterValues("nro_linea");
     	String[] cantidades = request.getParameterValues("cantidad");
     	String[] descripciones = request.getParameterValues("descripcionTrabajo");
     	String[] prioridades = request.getParameterValues("prioridad");
@@ -213,52 +214,53 @@ public class PresupuestoController extends BasicController {
     	
     	for (int i = 0; i < cantidades.length; i++){
     		PresupuestoLinea pl = new PresupuestoLinea();
-    		if (cantidades[i] != null && cantidades[i].trim().length() > 0){
-    			long cantidad = 0;
+    		if (descripciones[i] != null && descripciones[i].trim().length() > 0){
+    			//Completo el nro de linea (este siempre viene correcto)
+				pl.setNroLinea(new Integer(nrosLineas[i]));
+				
+				//Completo la cantidad
     			try {
-					cantidad = Long.parseLong(cantidades[i]);
+    				pl.setCantidad(new Long(cantidades[i]));
 				} catch (NumberFormatException e) {
-					cantidad = 0;
+					pl.setCantidad(null);
 				}
-    			if (cantidad > 0){
-    				pl.setCantidad(new Long(cantidad));
-	        		
-    				pl.setDescripcionTrabajo(descripciones[i]);
-	        		
-	        		if (preciosUnitarios[i] != null){
-	        			try {
-	        				pl.setPrecioUnitario(new BigDecimal(preciosUnitarios[i]));
-	    	        	} catch (Exception e) {
-	    	        		pl.setPrecioUnitario(new BigDecimal(0));
-		    	        }
-	        		}
-	        		
-	        		if (prioridades[i] != null)
-	        			pl.setPrioridad(Prioridad.findPrioridad(new Long(prioridades[i])));
-	        		
-	        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
-	        		if (ids != null && ids.length > 0 && ids[i] != null){
-	        			try {
-							pl.setId(Long.valueOf(ids[i]));
-						} catch (NumberFormatException e) {
-							pl.setId(null);
-						}     				        		
-	        		}
-	        		
-	        		//Agrego los ganados siempre que existan
-	        		pl.setGanado(false);
-	        		if (ganados != null && ganados.length > 0 && Arrays.binarySearch(ganados, String.valueOf(i)) >= 0){
-	        			try {
-							pl.setGanado(true);
-						} catch (NumberFormatException e) {
-							pl.setGanado(false);
-						}     				        		
-	        		}
-	        		
-	        		pl.setPresupuesto(presupuesto);
-	        		
-	        		presupuesto.getLineas().add(pl);
-    			}	        			
+	        	
+			    pl.setDescripcionTrabajo(descripciones[i]);
+        		
+        		if (preciosUnitarios[i] != null){
+        			try {
+        				pl.setPrecioUnitario(new BigDecimal(preciosUnitarios[i]));
+    	        	} catch (Exception e) {
+    	        		pl.setPrecioUnitario(null);
+	    	        }
+        		}
+        		
+        		if (prioridades[i] != null)
+        			pl.setPrioridad(Prioridad.findPrioridad(new Long(prioridades[i])));
+        		
+        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
+        		if (ids != null && ids.length > 0 && ids[i] != null){
+        			try {
+						pl.setId(Long.valueOf(ids[i]));
+					} catch (NumberFormatException e) {
+						pl.setId(null);
+					}     				        		
+        		}
+        		
+        		//Agrego los ganados siempre que existan
+        		pl.setGanado(false);
+        		if (ganados != null && ganados.length > 0 && Arrays.binarySearch(ganados, String.valueOf(i)) >= 0){
+        			try {
+						pl.setGanado(true);
+					} catch (NumberFormatException e) {
+						pl.setGanado(false);
+					}     				        		
+        		}
+        		
+        		pl.setPresupuesto(presupuesto);
+        		
+        		presupuesto.getLineas().add(pl);
+			        			
     		}
     	}
 	}

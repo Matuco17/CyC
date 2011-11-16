@@ -179,6 +179,7 @@ public class OrdenCompraController extends BasicController {
 	   		
 		//Completo la parte de lineas para que las inserte ya que no lo esta agregando
     	String[] ids = request.getParameterValues("linea_id");
+    	String[] nrosLineas = request.getParameterValues("nro_linea");
     	String[] cantidades = request.getParameterValues("cantidad");
     	String[] descripciones = request.getParameterValues("descripcion");
     	String[] preciosUnitarios = request.getParameterValues("precioUnitario");
@@ -186,42 +187,42 @@ public class OrdenCompraController extends BasicController {
     	
     	for (int i = 0; i < cantidades.length; i++){
     		OrdenCompraLinea fl = new OrdenCompraLinea();
-    		if (cantidades[i] != null && cantidades[i].trim().length() > 0){
-    			long cantidad = 0;
-    			try {
-					cantidad = Long.parseLong(cantidades[i]);
+    		if (descripciones[i] != null && descripciones[i].trim().length() > 0){
+    			fl.setNroLinea(new Integer(nrosLineas[i]));	
+    			
+    			//Completo la cantidad	
+				try {
+					fl.setCantidad(new Long(cantidades[i]));
 				} catch (NumberFormatException e) {
-					cantidad = 0;
+					fl.setCantidad(null);
 				}
-    			if (cantidad > 0){
-    				fl.setCantidad(new Long(cantidad));
-	        		
-    				fl.setDescripcion(descripciones[i]);
-	        		
-	        		if (preciosUnitarios[i] != null){
-	        			try {
-	        				fl.setPrecioUnitario(new BigDecimal(preciosUnitarios[i]));
-	    	        	} catch (Exception e) {
-	    	        		fl.setPrecioUnitario(new BigDecimal(0));
-		    	        }
-	        		}
-	        		
-	        			
-	        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
-	        		if (ids != null && ids.length > 0 && ids[i] != null){
-	        			try {
-							fl.setId(Long.valueOf(ids[i]));
-						} catch (NumberFormatException e) {
-							fl.setId(null);
-						}     				        		
-	        		}
-	        		
-	        		
-	        		
-	        		fl.setOrdenCompra(ordenCompra);
-	        		
-	        		ordenCompra.getLineas().add(fl);
-    			}	        			
+        		
+				fl.setDescripcion(descripciones[i]);
+        		
+        		if (preciosUnitarios[i] != null){
+        			try {
+        				fl.setPrecioUnitario(new BigDecimal(preciosUnitarios[i]));
+    	        	} catch (Exception e) {
+    	        		fl.setPrecioUnitario(null);
+	    	        }
+        		}
+        		
+        			
+        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
+        		if (ids != null && ids.length > 0 && ids[i] != null){
+        			try {
+						fl.setId(Long.valueOf(ids[i]));
+					} catch (NumberFormatException e) {
+						fl.setId(null);
+					}     				        		
+        		}
+        		
+        		
+        		
+        		fl.setOrdenCompra(ordenCompra);
+        		
+        		ordenCompra.getLineas().add(fl);
+    				        			
     		}
     	}
 	}

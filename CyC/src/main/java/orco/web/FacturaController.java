@@ -62,11 +62,6 @@ public class FacturaController extends BasicController {
     public String createForm(Model model) {
     	Factura fact = Factura.crear();
     	
-    	//Seteo por ahora un valor default para algunos campos
-    	fact.setImpuesto(new BigDecimal(21));
-    	fact.setBonificacion(new BigDecimal(0));
-    	fact.setFecha(new Date());
-    	
     	model.addAttribute("factura", fact);
         addDateTimeFormatPatterns(model);
         return "facturas/create";
@@ -218,6 +213,7 @@ public class FacturaController extends BasicController {
 		
 		//Completo la parte de lineas para que las inserte ya que no lo esta agregando
     	String[] ids = request.getParameterValues("linea_id");
+    	String[] nrosLineas = request.getParameterValues("nro_linea");
     	String[] cantidades = request.getParameterValues("cantidad");
     	String[] descripciones = request.getParameterValues("descripcion");
     	String[] preciosUnitarios = request.getParameterValues("precioUnitario");
@@ -227,50 +223,50 @@ public class FacturaController extends BasicController {
     	
     	for (int i = 0; i < cantidades.length; i++){
     		FacturaLinea fl = new FacturaLinea();
-    		if (cantidades[i] != null && cantidades[i].trim().length() > 0){
-    			long cantidad = 0;
-    			try {
-					cantidad = Long.parseLong(cantidades[i]);
+    		if (descripciones[i] != null && descripciones[i].trim().length() > 0){
+				fl.setNroLinea(new Integer(nrosLineas[i]));
+				
+				//Completo la cantidad
+				try {
+					fl.setCantidad(new Long(cantidades[i]));
 				} catch (NumberFormatException e) {
-					cantidad = 0;
+					fl.setCantidad(null);
 				}
-    			if (cantidad > 0){
-    				fl.setCantidad(new Long(cantidad));
-	        		
-    				fl.setDescripcion(descripciones[i]);
-	        		
-	        		if (preciosUnitarios[i] != null){
-	        			try {
-	        				fl.setPrecioUnitario(new BigDecimal(preciosUnitarios[i]));
-	    	        	} catch (Exception e) {
-	    	        		fl.setPrecioUnitario(new BigDecimal(0));
-		    	        }
-	        		}
-	        		
-	        		if (presupuestoLineasOrigen[i] != null && presupuestoLineasOrigen[i].trim().length() > 0){
-	        			fl.setPresupuestoLineaOrigen(PresupuestoLinea.findPresupuestoLinea(new Long(presupuestoLineasOrigen[i])));
-	        		}
-	        		
-	        		if (ordenTrabajoLineasOrigen[i] != null && ordenTrabajoLineasOrigen[i].trim().length() > 0){
-	        			fl.setOrdenTrabajoLineaOrigen(OrdenTrabajoLinea.findOrdenTrabajoLinea(new Long(ordenTrabajoLineasOrigen[i])));
-	        		}
-	        			
-	        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
-	        		if (ids != null && ids.length > 0 && ids[i] != null){
-	        			try {
-							fl.setId(Long.valueOf(ids[i]));
-						} catch (NumberFormatException e) {
-							fl.setId(null);
-						}     				        		
-	        		}
-	        		
-	        		
-	        		
-	        		fl.setFactura(factura);
-	        		
-	        		factura.getLineas().add(fl);
-    			}	        			
-    		}
+    			
+				fl.setDescripcion(descripciones[i]);
+        		
+        		if (preciosUnitarios[i] != null){
+        			try {
+        				fl.setPrecioUnitario(new BigDecimal(preciosUnitarios[i]));
+    	        	} catch (Exception e) {
+    	        		fl.setPrecioUnitario(null);
+	    	        }
+        		}
+        		
+        		if (presupuestoLineasOrigen[i] != null && presupuestoLineasOrigen[i].trim().length() > 0){
+        			fl.setPresupuestoLineaOrigen(PresupuestoLinea.findPresupuestoLinea(new Long(presupuestoLineasOrigen[i])));
+        		}
+        		
+        		if (ordenTrabajoLineasOrigen[i] != null && ordenTrabajoLineasOrigen[i].trim().length() > 0){
+        			fl.setOrdenTrabajoLineaOrigen(OrdenTrabajoLinea.findOrdenTrabajoLinea(new Long(ordenTrabajoLineasOrigen[i])));
+        		}
+        			
+        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
+        		if (ids != null && ids.length > 0 && ids[i] != null){
+        			try {
+						fl.setId(Long.valueOf(ids[i]));
+					} catch (NumberFormatException e) {
+						fl.setId(null);
+					}     				        		
+        		}
+        		
+        		
+        		
+        		fl.setFactura(factura);
+        		
+        		factura.getLineas().add(fl);
+			}	        			
+    		
     	}
 	}
  

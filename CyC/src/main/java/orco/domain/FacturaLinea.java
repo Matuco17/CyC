@@ -39,8 +39,11 @@ public class FacturaLinea {
     @JoinColumn
     private OrdenTrabajoLinea ordenTrabajoLineaOrigen;
     
+    private Integer nroLinea;
     
-    public BigDecimal getPrecioTotal()
+
+
+	public BigDecimal getPrecioTotal()
     {
     	if (this.precioUnitario != null && this.cantidad != null){
     		return this.precioUnitario.multiply(new BigDecimal(this.cantidad.longValue()));
@@ -75,4 +78,11 @@ public class FacturaLinea {
         this.version = version;
     }
 	
+    public Integer getNroLinea() {
+		return nroLinea;
+	}
+
+	public void setNroLinea(Integer nroLinea) {
+		this.nroLinea = nroLinea;
+	}
 }

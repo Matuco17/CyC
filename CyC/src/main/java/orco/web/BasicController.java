@@ -139,7 +139,7 @@ public class BasicController {
 	            	if (proveedor.getNombre() != null){
 	            		return proveedor.getNombre();
 	            	} else {
-	            		return "Sin Proveedor";
+	            		return "Sin Proveedor.";
 	            	}
 	            }
 	        };

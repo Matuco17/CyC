@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-  <runtime name="VMware vFabric tc Server v2.5"/>
+  <runtime name="SpringSource dm Server (Runtime) v1.0"/>
+  <secondary-runtime name="TC 2.04"/>
   <fixed facet="wst.jsdt.web"/>
   <installed facet="java" version="1.6"/>
   <installed facet="jst.web" version="2.4"/>

@@ -35,7 +35,7 @@ public class RemitoLinea {
     @JoinColumn
     private OrdenTrabajoLinea ordenTrabajoLineaOrigen;
  
-	
+	private Integer nroLinea;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -63,4 +63,12 @@ public class RemitoLinea {
     public void setVersion(Integer version) {
         this.version = version;
     }
+    
+    public Integer getNroLinea() {
+		return nroLinea;
+	}
+
+	public void setNroLinea(Integer nroLinea) {
+		this.nroLinea = nroLinea;
+	}
 }

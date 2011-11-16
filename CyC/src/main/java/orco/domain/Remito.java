@@ -132,6 +132,7 @@ public class Remito {
             if (pLinea.getGanado() != null && pLinea.getGanado().booleanValue()) {
                 RemitoLinea rLinea = new RemitoLinea();
                 
+                rLinea.setNroLinea(pLinea.getNroLinea());
                 rLinea.setCantidad(pLinea.getCantidad());
                 rLinea.setDescripcion(pLinea.getDescripcionTrabajo());
                 rLinea.setPresupuestoLineaOrigen(pLinea);
@@ -160,6 +161,7 @@ public class Remito {
             if (otLinea.getFinalizado() != null && otLinea.getFinalizado().booleanValue()) {
                 RemitoLinea rLinea = new RemitoLinea();
                 
+                rLinea.setNroLinea(otLinea.getNroLinea());
                 rLinea.setCantidad(otLinea.getCantidad());
                 rLinea.setDescripcion(otLinea.getDescripcion());
                 
@@ -322,11 +324,11 @@ public class Remito {
 
         @Override
         public int compare(RemitoLinea arg0, RemitoLinea arg1) {
-            if (arg0.getId() != null && arg1.getId() != null) {
-                return arg0.getId().compareTo(arg1.getId());
-            } else if (arg0.getId() != null) {
+        	if (arg0.getNroLinea() != null && arg1.getNroLinea() != null) {
+                return arg0.getNroLinea().compareTo(arg1.getNroLinea());
+            } else if (arg0.getNroLinea() != null) {
                 return -1;
-            } else if (arg1.getId() != null) {
+            } else if (arg1.getNroLinea() != null) {
                 return 1;
             } else {
                 return 0;

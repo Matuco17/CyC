@@ -193,6 +193,7 @@ public class OrdenTrabajo {
         for (PresupuestoLinea pLinea : pres.getLineas()) {
             if (pLinea.getGanado() != null && pLinea.getGanado().booleanValue()) {
                 OrdenTrabajoLinea otLinea = new OrdenTrabajoLinea();
+                otLinea.setNroLinea(pLinea.getNroLinea());
                 otLinea.setCantidad(pLinea.getCantidad());
                 otLinea.setDescripcion(pLinea.getDescripcionTrabajo());
                 otLinea.setPrioridad(pLinea.getPrioridad());
@@ -395,11 +396,11 @@ public class OrdenTrabajo {
 
         @Override
         public int compare(OrdenTrabajoLinea arg0, OrdenTrabajoLinea arg1) {
-            if (arg0.getId() != null && arg1.getId() != null) {
-                return arg0.getId().compareTo(arg1.getId());
-            } else if (arg0.getId() != null) {
+        	if (arg0.getNroLinea() != null && arg1.getNroLinea() != null) {
+                return arg0.getNroLinea().compareTo(arg1.getNroLinea());
+            } else if (arg0.getNroLinea() != null) {
                 return -1;
-            } else if (arg1.getId() != null) {
+            } else if (arg1.getNroLinea() != null) {
                 return 1;
             } else {
                 return 0;

@@ -30,6 +30,8 @@ public class OrdenCompraLinea {
     private String descripcion;
    
     private BigDecimal precioUnitario;
+    
+    private Integer nroLinea;
 	
 	
     
@@ -67,5 +69,13 @@ public class OrdenCompraLinea {
     public void setVersion(Integer version) {
         this.version = version;
     }
+    
+    public Integer getNroLinea() {
+		return nroLinea;
+	}
+
+	public void setNroLinea(Integer nroLinea) {
+		this.nroLinea = nroLinea;
+	}
     
 }

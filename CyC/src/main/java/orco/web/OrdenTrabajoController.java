@@ -335,6 +335,7 @@ public class OrdenTrabajoController extends BasicController {
     public static void completarOrdenTrabajo(OrdenTrabajo ot, HttpServletRequest request) {
     	//Completo la parte de lineas para que las inserte ya que no lo esta agregando
     	String[] ids = request.getParameterValues("linea_id");
+    	String[] nrosLineas = request.getParameterValues("nro_linea");
     	String[] cantidades = request.getParameterValues("cantidad");
     	String[] descripciones = request.getParameterValues("descripcionTrabajo");
     	String[] prioridades = request.getParameterValues("prioridad");
@@ -344,51 +345,52 @@ public class OrdenTrabajoController extends BasicController {
     	
     	for (int i = 0; i < cantidades.length; i++){
     		OrdenTrabajoLinea otL = new OrdenTrabajoLinea();
-    		if (cantidades[i] != null && cantidades[i].trim().length() > 0){
-    			long cantidad = 0;
+    		if (descripciones[i] != null && descripciones[i].trim().length() > 0){
+    			otL.setNroLinea(new Integer(nrosLineas[i]));
+    			
+    			//Completo la cantidad
     			try {
-					cantidad = Long.parseLong(cantidades[i]);
+    				otL.setCantidad(new Long(cantidades[i]));
 				} catch (NumberFormatException e) {
-					cantidad = 0;
+					otL.setCantidad(null);
 				}
-    			if (cantidad > 0){
-    				if (items[i] != null && items[i].trim().length() > 0)
-    					otL.setItem(Long.parseLong(items[i]));
+        		
+				if (items[i] != null && items[i].trim().length() > 0)
+    				otL.setItem(Long.parseLong(items[i]));
     				
-    				otL.setCantidad(new Long(cantidad));
-	        		
-    				otL.setDescripcion(descripciones[i]);
-	        		
-	        		if (prioridades[i] != null && prioridades[i].trim().length() > 0)
-	        			otL.setPrioridad(Prioridad.findPrioridad(new Long(prioridades[i])));
-	        		
-	        		if (presupuestoLineasOrigen[i] != null && presupuestoLineasOrigen[i].trim().length() > 0){
-	        			otL.setPresupuestoLineaOrigen(PresupuestoLinea.findPresupuestoLinea(new Long(presupuestoLineasOrigen[i])));
-	        		}
-	        		
-	        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
-	        		if (ids != null && ids.length > 0 && ids[i] != null){
-	        			try {
-	        				otL.setId(Long.valueOf(ids[i]));
-						} catch (NumberFormatException e) {
-							otL.setId(null);
-						}     				        		
-	        		}
-	        		
-	        		//Agrego los ganados siempre que existan
-	        		otL.setFinalizado(false);
-	        		if (finalizados != null && finalizados.length > 0 && Arrays.binarySearch(finalizados, String.valueOf(i)) >= 0){
-	        			try {
-	        				otL.setFinalizado(true);
-						} catch (NumberFormatException e) {
-							otL.setFinalizado(false);
-						}     				        		
-	        		}
-	        		
-	        		otL.setOrdenTrabajo(ot);
-	        		
-	        		ot.getLineas().add(otL);
-    			}	        			
+
+				otL.setDescripcion(descripciones[i]);
+        		
+        		if (prioridades[i] != null && prioridades[i].trim().length() > 0)
+        			otL.setPrioridad(Prioridad.findPrioridad(new Long(prioridades[i])));
+        		
+        		if (presupuestoLineasOrigen[i] != null && presupuestoLineasOrigen[i].trim().length() > 0){
+        			otL.setPresupuestoLineaOrigen(PresupuestoLinea.findPresupuestoLinea(new Long(presupuestoLineasOrigen[i])));
+        		}
+        		
+        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
+        		if (ids != null && ids.length > 0 && ids[i] != null){
+        			try {
+        				otL.setId(Long.valueOf(ids[i]));
+					} catch (NumberFormatException e) {
+						otL.setId(null);
+					}     				        		
+        		}
+        		
+        		//Agrego los ganados siempre que existan
+        		otL.setFinalizado(false);
+        		if (finalizados != null && finalizados.length > 0 && Arrays.binarySearch(finalizados, String.valueOf(i)) >= 0){
+        			try {
+        				otL.setFinalizado(true);
+					} catch (NumberFormatException e) {
+						otL.setFinalizado(false);
+					}     				        		
+        		}
+        		
+        		otL.setOrdenTrabajo(ot);
+        		
+        		ot.getLineas().add(otL);
+    			        			
     		}
     	}
     	

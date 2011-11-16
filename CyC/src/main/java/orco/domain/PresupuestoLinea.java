@@ -42,8 +42,12 @@ public class PresupuestoLinea {
     
     private Boolean ganado;
     
+    private Integer nroLinea;
     
-    public BigDecimal getPrecioTotal()
+
+
+
+	public BigDecimal getPrecioTotal()
     {
     	if (this.precioUnitario != null && this.cantidad != null){
     		return this.precioUnitario.multiply(new BigDecimal(this.cantidad.longValue()));
@@ -152,5 +156,14 @@ public class PresupuestoLinea {
     public void setVersion(Integer version){
     	this.version = version;
     }
+    
+    public Integer getNroLinea() {
+		return nroLinea;
+	}
+
+
+	public void setNroLinea(Integer nroLinea) {
+		this.nroLinea = nroLinea;
+	}
     
 }

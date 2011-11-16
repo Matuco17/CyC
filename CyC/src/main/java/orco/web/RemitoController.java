@@ -191,6 +191,7 @@ public class RemitoController extends BasicController {
 			
 		//Completo la parte de lineas para que las inserte ya que no lo esta agregando
     	String[] ids = request.getParameterValues("linea_id");
+    	String[] nrosLineas = request.getParameterValues("nro_linea");
     	String[] cantidades = request.getParameterValues("cantidad");
     	String[] descripciones = request.getParameterValues("descripcion");
     	String[] presupuestoLineasOrigen = request.getParameterValues("presupuestoLineaOrigen");
@@ -199,39 +200,38 @@ public class RemitoController extends BasicController {
     	
     	for (int i = 0; i < cantidades.length; i++){
     		RemitoLinea rl = new RemitoLinea();
-    		if (cantidades[i] != null && cantidades[i].trim().length() > 0){
-    			long cantidad = 0;
+    		if (descripciones[i] != null && descripciones[i].trim().length() > 0){
+				rl.setNroLinea(new Integer(nrosLineas[i]));
+    			
+    			//Completo la cantidad
     			try {
-					cantidad = Long.parseLong(cantidades[i]);
+					rl.setCantidad(new Long(cantidades[i]));
 				} catch (NumberFormatException e) {
-					cantidad = 0;
+					rl.setCantidad(null);
 				}
-    			if (cantidad > 0){
-    				rl.setCantidad(new Long(cantidad));
-	        		
-    				rl.setDescripcion(descripciones[i]);
-	        		
-	        		if (presupuestoLineasOrigen[i] != null && presupuestoLineasOrigen[i].trim().length() > 0){
-	        			rl.setPresupuestoLineaOrigen(PresupuestoLinea.findPresupuestoLinea(new Long(presupuestoLineasOrigen[i])));
-	        		}
-	        		
-	        		if (ordenTrabajoLineasOrigen[i] != null && ordenTrabajoLineasOrigen[i].trim().length() > 0){
-	        			rl.setOrdenTrabajoLineaOrigen(OrdenTrabajoLinea.findOrdenTrabajoLinea(new Long(ordenTrabajoLineasOrigen[i])));
-	        		}	        		
-	        			
-	        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
-	        		if (ids != null && ids.length > 0 && ids[i] != null){
-	        			try {
-							rl.setId(Long.valueOf(ids[i]));
-						} catch (NumberFormatException e) {
-							rl.setId(null);
-						}     				        		
-	        		}	        		       		
-	        		
-	        		rl.setRemito(remito);
-	        		
-	        		remito.getLineas().add(rl);
-    			}	        			
+    			
+				rl.setDescripcion(descripciones[i]);
+        		
+        		if (presupuestoLineasOrigen[i] != null && presupuestoLineasOrigen[i].trim().length() > 0){
+        			rl.setPresupuestoLineaOrigen(PresupuestoLinea.findPresupuestoLinea(new Long(presupuestoLineasOrigen[i])));
+        		}
+        		
+        		if (ordenTrabajoLineasOrigen[i] != null && ordenTrabajoLineasOrigen[i].trim().length() > 0){
+        			rl.setOrdenTrabajoLineaOrigen(OrdenTrabajoLinea.findOrdenTrabajoLinea(new Long(ordenTrabajoLineasOrigen[i])));
+        		}	        		
+        			
+        		//Agrego los ids siempre que existan (ya que en el formulario de Crear no existe
+        		if (ids != null && ids.length > 0 && ids[i] != null){
+        			try {
+						rl.setId(Long.valueOf(ids[i]));
+					} catch (NumberFormatException e) {
+						rl.setId(null);
+					}     				        		
+        		}	        		       		
+        		
+        		rl.setRemito(remito);
+        		
+        		remito.getLineas().add(rl);	        			
     		}
     	}
 	}

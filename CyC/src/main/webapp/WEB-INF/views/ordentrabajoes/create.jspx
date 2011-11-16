@@ -60,6 +60,7 @@
 					</td>
 					<td>
 						<input id="presupuestoLineaOrigen" name="presupuestoLineaOrigen" type="hidden" value="${linea.presupuestoLineaOrigen.id}"/>
+						<input id="nro_linea" name="nro_linea" type="hidden" value="${statusFor.index}" />
 						<input id="cantidad" name="cantidad" style="width:50px; text-align:right;" type="text" value="${linea.cantidad}"/>
 					</td>
 					<td>

@@ -32,12 +32,13 @@
         	</tr>
         </thead>
         <tbody>
-        	<c:forEach items="${factura.lineasPresentacion}" var="linea">
+        	<c:forEach items="${factura.lineasPresentacion}" var="linea" varStatus="statusFor">
 				<tr>
 					<td>
 						<input id="linea_id" name="linea_id" type="hidden" value="${linea.id}"/>
 						<input id="presupuestoLineaOrigen" name="presupuestoLineaOrigen" type="hidden" value="${linea.presupuestoLineaOrigen.id}"/>
 						<input id="ordenTrabajoLineaOrigen" name="ordenTrabajoLineaOrigen" type="hidden" value="${linea.ordenTrabajoLineaOrigen.id}"/>
+						<input id="nro_linea" name="nro_linea" type="hidden" value="${statusFor.index}" />
 						<input id="cantidad" name="cantidad" onkeyup="actualizarTotales();" style="width:50px; text-align:right;" type="text" value="${linea.cantidad}"/>
 					</td>
 					<td colspan="2">
