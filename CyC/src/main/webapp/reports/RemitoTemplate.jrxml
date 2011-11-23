@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RemitoTemplate" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="44" rightMargin="41" topMargin="52" bottomMargin="41">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="49"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="RemitoId" class="java.lang.Long"/>
 	<queryString>
 		<![CDATA[select
@@ -21,7 +21,7 @@ from
 where
     r.id = $P{RemitoId}
 order by
-    rl.id]]>
+    rl.nro_linea]]>
 	</queryString>
 	<field name="id" class="java.lang.Long"/>
 	<field name="fecha" class="java.sql.Date"/>
@@ -38,6 +38,7 @@ order by
 	<field name="orden_trabajo_linea_origen" class="java.lang.Long"/>
 	<field name="presupuesto_linea_origen" class="java.lang.Long"/>
 	<field name="remito" class="java.lang.Long"/>
+	<field name="nro_linea" class="java.lang.Integer"/>
 	<field name="ciudad" class="java.lang.String"/>
 	<field name="cuit" class="java.lang.String"/>
 	<field name="direccion" class="java.lang.String"/>
@@ -104,7 +105,7 @@ order by
 	</pageHeader>
 	<detail>
 		<band height="24" splitType="Stretch">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="0" width="33" height="18"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>

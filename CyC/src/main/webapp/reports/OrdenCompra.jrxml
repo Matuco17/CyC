@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdenCompra" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="44" rightMargin="41" topMargin="40" bottomMargin="41">
 	<property name="ireport.zoom" value="1.3660269107301422"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="38"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="OrdenCompraId" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -28,7 +28,7 @@ from
 where
     oc.id = $P{OrdenCompraId}
 order by
-    ocl.id]]>
+    ocl.nro_linea]]>
 	</queryString>
 	<field name="id" class="java.lang.Long"/>
 	<field name="condiciones_pago" class="java.lang.String"/>
@@ -45,6 +45,7 @@ order by
 	<field name="descripcion" class="java.lang.String"/>
 	<field name="precio_unitario" class="java.math.BigDecimal"/>
 	<field name="orden_compra" class="java.lang.Long"/>
+	<field name="nro_linea" class="java.lang.Integer"/>
 	<field name="codigo" class="java.lang.String"/>
 	<field name="cuidad" class="java.lang.String"/>
 	<field name="cuit" class="java.lang.String"/>
@@ -312,7 +313,7 @@ order by
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="3" y="2" width="57" height="18"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>

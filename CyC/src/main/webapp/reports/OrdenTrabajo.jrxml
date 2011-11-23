@@ -70,7 +70,7 @@ from
 where
      ot.id = $P{OrdenTrabajoId}
 order by
-     otl.id]]>
+     otl.nro_linea]]>
 	</queryString>
 	<field name="id" class="java.lang.Long"/>
 	<field name="cantidad" class="java.lang.Long"/>
@@ -80,6 +80,7 @@ order by
 	<field name="presupuesto_linea_origen" class="java.lang.Long"/>
 	<field name="prioridad" class="java.lang.Long"/>
 	<field name="item" class="java.lang.Long"/>
+	<field name="nro_linea" class="java.lang.Integer"/>
 	<field name="certificado_de_calidad" class="java.lang.String"/>
 	<field name="fecha_entrega" class="java.sql.Date"/>
 	<field name="fecha_fin" class="java.sql.Date"/>
@@ -367,7 +368,7 @@ order by
 	</columnHeader>
 	<detail>
 		<band height="21" splitType="Stretch">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="39" y="0" width="53" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cantidad}.toString()]]></textFieldExpression>

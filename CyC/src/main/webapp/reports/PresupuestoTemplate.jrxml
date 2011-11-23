@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PresupuestoTemplate" pageWidth="595" pageHeight="842" columnWidth="510" leftMargin="44" rightMargin="41" topMargin="40" bottomMargin="41">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.9487171000000014"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="266"/>
 	<parameter name="PresupuestoId" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -21,7 +21,7 @@ from
 where
     p.id = $P{PresupuestoId}
 order by
-    pl.id]]>
+    pl.nro_linea]]>
 	</queryString>
 	<field name="id" class="java.lang.Long"/>
 	<field name="bonificacion" class="java.math.BigDecimal"/>
@@ -44,6 +44,7 @@ order by
 	<field name="precio_unitario" class="java.math.BigDecimal"/>
 	<field name="presupuesto" class="java.lang.Long"/>
 	<field name="prioridad" class="java.lang.Long"/>
+	<field name="nro_linea" class="java.lang.Integer"/>
 	<field name="ciudad" class="java.lang.String"/>
 	<field name="cuit" class="java.lang.String"/>
 	<field name="direccion" class="java.lang.String"/>
@@ -120,7 +121,7 @@ order by
 	</pageHeader>
 	<detail>
 		<band height="24" splitType="Stretch">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="0" width="33" height="18"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
@@ -143,68 +144,78 @@ order by
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="73" splitType="Stretch">
+		<band height="93" splitType="Stretch">
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="432" y="11" width="76" height="20">
+				<reportElement x="432" y="31" width="76" height="20">
 					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{TotalBonificacion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="432" y="31" width="77" height="20">
+				<reportElement x="432" y="51" width="77" height="20">
 					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{TotalImpuesto}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="432" y="51" width="77" height="20"/>
+				<reportElement x="432" y="71" width="77" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{TotalPresupuesto}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="402" y="11" width="16" height="20">
+				<reportElement x="402" y="31" width="16" height="20">
 					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[ %]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="402" y="31" width="16" height="20">
+				<reportElement x="402" y="51" width="16" height="20">
 					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[ %]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="358" y="11" width="45" height="20">
+				<reportElement x="358" y="31" width="45" height="20">
 					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{bonificacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="358" y="31" width="45" height="20">
+				<reportElement x="358" y="51" width="45" height="20">
 					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{impuesto}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="236" y="11" width="100" height="20">
+				<reportElement x="236" y="31" width="100" height="20">
 					<printWhenExpression><![CDATA[$V{VerBonificacion}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[Bonificación ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="236" y="31" width="100" height="20">
+				<reportElement x="236" y="51" width="100" height="20">
 					<printWhenExpression><![CDATA[$V{VerIVA}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[IVA ]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="236" y="11" width="100" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Sub-Total ]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="432" y="11" width="77" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{SubTotal}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>
